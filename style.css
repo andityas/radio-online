@@ -120,10 +120,16 @@ audio {
   color: #000;
 }
 
-/* Glow biru neon untuk radio aktif */
+/* Glow neon for active radio */
 .radio-card.active {
   border-color: #38bdf8;
   box-shadow: 0 0 15px #38bdf8;
+}
+
+.empty {
+  text-align: center;
+  color: #aaa;
+  font-size: 1rem;
 }
 
 footer {
@@ -144,7 +150,7 @@ footer b {
   color: #38bdf8;
 }
 
-/* Responsif */
+/* Responsive */
 @media (max-width: 600px) {
   h1 {
     font-size: 1.4rem;
