@@ -37,7 +37,7 @@
         const response = await fetch('radios.json');
         radiosData = await response.json();
 
-        // 🔑 Load favorites from localStorage
+        // Load favorites from localStorage
         const savedFavs = JSON.parse(localStorage.getItem('favorites')) || [];
         radiosData.forEach(radio => {
           radio.favorite = savedFavs.includes(radio.title);
@@ -96,14 +96,14 @@
           radiosData[index].favorite = !radiosData[index].favorite;
           favBtn.textContent = radiosData[index].favorite ? '✅ Favorite' : '⭐ Favorite';
 
-          // 🔑 Save favorites to localStorage
+          // Save favorites to localStorage
           const favTitles = radiosData.filter(r => r.favorite).map(r => r.title);
           localStorage.setItem('favorites', JSON.stringify(favTitles));
         });
       });
     }
 
-    // 🔎 Search filter
+    // Search filter
     document.getElementById('search').addEventListener('input', (e) => {
       const keyword = e.target.value.toLowerCase();
       const filtered = radiosData.filter(radio =>
@@ -112,7 +112,7 @@
       renderRadios(filtered);
     });
 
-    // 📂 Tabs
+    // Tabs
     document.getElementById('tab-all').addEventListener('click', () => {
       document.getElementById('tab-all').classList.add('active');
       document.getElementById('tab-fav').classList.remove('active');
