@@ -1,13 +1,13 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #0a0a0a; /* Hitam pekat modern */
+  background-color: #0a0a0a;
   color: #ffffff;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding-bottom: 60px; /* ruang untuk footer fixed */
+  padding-bottom: 60px;
 }
 
 h1 {
@@ -16,6 +16,41 @@ h1 {
   color: #38bdf8;
   text-align: center;
   font-size: 1.8rem;
+}
+
+/* 🔎 Search bar */
+.search-container {
+  margin: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+#search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #161616;
+  color: #fff;
+}
+
+/* 📂 Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+.tabs button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tabs button.active {
+  background: #38bdf8;
+  color: #000;
 }
 
 #radio-list {
@@ -29,7 +64,7 @@ h1 {
 }
 
 .radio-card {
-  background: #161616; /* Abu-abu sangat gelap */
+  background: #161616;
   border: 1px solid #333;
   border-radius: 15px;
   padding: 20px;
@@ -55,8 +90,14 @@ h1 {
 }
 
 .radio-card h3 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 1rem;
+}
+
+.status {
+  font-size: 0.85rem;
+  color: #38bdf8;
+  margin-bottom: 10px;
 }
 
 audio {
@@ -64,7 +105,22 @@ audio {
   filter: invert(90%);
 }
 
-/* Efek glow biru neon untuk radio aktif */
+.fav-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.fav-btn:hover {
+  background: #38bdf8;
+  color: #000;
+}
+
+/* Glow biru neon untuk radio aktif */
 .radio-card.active {
   border-color: #38bdf8;
   box-shadow: 0 0 15px #38bdf8;
@@ -88,7 +144,7 @@ footer b {
   color: #38bdf8;
 }
 
-/* Responsif untuk layar kecil */
+/* Responsif */
 @media (max-width: 600px) {
   h1 {
     font-size: 1.4rem;
