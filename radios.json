@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Prambors FM",
+    "url": "https://stream.pramborsfm.com/live.mp3",
+    "logo": "https://upload.wikimedia.org/prambors_logo.png",
+    "category": "musik"
+  },
+  {
+    "name": "RRI Pro 1 Jakarta",
+    "url": "https://stream.rri.co.id/pro1jakarta.mp3",
+    "logo": "https://upload.wikimedia.org/rri_logo.png",
+    "category": "berita"
+  },
+  {
+    "name": "Hard Rock FM",
+    "url": "https://stream.hardrockfm.com/live.mp3",
+    "logo": "https://upload.wikimedia.org/hardrock_logo.png",
+    "category": "musik"
+  },
+  {
+    "name": "RRI Pro 2 Bandung",
+    "url": "https://stream.rri.co.id/pro2bandung.mp3",
+    "logo": "https://upload.wikimedia.org/rri_logo.png",
+    "category": "daerah"
+  }
+]
