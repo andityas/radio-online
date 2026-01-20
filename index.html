@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Radio Online - Andit</title>
+  <title>Online Radio - Andit</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,19 +13,19 @@
 
   <!-- 🔎 Search bar -->
   <div class="search-container">
-    <input type="text" id="search" placeholder="Cari radio...">
+    <input type="text" id="search" placeholder="Search radio...">
   </div>
 
   <!-- 📂 Tabs -->
   <div class="tabs">
-    <button id="tab-all" class="active">📻 Semua Radio</button>
-    <button id="tab-fav">⭐ Favorit</button>
+    <button id="tab-all" class="active">📻 All Radios</button>
+    <button id="tab-fav">⭐ Favorites</button>
   </div>
   
   <div id="radio-list"></div>
 
   <footer>
-    Made with ❤️ by <b>Andit</b> &copy; 2024
+    Made with ❤️ by <b>Andit</b> &copy; 2026
   </footer>
 
   <script>
@@ -36,15 +36,28 @@
       try {
         const response = await fetch('radios.json');
         radiosData = await response.json();
+
+        // 🔑 Load favorites from localStorage
+        const savedFavs = JSON.parse(localStorage.getItem('favorites')) || [];
+        radiosData.forEach(radio => {
+          radio.favorite = savedFavs.includes(radio.title);
+        });
+
         renderRadios(radiosData);
       } catch (e) {
-        container.innerHTML = "Gagal memuat data radio.";
+        container.innerHTML = "Failed to load radio data.";
       }
     }
 
     function renderRadios(radios) {
       const container = document.getElementById('radio-list');
       container.innerHTML = '';
+
+      if (radios.length === 0) {
+        container.innerHTML = "<p class='empty'>No favorites yet ⭐</p>";
+        return;
+      }
+
       radios.forEach((radio, index) => {
         const card = document.createElement('div');
         card.className = 'radio-card';
@@ -55,7 +68,7 @@
           <audio controls>
             <source src="${radio.streamUrl}" type="${radio.type}">
           </audio>
-          <button class="fav-btn">${radio.favorite ? '✅ Favorit' : '⭐ Favorit'}</button>
+          <button class="fav-btn">${radio.favorite ? '✅ Favorite' : '⭐ Favorite'}</button>
         `;
         container.appendChild(card);
 
@@ -70,7 +83,7 @@
             }
           });
           card.classList.add('active');
-          card.querySelector('.status').textContent = '▶ Sedang diputar';
+          card.querySelector('.status').textContent = '▶ Now Playing';
         });
 
         audio.addEventListener('pause', () => {
@@ -81,7 +94,11 @@
         const favBtn = card.querySelector('.fav-btn');
         favBtn.addEventListener('click', () => {
           radiosData[index].favorite = !radiosData[index].favorite;
-          favBtn.textContent = radiosData[index].favorite ? '✅ Favorit' : '⭐ Favorit';
+          favBtn.textContent = radiosData[index].favorite ? '✅ Favorite' : '⭐ Favorite';
+
+          // 🔑 Save favorites to localStorage
+          const favTitles = radiosData.filter(r => r.favorite).map(r => r.title);
+          localStorage.setItem('favorites', JSON.stringify(favTitles));
         });
       });
     }
