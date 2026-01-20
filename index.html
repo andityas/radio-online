@@ -10,6 +10,17 @@
 <body>
 
   <h1>📻 ONLINE RADIO</h1>
+
+  <!-- 🔎 Search bar -->
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Cari radio...">
+  </div>
+
+  <!-- 📂 Tabs -->
+  <div class="tabs">
+    <button id="tab-all" class="active">📻 Semua Radio</button>
+    <button id="tab-fav">⭐ Favorit</button>
+  </div>
   
   <div id="radio-list"></div>
 
@@ -18,49 +29,86 @@
   </footer>
 
   <script>
+    let radiosData = [];
+
     async function loadRadios() {
       const container = document.getElementById('radio-list');
       try {
         const response = await fetch('radios.json');
-        const radios = await response.json();
-        
-        container.innerHTML = '';
-        radios.forEach(radio => {
-          const card = document.createElement('div');
-          card.className = 'radio-card';
-          card.innerHTML = `
-            <img src="${radio.logo}" alt="${radio.title}">
-            <h3>${radio.title}</h3>
-            <audio controls>
-              <source src="${radio.streamUrl}" type="${radio.type}">
-            </audio>
-          `;
-          container.appendChild(card);
-        });
-
-        // 🔑 Hanya satu audio yang bisa play
-        const audios = container.querySelectorAll('audio');
-        audios.forEach(audio => {
-          audio.addEventListener('play', () => {
-            audios.forEach(other => {
-              if (other !== audio) {
-                other.pause();
-                other.currentTime = 0;
-                other.closest('.radio-card').classList.remove('active');
-              }
-            });
-            audio.closest('.radio-card').classList.add('active');
-          });
-
-          audio.addEventListener('pause', () => {
-            audio.closest('.radio-card').classList.remove('active');
-          });
-        });
-
+        radiosData = await response.json();
+        renderRadios(radiosData);
       } catch (e) {
         container.innerHTML = "Gagal memuat data radio.";
       }
     }
+
+    function renderRadios(radios) {
+      const container = document.getElementById('radio-list');
+      container.innerHTML = '';
+      radios.forEach((radio, index) => {
+        const card = document.createElement('div');
+        card.className = 'radio-card';
+        card.innerHTML = `
+          <img src="${radio.logo}" alt="${radio.title}">
+          <h3>${radio.title}</h3>
+          <p class="status"></p>
+          <audio controls>
+            <source src="${radio.streamUrl}" type="${radio.type}">
+          </audio>
+          <button class="fav-btn">${radio.favorite ? '✅ Favorit' : '⭐ Favorit'}</button>
+        `;
+        container.appendChild(card);
+
+        const audio = card.querySelector('audio');
+        audio.addEventListener('play', () => {
+          document.querySelectorAll('audio').forEach(other => {
+            if (other !== audio) {
+              other.pause();
+              other.currentTime = 0;
+              other.closest('.radio-card').classList.remove('active');
+              other.closest('.radio-card').querySelector('.status').textContent = '';
+            }
+          });
+          card.classList.add('active');
+          card.querySelector('.status').textContent = '▶ Sedang diputar';
+        });
+
+        audio.addEventListener('pause', () => {
+          card.classList.remove('active');
+          card.querySelector('.status').textContent = '';
+        });
+
+        const favBtn = card.querySelector('.fav-btn');
+        favBtn.addEventListener('click', () => {
+          radiosData[index].favorite = !radiosData[index].favorite;
+          favBtn.textContent = radiosData[index].favorite ? '✅ Favorit' : '⭐ Favorit';
+        });
+      });
+    }
+
+    // 🔎 Search filter
+    document.getElementById('search').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      const filtered = radiosData.filter(radio =>
+        radio.title.toLowerCase().includes(keyword)
+      );
+      renderRadios(filtered);
+    });
+
+    // 📂 Tabs
+    document.getElementById('tab-all').addEventListener('click', () => {
+      document.getElementById('tab-all').classList.add('active');
+      document.getElementById('tab-fav').classList.remove('active');
+      renderRadios(radiosData);
+    });
+
+    document.getElementById('tab-fav').addEventListener('click', () => {
+      document.getElementById('tab-fav').classList.add('active');
+      document.getElementById('tab-all').classList.remove('active');
+      const favRadios = radiosData.filter(radio => radio.favorite);
+      renderRadios(favRadios);
+    });
+
     loadRadios();
   </script>
 </body>
