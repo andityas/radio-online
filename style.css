@@ -1,3 +1,4 @@
+/* ===== Base Layout ===== */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #0a0a0a;
@@ -7,7 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 60px; /* space for fixed footer */
 }
 
 h1 {
@@ -18,7 +19,7 @@ h1 {
   font-size: 1.8rem;
 }
 
-/* Search Bar */
+/* ===== Search Bar ===== */
 .search-container {
   margin: 10px;
   width: 100%;
@@ -33,7 +34,7 @@ h1 {
   color: #fff;
 }
 
-/* Tabs */
+/* ===== Tabs ===== */
 .tabs {
   display: flex;
   gap: 8px;
@@ -54,72 +55,110 @@ h1 {
   color: #000;
 }
 
-/* Radio Cards */
-#radio-list {
+/* ===== Grid View ===== */
+#radio-list.grid-view {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* desktop: 3 columns */
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr); /* desktop: 4 card */
+  gap: 16px;
   padding: 20px;
+  max-width: 1200px;
   width: 100%;
-  max-width: 1000px;
 }
 
+/* ===== List View ===== */
+#radio-list.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ===== Radio Card ===== */
 .radio-card {
   background: #181818;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
-  padding: 16px;
-  text-align: center;
+  padding: 12px;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .radio-card:hover {
   border-color: #38bdf8;
   box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .radio-card img {
-  max-width: 100px;
-  margin-bottom: 12px;
+  max-width: 80px;
   border-radius: 8px;
   border: 1px solid #222;
   background: #000;
-  padding: 6px;
+  padding: 5px;
+  margin-bottom: 8px;
 }
 
 .radio-card h3 {
-  font-size: 0.95rem;
-  margin-bottom: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
   color: #fff;
 }
 
 .status {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #38bdf8;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-audio {
-  width: 100%;
-  height: 32px;
-  filter: invert(90%);
+/* Hide default audio player */
+.radio-card audio {
+  display: none;
 }
 
-.fav-btn {
-  margin-top: 8px;
+/* ===== Custom Buttons ===== */
+.play-btn, .fav-btn {
+  margin: 4px;
   padding: 6px 12px;
   font-size: 0.8rem;
   border: none;
   border-radius: 6px;
-  background: #333;
-  color: #fff;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.play-btn {
+  background: #38bdf8;
+  color: #000;
+}
+.play-btn:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+.play-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.fav-btn {
+  background: #333;
+  color: #fff;
 }
 .fav-btn:hover {
   background: #38bdf8;
   color: #000;
+}
+.fav-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
 
 /* Active glow */
@@ -135,7 +174,7 @@ audio {
   font-size: 0.9rem;
 }
 
-/* Footer */
+/* ===== Footer ===== */
 footer {
   position: fixed;
   bottom: 0;
@@ -153,10 +192,20 @@ footer b {
   color: #38bdf8;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 900px) {
-  #radio-list {
-    grid-template-columns: repeat(2, 1fr); /* tablet: 2 columns */
+  #radio-list.grid-view {
+    grid-template-columns: repeat(3, 1fr); /* tablet: 3 card */
   }
 }
-@media (
+@media (max-width: 600px) {
+  #radio-list.grid-view {
+    grid-template-columns: repeat(2, 1fr); /* mobile: 2 card */
+  }
+  .radio-card img {
+    max-width: 60px;
+  }
+  .radio-card h3 {
+    font-size: 0.8rem;
+  }
+}
