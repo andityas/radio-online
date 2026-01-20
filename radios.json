@@ -1,8 +1,14 @@
 [
   {
     "name": "Prambors FM",
-    "url": "https://stream.pramborsfm.com/live.mp3",
+    "url": "https://streaming.pramborsfm.com/live.mp3",
     "logo": "https://upload.wikimedia.org/prambors_logo.png",
+    "category": "musik"
+  },
+  {
+    "name": "Hard Rock FM",
+    "url": "https://stream.hardrockfm.com/live.mp3",
+    "logo": "https://upload.wikimedia.org/hardrock_logo.png",
     "category": "musik"
   },
   {
@@ -12,15 +18,33 @@
     "category": "berita"
   },
   {
-    "name": "Hard Rock FM",
-    "url": "https://stream.hardrockfm.com/live.mp3",
-    "logo": "https://upload.wikimedia.org/hardrock_logo.png",
+    "name": "Delta FM",
+    "url": "https://streaming.deltafm.net/deltafm.mp3",
+    "logo": "https://upload.wikimedia.org/deltafm_logo.png",
     "category": "musik"
   },
   {
-    "name": "RRI Pro 2 Bandung",
-    "url": "https://stream.rri.co.id/pro2bandung.mp3",
-    "logo": "https://upload.wikimedia.org/rri_logo.png",
-    "category": "daerah"
+    "name": "Elshinta Radio",
+    "url": "https://stream.elshinta.id/elshinta.mp3",
+    "logo": "https://upload.wikimedia.org/elshinta_logo.png",
+    "category": "berita"
+  },
+  {
+    "name": "Suara Surabaya",
+    "url": "https://stream.suarasurabaya.net/ssfm.mp3",
+    "logo": "https://upload.wikimedia.org/suarasurabaya_logo.png",
+    "category": "berita"
+  },
+  {
+    "name": "FeMale Radio",
+    "url": "https://stream.femaleradio.net/female.mp3",
+    "logo": "https://upload.wikimedia.org/female_logo.png",
+    "category": "lifestyle"
+  },
+  {
+    "name": "Trax FM",
+    "url": "https://stream.traxfm.net/traxfm.mp3",
+    "logo": "https://upload.wikimedia.org/traxfm_logo.png",
+    "category": "musik"
   }
 ]
