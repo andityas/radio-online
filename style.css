@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding-bottom: 60px; /* space for fixed footer */
+  padding-bottom: 60px;
 }
 
 h1 {
@@ -58,7 +58,7 @@ h1 {
 /* ===== Grid View ===== */
 #radio-list.grid-view {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* desktop: 4 card */
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   padding: 20px;
   max-width: 1200px;
@@ -145,6 +145,10 @@ h1 {
   width: 16px;
   height: 16px;
   fill: currentColor;
+  transition: transform 0.4s ease;
+}
+.play-btn:active .icon-play {
+  transform: rotate(360deg);
 }
 
 .fav-btn {
@@ -158,6 +162,9 @@ h1 {
 .fav-btn svg {
   width: 16px;
   height: 16px;
+  fill: currentColor;
+}
+.fav-btn .fav-icon {
   fill: currentColor;
 }
 
@@ -195,12 +202,12 @@ footer b {
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   #radio-list.grid-view {
-    grid-template-columns: repeat(3, 1fr); /* tablet: 3 card */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 600px) {
   #radio-list.grid-view {
-    grid-template-columns: repeat(2, 1fr); /* mobile: 2 card */
+    grid-template-columns: repeat(2, 1fr);
   }
   .radio-card img {
     max-width: 60px;
