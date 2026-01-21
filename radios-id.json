@@ -11,7 +11,7 @@
     "id": 2,
     "title": "Radio Gen 98.7 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "/api/proxy",
+    "streamUrl": "http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -100,6 +100,14 @@
     "title": "PRFM 107.5 FM News Channel",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708941620840.webp",
     "streamUrl": "https://radio.idh.am/prfm",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+{
+    "id": 14,
+    "title": "Radio Hot 93.2 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1614529815902.jpg",
+    "streamUrl": "http://103.246.184.62:1935/noice_hotfm/hotfm/playlist.m3u8",
     "type": "audio/mpeg",
     "favorite": false
   }
