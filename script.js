@@ -21,19 +21,27 @@ function renderRadios() {
     const noResults = document.getElementById('no-results');
     const errorTitle = document.getElementById('error-title');
     const errorDesc = document.getElementById('error-desc');
-    const keyword = document.getElementById('search-input').value.toLowerCase();
+    
+    // Pastikan input search ada, kalau gak ada kasih string kosong
+    const searchInput = document.getElementById('search-input');
+    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
-    // 1. Filter Data
-    let data = allRadios;
-    if (currentTab === 'fav') {
-        data = allRadios.filter(r => favorites.includes(r.id));
-    }
-    data = data.filter(r => r.title.toLowerCase().includes(keyword));
-
+    // 1. Bersihkan list dulu biar gak tumpang tindih
     list.innerHTML = '';
 
-    // 2. Logika Tampilan Gak Ketemu
-    if (data.length === 0) {
+    // 2. Filter Berdasarkan Tab & Keyword
+    let filteredData = allRadios;
+    
+    if (currentTab === 'fav') {
+        filteredData = allRadios.filter(r => favorites.includes(parseInt(r.id)));
+    }
+    
+    if (keyword !== "") {
+        filteredData = filteredData.filter(r => r.title.toLowerCase().includes(keyword));
+    }
+
+    // 3. Logika Tampilan
+    if (filteredData.length === 0) {
         noResults.style.display = 'flex';
         
         if (currentTab === 'fav' && keyword === "") {
@@ -46,11 +54,11 @@ function renderRadios() {
         
         list.appendChild(noResults);
     } else {
+        // SEMBUNYIKAN no-results kalau ada data
         noResults.style.display = 'none';
         
-        // 3. Render Kartu
-        data.forEach(radio => {
-            const isFav = favorites.includes(radio.id);
+        filteredData.forEach(radio => {
+            const isFav = favorites.includes(parseInt(radio.id));
             const card = document.createElement('div');
             card.className = 'radio-card';
             card.id = `card-${radio.id}`;
@@ -88,12 +96,22 @@ window.playStream = (url, type, title, id) => {
 // Toggle Fav Logic
 function toggleFav(event, id) {
     event.stopPropagation();
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
+    
+    // Pastikan ID diperlakukan sebagai angka biar konsisten
+    const targetId = parseInt(id); 
+
+    if (favorites.includes(targetId)) {
+        // Hapus dari favorit kalau sudah ada
+        favorites = favorites.filter(favId => favId !== targetId);
     } else {
-        favorites.push(id);
+        // Tambah ke favorit kalau belum ada
+        favorites.push(targetId);
     }
+
+    // Simpan ke memori browser
     localStorage.setItem('radioFavs', JSON.stringify(favorites));
+
+    // Re-render tampilan biar langsung update
     renderRadios();
 }
 
