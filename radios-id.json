@@ -51,15 +51,15 @@
     "id": 7,
     "title": "Mix Radio 92.9 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708503548830.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://mixfm.haurgeulis.my.id/mixfm;",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://mixfm.haurgeulis.my.id/mixfm",
     "type": "audio/mpeg",
     "favorite": false
   },
-    {
+  {
     "id": 8,
     "title": "Female Radio 97.9 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1692789974803",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/female_radio/radio.mp3;",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/female_radio/radio.mp3",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "title": "Radio MSTRI 104.2 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1691117661037",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://c2.siar.us:8120/live3;",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://c2.siar.us:8120/live3",
     "type": "audio/mpeg",
     "favorite": false
   }
