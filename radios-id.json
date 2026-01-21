@@ -65,14 +65,22 @@
   },
   {
     "id": 9,
-    "title": "Swaragama 101.7 FM Jogja",
-    "logo": "https://images.noiceid.cc/catalog/content-1626347092531.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://202.65.114.229:9314/",
+    "title": "Radio Geronimo 106.1 FM",
+    "logo": "https://images.noiceid.cc/catalog/content-1625051342813.jpg",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://ig.idstreamer.com:8090//live",
     "type": "audio/mpeg",
     "favorite": false
   },
   {
     "id": 10,
+    "title": "Radio Jiz 89.5 FM",
+    "logo": "https://images.noiceid.cc/catalog/content-1646376201322",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://pu.klikhost.com/proxy/jizfm/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 11,
     "title": "Voks Radio 91.7 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1699854536329.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
