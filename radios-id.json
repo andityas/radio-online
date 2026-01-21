@@ -11,7 +11,7 @@
     "id": 2,
     "title": "Radio Gen 98.7 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -51,7 +51,7 @@
     "id": 7,
     "title": "Radio Jak 101 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529857498.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_jakfm/jakfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_jakfm/jakfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -59,7 +59,7 @@
     "id": 8,
     "title": "Radio Mustang 88.0 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529793044.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_mustangfm/mustangfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mustangfm/mustangfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "title": "Radio Kis 95.1 FM (Jakarta)",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1763355760999.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_kisfm/kisfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_kisfm/kisfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "title": "Most FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1725008389287.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -83,7 +83,7 @@
     "id": 11,
     "title": "104,7 Rama FM Bandung",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://i.klikhost.com:8330/;",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://i.klikhost.com:8330/;",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -91,7 +91,7 @@
     "id": 12,
     "title": "96.5 FM PERSIB Radio",
     "logo": "https://images.noiceid.cc/catalog/content-1634278969271.png",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://s3.vinhostmedia.com:8028/;",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://s3.vinhostmedia.com:8028/;",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -107,7 +107,7 @@
     "id": 14,
     "title": "Radio Hot 93.2 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529815902.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_hotfm/hotfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_hotfm/hotfm/playlist.m3u8",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   }
