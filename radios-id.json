@@ -65,10 +65,10 @@
   },
   {
     "id": 9,
-    "title": "Radio MSTRI 104.2 FM",
-    "logo": "https://images.noiceid.cc/catalog/content-1691117661037",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://c2.siar.us:8120/live3",
-    "type": "audio/aac",
+    "title": "Radio Rayya Channel",
+    "logo": "https://images.noiceid.cc/catalog/content-1614529778366.jpg",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_rayya/rayya.stream/playlist.m3u8",
+    "type": "audio/mpeg",
     "favorite": false
   }
 ]
