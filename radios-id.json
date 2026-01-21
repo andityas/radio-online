@@ -38,5 +38,13 @@
     "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
     "type": "audio/mpeg",
     "favorite": false
+  },
+    {
+    "id": 6,
+    "title": "MGTRadio",
+    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
+    "streamUrl": "https://s1.gntr.net/listen/mgtradio/mgtradio",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
