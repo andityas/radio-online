@@ -1,174 +1,196 @@
-/* Pengaturan Dasar */
+:root {
+    --primary: #1db954;
+    --dark: #0f0f0f;
+    --card: #181818;
+    --text: #ffffff;
+    --accent: #ff4d4d;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f0f0f;
-    color: white;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--dark);
+    color: var(--text);
     margin: 0;
-    padding-bottom: 140px; /* Ruang untuk player bawah */
+    padding-bottom: 180px; /* Biar list bawah gak ketutup player */
 }
 
 /* Header & Search */
 header {
-    background: #1db954;
-    padding: 15px;
+    background: var(--primary);
+    padding: 25px 15px;
     position: sticky;
     top: 0;
     z-index: 1000;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
-.search-container {
-    max-width: 500px;
-    margin: 10px auto;
+h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
+
+.tagline {
+    font-size: 11px;
+    font-weight: bold;
+    opacity: 0.9;
+    margin-bottom: 8px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 #search-input {
-    width: 100%;
-    padding: 12px 20px;
-    border-radius: 25px;
+    width: 90%;
+    max-width: 450px;
+    padding: 14px 25px;
+    border-radius: 30px;
     border: none;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
-    box-sizing: border-box;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Tab Filter */
+/* Tabs Vibes */
 .tabs {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .tab-btn {
-    background: rgba(0,0,0,0.3);
-    border: none;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.1);
     color: white;
-    padding: 8px 18px;
+    padding: 8px 22px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 13px;
-    transition: 0.3s;
+    font-size: 12px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tab-btn.active {
     background: white;
-    color: #1db954;
+    color: var(--primary);
     font-weight: bold;
+    transform: scale(1.05);
 }
 
-/* Responsif Grid (Kunci Mobile Friendly) */
+/* Grid System */
 #radio-list {
     display: grid;
-    /* Otomatis: HP (2 kolom), Tablet (4 kolom), Laptop (6+ kolom) */
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 18px;
+    padding: 25px;
     max-width: 1200px;
     margin: auto;
 }
 
 .radio-card {
-    background: #181818;
-    padding: 12px;
-    border-radius: 12px;
+    background: var(--card);
+    padding: 15px;
+    border-radius: 20px;
     text-align: center;
-    transition: 0.3s ease;
+    transition: 0.3s;
     cursor: pointer;
     border: 1px solid #282828;
     position: relative;
+    overflow: hidden;
 }
 
 .radio-card:hover {
-    background: #282828;
-    border-color: #1db954;
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    background: #222;
 }
 
 .radio-card.playing {
-    border-color: #1db954;
-    background: #222;
+    border: 2px solid var(--primary);
+    background: #1e1e1e;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.2);
 }
 
 .radio-card img {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 15px;
     aspect-ratio: 1/1;
     object-fit: cover;
+    margin-bottom: 12px;
 }
 
 .radio-card h3 {
     font-size: 13px;
-    margin: 10px 0 5px 0;
-    height: 32px;
-    overflow: hidden;
-    line-height: 1.2;
+    margin: 5px 0;
+    font-weight: 600;
 }
 
-/* Tombol Love */
+/* Love Button */
 .fav-btn {
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 20px;
+    right: 20px;
     background: rgba(0,0,0,0.6);
     border: none;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    font-size: 18px;
-    color: #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
     transition: 0.2s;
 }
 
-.fav-btn.active { color: #ff4d4d; }
-
-/* Sticky Player Container */
+/* Player Bar */
 .player-container {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #181818;
-    padding: 15px;
-    border-top: 3px solid #1db954;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 18px 0;
+    border-top: 2px solid var(--primary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
     z-index: 2000;
 }
 
 #now-playing {
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #1db954;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--primary);
     font-weight: bold;
-    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 audio {
-    width: 95%;
-    max-width: 700px;
+    width: 90%;
+    max-width: 650px;
     height: 35px;
+    border-radius: 30px;
 }
 
-#no-results {
-    display: none;
-    padding: 50px;
-    text-align: center;
-    color: #888;
+/* Signature By Andit */
+.signature {
+    margin-top: 15px;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: 1px;
 }
 
-/* Mobile Tweak */
+.andit-name {
+    color: var(--primary);
+    font-weight: 900;
+    text-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
+}
+
+/* Responsive Fix */
 @media (max-width: 480px) {
-    #radio-list {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 10px;
-    }
-    .radio-card h3 { font-size: 11px; }
+    #radio-list { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 15px; }
+    h2 { font-size: 20px; }
+    .player-container { padding: 20px 0; }
 }

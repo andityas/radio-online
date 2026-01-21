@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Player Pro</title>
+    <title>Radio Player Pro | Anti Galau</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h2>🎵 Radio Indonesia</h2>
+        <span class="tagline">Vibing Everyday No Cap 🧢</span>
+        <h2>🎵 RADIO STATION</h2>
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Cari stasiun radio..." onkeyup="filterRadios()">
+            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()">
         </div>
         <div class="tabs">
-            <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">Semua</button>
-            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">Favorit ❤️</button>
+            <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Stations</button>
+            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">My Faves ❤️</button>
         </div>
     </header>
 
-    <main>
-        <div id="radio-list">Memuat daftar radio...</div>
-        <div id="no-results">Stasiun tidak ditemukan.</div>
+    <main id="radio-list">
+        <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
     </main>
 
+    <div id="no-results">Waduh, radio-nya gak ketemu nih... 🚩</div>
+
     <div class="player-container">
-        <div id="now-playing">Siap memutar musik...</div>
-        <audio id="player" controls></audio>
+        <div id="now-playing">Pilih lagu dulu biar gak sepi...</div>
+        <audio id="player" controls autoplay></audio>
+        <div class="signature">
+            Crafted with 🎧 by <span class="andit-name">Andit</span>
+        </div>
     </div>
 
     <script src="script.js"></script>
