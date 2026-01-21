@@ -30,5 +30,13 @@
     "streamUrl": "https://s1.cloudmu.id/listen/delta_fm/radio.mp3",
     "type": "audio/mpeg",
     "favorite": false
+  },
+  {
+    "id": 5,
+    "title": "Ardan Radio 105.9 FM (Bandung)",
+    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
+    "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
