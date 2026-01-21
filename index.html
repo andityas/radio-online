@@ -11,12 +11,13 @@
     header { background: #1db954; padding: 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
     .search-container { max-width: 500px; margin: 10px auto; position: relative; }
     #search-input { 
-      width: 100%; padding: 12px 20px; border-radius: 25px; border: none; 
+      width: 100%; padding: 12px 40px 12px 20px; border-radius: 25px; border: none; 
       font-size: 16px; outline: none; box-sizing: border-box;
     }
 
+    /* Tabs untuk Favorit */
     .tabs { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
-    .tab-btn { background: rgba(0,0,0,0.2); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: 0.3s; }
+    .tab-btn { background: rgba(0,0,0,0.2); border: none; color: white; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 12px; }
     .tab-btn.active { background: white; color: #1db954; font-weight: bold; }
 
     #radio-list { 
@@ -28,27 +29,27 @@
       background: #181818; padding: 12px; border-radius: 10px; text-align: center;
       transition: 0.3s; cursor: pointer; position: relative; border: 1px solid #282828;
     }
-    .radio-card:hover { background: #282828; border-color: #1db954; transform: translateY(-5px); }
+    .radio-card:hover { background: #282828; border-color: #1db954; }
     .radio-card img { width: 100%; border-radius: 8px; aspect-ratio: 1/1; object-fit: cover; }
     .radio-card h3 { font-size: 13px; margin: 10px 0; height: 32px; overflow: hidden; line-height: 1.2; }
     
+    /* Tombol Love */
     .fav-btn {
-      position: absolute; top: 18px; right: 18px; background: rgba(0,0,0,0.7);
-      border: none; border-radius: 50%; width: 32px; height: 32px;
+      position: absolute; top: 18px; right: 18px; background: rgba(0,0,0,0.6);
+      border: none; border-radius: 50%; width: 30px; height: 30px;
       cursor: pointer; font-size: 18px; color: #ccc; transition: 0.2s;
-      display: flex; align-items: center; justify-content: center; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
     }
     .fav-btn.active { color: #ff4d4d; }
 
     .player-container { 
       position: fixed; bottom: 0; width: 100%; background: #181818; 
-      padding: 20px 15px; border-top: 2px solid #1db954; display: flex; 
+      padding: 15px; border-top: 2px solid #1db954; display: flex; 
       flex-direction: column; align-items: center; z-index: 1000;
-      box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
     }
-    #now-playing { margin-bottom: 12px; font-size: 14px; color: #1db954; font-weight: bold; text-align: center; }
-    audio { width: 100%; max-width: 600px; height: 40px; }
-    #no-results { display: none; padding: 50px; text-align: center; color: #888; width: 100%; grid-column: 1/-1; }
+    #now-playing { margin-bottom: 8px; font-size: 14px; color: #1db954; font-weight: bold; }
+    audio { width: 90%; max-width: 600px; height: 35px; }
+    #no-results { display: none; padding: 50px; text-align: center; color: #888; }
   </style>
 </head>
 <body>
@@ -56,7 +57,7 @@
   <header>
     <h2 style="margin:0;">🎵 Radio Station</h2>
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Cari nama radio..." onkeyup="filterRadios()">
+      <input type="text" id="search-input" placeholder="Cari radio..." onkeyup="filterRadios()">
     </div>
     <div class="tabs">
       <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">Semua</button>
@@ -68,8 +69,8 @@
   <div id="no-results">Tidak ada radio ditemukan.</div>
 
   <div class="player-container">
-    <div id="now-playing">Pilih stasiun untuk memutar...</div>
-    <audio id="player" controls></audio>
+    <div id="now-playing">Siap memutar musik...</div>
+    <audio id="player" controls autoplay></audio>
   </div>
 
   <script>
@@ -80,14 +81,11 @@
 
     async function loadRadios() {
       try {
-        // Menggunakan cache buster agar JSON selalu terbaru saat didevelop
-        const res = await fetch('radios-id.json?v=' + Date.now());
-        if (!res.ok) throw new Error("Gagal mengambil file JSON");
+        const res = await fetch('radios-id.json');
         allRadios = await res.json();
         renderRadios();
       } catch (error) {
-        document.getElementById('radio-list').textContent = "Gagal memuat daftar radio. Pastikan file 'radios-id.json' ada di folder yang sama.";
-        console.error(error);
+        document.getElementById('radio-list').textContent = "Gagal memuat JSON.";
       }
     }
 
@@ -98,17 +96,19 @@
       
       let dataToRender = allRadios;
 
+      // Filter berdasarkan Tab
       if (currentTab === 'fav') {
         dataToRender = allRadios.filter(r => favorites.includes(r.id));
       }
 
+      // Filter berdasarkan Search
       dataToRender = dataToRender.filter(r => r.title.toLowerCase().includes(keyword));
 
       list.innerHTML = '';
       if (dataToRender.length === 0) {
         noResults.style.display = 'block';
       } else {
-        noResults.style.display = 'none';
+        noResults.style.display = 'grid';
         dataToRender.forEach(radio => {
           const isFav = favorites.includes(radio.id);
           const card = document.createElement('div');
@@ -119,7 +119,7 @@
               ${isFav ? '❤️' : '🤍'}
             </button>
             <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}')">
-              <img src="${radio.logo}" alt="${radio.title}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+              <img src="${radio.logo}" alt="${radio.title}">
               <h3>${radio.title}</h3>
             </div>
           `;
@@ -129,7 +129,7 @@
     }
 
     function toggleFav(event, id) {
-      event.stopPropagation();
+      event.stopPropagation(); // Agar tidak trigger fungsi play
       if (favorites.includes(id)) {
         favorites = favorites.filter(favId => favId !== id);
       } else {
@@ -153,45 +153,24 @@
     window.playStream = (url, type, title) => {
       const audio = document.getElementById('player');
       const statusText = document.getElementById('now-playing');
+      statusText.textContent = "Sedang Memutar: " + title;
       
-      // Reset player
-      audio.pause();
       if (hls) { hls.destroy(); hls = null; }
-      
-      statusText.textContent = "Menghubungkan ke: " + title + "...";
-      
-      const streamUrl = url.trim();
 
-      // Logika khusus HLS (.m3u8)
+      const streamUrl = url.trim();
       if (type === 'application/vnd.apple.mpegurl' || streamUrl.includes('.m3u8')) {
         if (Hls.isSupported()) {
           hls = new Hls();
           hls.loadSource(streamUrl);
           hls.attachMedia(audio);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              statusText.textContent = "Sedang Memutar: " + title;
-              audio.play();
-          });
+          hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play());
         } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
           audio.src = streamUrl;
           audio.play();
-          statusText.textContent = "Sedang Memutar: " + title;
         }
       } else {
-        // Logika MP3/AAC Standard (Termasuk Rama FM)
-        // Tambahkan timestamp agar browser tidak mengambil dari cache yang rusak
-        const separator = streamUrl.includes('?') ? '&' : '?';
-        audio.src = streamUrl + separator + "nocache=" + Date.now();
-        audio.load();
-        
-        audio.play()
-          .then(() => {
-            statusText.textContent = "Sedang Memutar: " + title;
-          })
-          .catch(e => {
-            statusText.textContent = "Gagal Memutar: " + title + " (Link bermasalah atau diblokir browser)";
-            console.error("Playback Error:", e);
-          });
+        audio.src = streamUrl;
+        audio.play();
       }
     };
 

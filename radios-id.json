@@ -1,38 +1,14 @@
 [
   {
     "id": 1,
-    "title": "Prambors FM",
+    "title": "PramborsFM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
     "streamUrl": "https://s2.cloudmu.id/listen/prambors/radio.aac",
-    "type": "audio/aac",
-    "favorite": false
-  },
-  {
-    "id": 2,
-    "title": "Delta 99.1 FM (Jakarta)",
-    "logo": "https://images.noiceid.cc/catalog/content-1692789803987",
-    "streamUrl": "https://s1.cloudmu.id/listen/delta_fm/radio.mp3",
     "type": "audio/mpeg",
     "favorite": false
   },
   {
     "id": 3,
-    "title": "Ardan Radio 105.9 FM (Bandung)",
-    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
-    "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
-  {
-    "id": 4,
-    "title": "MGTRadio",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1758512401958.webp",
-    "streamUrl": "https://s1.gntr.net/listen/mgtradio/mgtradio",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
-  {
-    "id": 5,
     "title": "KLCBS Bandung",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
     "streamUrl": "https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
@@ -40,10 +16,34 @@
     "favorite": false
   },
   {
+    "id": 4,
+    "title": "Delta 99.1 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1692789803987",
+    "streamUrl": "https://s1.cloudmu.id/listen/delta_fm/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 5,
+    "title": "Ardan Radio 105.9 FM (Bandung)",
+    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
+    "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+    {
     "id": 6,
+    "title": "MGTRadio",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1758512401958.webp",
+    "streamUrl": "https://s1.gntr.net/listen/mgtradio/mgtradio",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 11,
     "title": "104,7 Rama FM Bandung",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://i.klikhost.com:8330/stream",
+    "streamUrl": "http://i.klikhost.com:8330/;",
     "type": "audio/mpeg",
     "favorite": false
   }
