@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "PramborsFM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
+    "streamUrl": "https://s2.cloudmu.id/listen/prambors/radio.aac",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 2,
+    "title": "Radio Gen 98.7 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
+    "streamUrl": "http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 3,
+    "title": "KLCBS Bandung",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
+    "streamUrl": "https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
+    "type": "audio/aac",
+    "favorite": false
+  },
+  {
+    "id": 4,
+    "title": "Delta 99.1 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1692789803987",
+    "streamUrl": "https://s1.cloudmu.id/listen/delta_fm/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  }
+]
