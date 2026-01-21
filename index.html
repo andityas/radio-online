@@ -5,30 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Radio Player Pro</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #121212; color: white; margin: 0; padding-bottom: 140px; }
-    header { background: #1db954; padding: 15px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
-    .search-container { max-width: 500px; margin: 10px auto; }
-    #search-input { width: 100%; padding: 12px 20px; border-radius: 25px; border: none; font-size: 16px; outline: none; }
-
-    .tabs { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
-    .tab-btn { background: rgba(0,0,0,0.2); border: none; color: white; padding: 5px 15px; border-radius: 15px; cursor: pointer; font-size: 12px; }
-    .tab-btn.active { background: white; color: #1db954; font-weight: bold; }
-
-    #radio-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: auto; }
-    .radio-card { background: #181818; padding: 12px; border-radius: 10px; text-align: center; transition: 0.3s; cursor: pointer; position: relative; border: 1px solid #282828; }
-    .radio-card:hover { background: #282828; border-color: #1db954; }
-    .radio-card img { width: 100%; border-radius: 8px; aspect-ratio: 1/1; object-fit: cover; }
-    .radio-card h3 { font-size: 13px; margin: 10px 0; height: 32px; overflow: hidden; line-height: 1.2; }
-
-    .fav-btn { position: absolute; top: 18px; right: 18px; background: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px; color: #ccc; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
-    .fav-btn.active { color: #ff4d4d; }
-
-    .player-container { position: fixed; bottom: 0; width: 100%; background: #181818; padding: 15px; border-top: 2px solid #1db954; display: flex; flex-direction: column; align-items: center; z-index: 1000; }
-    #now-playing { margin-bottom: 8px; font-size: 14px; color: #1db954; font-weight: bold; }
-    audio { width: 90%; max-width: 600px; height: 35px; }
-    #no-results { display: none; padding: 50px; text-align: center; color: #888; }
-  </style>
+  <!-- Hubungkan ke file CSS eksternal -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -51,103 +29,6 @@
     <audio id="player" controls></audio>
   </div>
 
-  <script>
-    let hls = null;
-    let allRadios = [];
-    let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
-    let currentTab = 'all';
-
-    async function loadRadios() {
-      try {
-        const res = await fetch('radios-id.json');
-        allRadios = await res.json();
-        renderRadios();
-      } catch (error) {
-        document.getElementById('radio-list').textContent = "Gagal memuat JSON.";
-      }
-    }
-
-    function renderRadios() {
-      const list = document.getElementById('radio-list');
-      const noResults = document.getElementById('no-results');
-      const keyword = document.getElementById('search-input').value.toLowerCase();
-
-      let dataToRender = allRadios;
-      if (currentTab === 'fav') {
-        dataToRender = allRadios.filter(r => favorites.includes(r.id));
-      }
-      dataToRender = dataToRender.filter(r => r.title.toLowerCase().includes(keyword));
-
-      list.innerHTML = '';
-      if (dataToRender.length === 0) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-        dataToRender.forEach(radio => {
-          const isFav = favorites.includes(radio.id);
-          const card = document.createElement('div');
-          card.className = 'radio-card';
-          card.innerHTML = `
-            <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, ${radio.id})">
-              ${isFav ? '❤️' : '🤍'}
-            </button>
-            <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}')">
-              <img src="${radio.logo}" alt="${radio.title}">
-              <h3>${radio.title}</h3>
-            </div>
-          `;
-          list.appendChild(card);
-        });
-      }
-    }
-
-    function toggleFav(event, id) {
-      event.stopPropagation();
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(favId => favId !== id);
-      } else {
-        favorites.push(id);
-      }
-      localStorage.setItem('radioFavs', JSON.stringify(favorites));
-      renderRadios();
-    }
-
-    function switchTab(tab) {
-      currentTab = tab;
-      document.getElementById('tab-all').className = tab === 'all' ? 'tab-btn active' : 'tab-btn';
-      document.getElementById('tab-fav').className = tab === 'fav' ? 'tab-btn active' : 'tab-btn';
-      renderRadios();
-    }
-
-    function filterRadios() {
-      renderRadios();
-    }
-
-    window.playStream = (url, type, title) => {
-      const audio = document.getElementById('player');
-      const statusText = document.getElementById('now-playing');
-      statusText.textContent = "Sedang Memutar: " + title;
-
-      if (hls) { hls.destroy(); hls = null; }
-
-      const streamUrl = url.trim();
-      if (type === 'application/vnd.apple.mpegurl' || streamUrl.includes('.m3u8')) {
-        if (Hls.isSupported()) {
-          hls = new Hls();
-          hls.loadSource(streamUrl);
-          hls.attachMedia(audio);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(err => console.log("Autoplay diblokir:", err)));
-        } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
-          audio.src = streamUrl;
-          audio.play().catch(err => console.log("Autoplay diblokir:", err));
-        }
-      } else {
-        audio.src = streamUrl;
-        audio.play().catch(err => console.log("Autoplay diblokir:", err));
-      }
-    };
-
-    loadRadios();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
