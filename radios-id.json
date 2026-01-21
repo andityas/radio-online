@@ -49,14 +49,6 @@
   },
   {
     "id": 7,
-    "title": "Rama FM 104.7",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://i.klikhost.com:8330/;",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
-  {
-    "id": 8,
     "title": "Mix Radio 92.9 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708503548830.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://mixfm.haurgeulis.my.id/mixfm;",
