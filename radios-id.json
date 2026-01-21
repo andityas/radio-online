@@ -70,5 +70,13 @@
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
     "type": "audio/mpeg",
     "favorite": false
+  },
+  {
+    "id": 9,
+    "title": "Swaragama 101.7 FM Jogja",
+    "logo": "https://images.noiceid.cc/catalog/content-1626347092531.jpg",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://202.65.114.229:9314/",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
