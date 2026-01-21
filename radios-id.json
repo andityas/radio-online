@@ -86,5 +86,21 @@
     "streamUrl": "http://i.klikhost.com:8330/;",
     "type": "audio/mpeg",
     "favorite": false
+  },
+  {
+    "id": 12,
+    "title": "96.5 FM PERSIB Radio",
+    "logo": "https://images.noiceid.cc/catalog/content-1634278969271.png",
+    "streamUrl": "http://s3.vinhostmedia.com:8028/;",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 13,
+    "title": "PRFM 107.5 FM News Channel",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708941620840.webp",
+    "streamUrl": "https://radio.idh.am/prfm",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
