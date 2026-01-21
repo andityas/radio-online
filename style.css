@@ -13,7 +13,6 @@ body {
     padding-bottom: 180px;
 }
 
-/* Header & Search */
 header {
     background: var(--primary);
     padding: 25px 15px;
@@ -26,108 +25,63 @@ header {
     border-bottom-right-radius: 25px;
 }
 
-h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
+.tagline { font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+h2 { margin: 5px 0; font-weight: 900; letter-spacing: -1px; }
 
 #search-input {
     width: 90%;
-    max-width: 450px;
-    padding: 14px 25px;
+    max-width: 400px;
+    padding: 12px 20px;
     border-radius: 30px;
     border: none;
-    font-size: 14px;
     outline: none;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* Tabs */
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-
+.tabs { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
 .tab-btn {
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.2);
     border: 1px solid rgba(255,255,255,0.1);
     color: white;
-    padding: 8px 22px;
+    padding: 8px 18px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 12px;
-    transition: 0.3s;
 }
+.tab-btn.active { background: white; color: var(--primary); font-weight: bold; }
 
-.tab-btn.active {
-    background: white;
-    color: var(--primary);
-    font-weight: bold;
-}
-
-/* Grid System */
 #radio-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 18px;
-    padding: 25px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 1000px;
     margin: auto;
 }
 
 .radio-card {
     background: var(--card);
-    padding: 15px;
-    border-radius: 20px;
+    padding: 12px;
+    border-radius: 18px;
     text-align: center;
+    position: relative;
+    border: 1px solid #282828;
     transition: 0.3s;
     cursor: pointer;
-    border: 1px solid #282828;
-    position: relative;
 }
+.radio-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.radio-card.playing { border: 2px solid var(--primary); background: #222; }
 
-.radio-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-}
+.radio-card img { width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; }
+.radio-card h3 { font-size: 13px; margin: 10px 0 0 0; }
 
-.radio-card img {
-    width: 100%;
-    border-radius: 15px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-}
-
-/* PESAN ERROR TENGAH (The Fix) */
-#no-results {
-    grid-column: 1 / -1; /* Maksa elemen ngebentang selebar grid */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    width: 100%;
-}
-
-.no-results-content {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 40px;
-    border-radius: 25px;
-    border: 1px dashed #444;
-    width: 100%;
-    max-width: 400px;
-}
-
-#no-results h4 { color: var(--primary); margin-bottom: 8px; }
-#no-results p { color: #888; font-size: 13px; }
-
-/* Player */
 .player-container {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(15px);
-    padding: 20px 0;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
     border-top: 2px solid var(--primary);
     display: flex;
     flex-direction: column;
@@ -135,12 +89,12 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     z-index: 2000;
 }
 
-#now-playing { color: var(--primary); font-weight: bold; margin-bottom: 10px; font-size: 13px; }
-audio { width: 90%; max-width: 600px; height: 35px; }
+#now-playing { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 8px; }
+audio { width: 90%; max-width: 500px; height: 35px; }
 
-.signature { margin-top: 15px; font-size: 11px; color: #777; }
-.andit-name { color: var(--primary); font-weight: bold; }
+.signature { margin-top: 12px; font-size: 11px; color: #777; }
+.andit-name { color: var(--primary); font-weight: bold; text-shadow: 0 0 5px rgba(29, 185, 84, 0.3); }
 
 @media (max-width: 480px) {
-    #radio-list { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    #radio-list { grid-template-columns: repeat(2, 1fr); padding: 15px; }
 }
