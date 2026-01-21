@@ -71,14 +71,14 @@
     "type": "audio/mpeg",
     "favorite": false
   },
-  {
-    "id": 10,
-    "title": "Most Radio 105.8 FM (Jakarta)",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1725008389287.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
+{
+  "id": 10,
+  "title": "Most FM",
+  "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
+  "streamUrl": "https://radio-proxy.yourname.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
+  "type": "application/vnd.apple.mpegurl",
+  "favorite": false
+},
   {
     "id": 11,
     "title": "104,7 Rama FM Bandung",
