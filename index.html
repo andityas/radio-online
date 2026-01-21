@@ -6,32 +6,29 @@
   <title>Online Radio - Andit</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Tambahkan hls.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
   <h1>📻 ONLINE RADIO</h1>
 
-  <!-- 🔎 Search bar -->
   <div class="search-container">
     <input type="text" id="search" placeholder="Search radio...">
   </div>
 
-  <!-- 📂 Tabs -->
   <div class="tabs">
     <button id="tab-all" class="active">📻 All Radios</button>
     <button id="tab-fav">⭐ Favorites</button>
     <button id="toggle-layout">🔀 Switch Layout</button>
   </div>
   
-  <!-- 🎶 Radio list -->
   <div id="radio-list" class="grid-view"></div>
 
-  <!-- Footer -->
   <footer>
     Made with ❤️ by <b>Andit</b> &copy; 2026
   </footer>
 
-  <!-- Script -->
   <script>
     let radiosData = [];
 
@@ -41,13 +38,6 @@
         const response = await fetch('radios-id.json');
         radiosData = await response.json();
 
-        // Adaptasi: ubah field favorite (angka) jadi dua field
-        radiosData.forEach(radio => {
-          radio.favoriteCount = radio.favorite || 0; // simpan angka dari JSON
-          radio.favorite = false; // boolean lokal untuk toggle user
-        });
-
-        // Ambil favorit user dari localStorage
         const savedFavs = JSON.parse(localStorage.getItem('favorites')) || [];
         radiosData.forEach(radio => {
           if (savedFavs.includes(radio.title)) {
@@ -78,10 +68,7 @@
           <div class="card-content">
             <h3>${radio.title}</h3>
             <p class="status"></p>
-            <p class="fav-count">⭐ ${radio.favoriteCount} favorites</p>
-            <audio>
-              <source src="${radio.streamUrl}">
-            </audio>
+            <audio id="audio-${radio.id}" controls style="display:none"></audio>
             <button class="play-btn">
               <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6zm8-14v14h4V5h-4z"/></svg>
@@ -100,7 +87,20 @@
         const playBtn = card.querySelector('.play-btn');
         const favBtn = card.querySelector('.fav-btn');
 
-        // Play/Pause logic
+        // ▶ Setup HLS jika streamUrl .m3u8
+        if (radio.streamUrl.endsWith('.m3u8')) {
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(radio.streamUrl);
+            hls.attachMedia(audio);
+          } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+            audio.src = radio.streamUrl;
+          }
+        } else {
+          audio.innerHTML = `<source src="${radio.streamUrl}" type="${radio.type}">`;
+        }
+
+        // ▶ Play/Pause logic
         playBtn.addEventListener('click', () => {
           audio.muted = false;
           if (audio.paused) {
@@ -133,7 +133,7 @@
           }
         });
 
-        // Favorite toggle (boolean lokal + simpan ke localStorage)
+        // ⭐ Favorite toggle
         favBtn.addEventListener('click', () => {
           radiosData[index].favorite = !radiosData[index].favorite;
           favBtn.innerHTML = radiosData[index].favorite
@@ -146,7 +146,7 @@
       });
     }
 
-    // Search filter
+    // 🔎 Search filter
     document.getElementById('search').addEventListener('input', (e) => {
       const keyword = e.target.value.toLowerCase();
       const filtered = radiosData.filter(radio =>
@@ -155,7 +155,7 @@
       renderRadios(filtered);
     });
 
-    // Tabs
+    // 📂 Tabs
     document.getElementById('tab-all').addEventListener('click', () => {
       document.getElementById('tab-all').classList.add('active');
       document.getElementById('tab-fav').classList.remove('active');
@@ -179,4 +179,5 @@
     // 🚀 Load radios on start
     loadRadios();
   </script>
-</body
+</body>
+</html>
