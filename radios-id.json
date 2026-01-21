@@ -46,5 +46,21 @@
     "streamUrl": "https://s1.gntr.net/listen/mgtradio/mgtradio",
     "type": "audio/mpeg",
     "favorite": false
+  },
+  {
+    "id": 7,
+    "title": "Radio Jak 101 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1614529857498.jpg",
+    "streamUrl": "http://103.246.184.62:1935/noice_jakfm/jakfm/playlist.m3u8",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 7,
+    "title": "Radio Mustang 88.0 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1614529793044.jpg",
+    "streamUrl": "935/noice_mustangfm/mustangfm/playlist.m3u8",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
