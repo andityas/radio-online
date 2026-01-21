@@ -47,9 +47,9 @@
   },
   {
     "id": 7,
-    "title": "Radio Jak 101 FM (Jakarta)",
-    "logo": "https://images.noiceid.cc/catalog/content-1614529857498.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_jakfm/jakfm/playlist.m3u8",
+    "title": "iRadio (Jakarta)",
+    "logo": "https://cdn.instant.audio/images/logos/radioonline-co-id/i-fm.png",
+    "streamUrl": "ttps://radioonline.co.id/#i-fm",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
