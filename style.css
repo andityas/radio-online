@@ -3,15 +3,14 @@
     --dark: #0f0f0f;
     --card: #181818;
     --text: #ffffff;
-    --accent: #ff4d4d;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, sans-serif;
     background: var(--dark);
     color: var(--text);
     margin: 0;
-    padding-bottom: 180px; /* Biar list bawah gak ketutup player */
+    padding-bottom: 180px;
 }
 
 /* Header & Search */
@@ -29,16 +28,6 @@ header {
 
 h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
 
-.tagline {
-    font-size: 11px;
-    font-weight: bold;
-    opacity: 0.9;
-    margin-bottom: 8px;
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
 #search-input {
     width: 90%;
     max-width: 450px;
@@ -48,10 +37,9 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     font-size: 14px;
     outline: none;
     margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Tabs Vibes */
+/* Tabs */
 .tabs {
     display: flex;
     justify-content: center;
@@ -67,14 +55,13 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     border-radius: 20px;
     cursor: pointer;
     font-size: 12px;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 0.3s;
 }
 
 .tab-btn.active {
     background: white;
     color: var(--primary);
     font-weight: bold;
-    transform: scale(1.05);
 }
 
 /* Grid System */
@@ -96,19 +83,11 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     cursor: pointer;
     border: 1px solid #282828;
     position: relative;
-    overflow: hidden;
 }
 
 .radio-card:hover {
     transform: translateY(-8px);
     border-color: var(--primary);
-    background: #222;
-}
-
-.radio-card.playing {
-    border: 2px solid var(--primary);
-    background: #1e1e1e;
-    box-shadow: 0 0 15px rgba(29, 185, 84, 0.2);
 }
 
 .radio-card img {
@@ -116,41 +95,39 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     border-radius: 15px;
     aspect-ratio: 1/1;
     object-fit: cover;
-    margin-bottom: 12px;
 }
 
-.radio-card h3 {
-    font-size: 13px;
-    margin: 5px 0;
-    font-weight: 600;
-}
-
-/* Love Button */
-.fav-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(0,0,0,0.6);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
+/* PESAN ERROR TENGAH (The Fix) */
+#no-results {
+    grid-column: 1 / -1; /* Maksa elemen ngebentang selebar grid */
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 5;
-    transition: 0.2s;
+    align-items: center;
+    min-height: 300px;
+    width: 100%;
 }
 
-/* Player Bar */
+.no-results-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 25px;
+    border: 1px dashed #444;
+    width: 100%;
+    max-width: 400px;
+}
+
+#no-results h4 { color: var(--primary); margin-bottom: 8px; }
+#no-results p { color: #888; font-size: 13px; }
+
+/* Player */
 .player-container {
     position: fixed;
     bottom: 0;
     width: 100%;
     background: rgba(18, 18, 18, 0.95);
     backdrop-filter: blur(15px);
-    padding: 18px 0;
+    padding: 20px 0;
     border-top: 2px solid var(--primary);
     display: flex;
     flex-direction: column;
@@ -158,39 +135,12 @@ h2 { margin: 0; font-weight: 900; letter-spacing: -1.5px; font-size: 26px; }
     z-index: 2000;
 }
 
-#now-playing {
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: var(--primary);
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+#now-playing { color: var(--primary); font-weight: bold; margin-bottom: 10px; font-size: 13px; }
+audio { width: 90%; max-width: 600px; height: 35px; }
 
-audio {
-    width: 90%;
-    max-width: 650px;
-    height: 35px;
-    border-radius: 30px;
-}
+.signature { margin-top: 15px; font-size: 11px; color: #777; }
+.andit-name { color: var(--primary); font-weight: bold; }
 
-/* Signature By Andit */
-.signature {
-    margin-top: 15px;
-    font-size: 11px;
-    color: #777;
-    letter-spacing: 1px;
-}
-
-.andit-name {
-    color: var(--primary);
-    font-weight: 900;
-    text-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
-}
-
-/* Responsive Fix */
 @media (max-width: 480px) {
-    #radio-list { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 15px; }
-    h2 { font-size: 20px; }
-    .player-container { padding: 20px 0; }
+    #radio-list { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }

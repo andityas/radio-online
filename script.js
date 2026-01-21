@@ -5,31 +5,13 @@ let currentTab = 'all';
 
 async function loadRadios() {
     const list = document.getElementById('radio-list');
-    const noResults = document.getElementById('no-results');
-    
     try {
-        // Panggil file JSON (pake timestamp biar gak kena cache)
         const res = await fetch('radios-id.json?v=' + Date.now());
-        
-        if (!res.ok) {
-            throw new Error(`Gagal ambil file JSON (Status: ${res.status})`);
-        }
-
         allRadios = await res.json();
-        
-        // Cek apakah data beneran ada isinya
-        if (allRadios.length > 0) {
-            renderRadios();
-        } else {
-            list.innerHTML = "JSON kosong nih, bestie...";
-        }
-
+        renderRadios();
     } catch (error) {
-        console.error("Waduh error:", error);
-        list.innerHTML = `<div style="text-align:center; padding:20px;">
-            ❌ Gagal load data!<br>
-            <small>${error.message}</small><br><br>
-            <i>Cek apakah file <b>radios-id.json</b> sudah di-upload ke satu folder yang sama.</i>
+        list.innerHTML = `<div id="no-results" style="display:flex">
+            <div class="no-results-content"><h4>JSON Error 🚩</h4><p>File JSON gak kebaca atau gak ada, cek lagi ya!</p></div>
         </div>`;
     }
 }
@@ -37,41 +19,49 @@ async function loadRadios() {
 function renderRadios() {
     const list = document.getElementById('radio-list');
     const noResults = document.getElementById('no-results');
-    const searchInput = document.getElementById('search-input');
-    const keyword = searchInput ? searchInput.value.toLowerCase() : "";
+    const errorTitle = document.getElementById('error-title');
+    const errorDesc = document.getElementById('error-desc');
+    const keyword = document.getElementById('search-input').value.toLowerCase();
 
-    // Sembunyikan pesan "gak ketemu" dulu di awal render
-    noResults.style.display = 'none';
-
+    // 1. Filter Data
     let data = allRadios;
-
-    // 1. Filter Tab Favorit
     if (currentTab === 'fav') {
         data = allRadios.filter(r => favorites.includes(r.id));
     }
-
-    // 2. Filter Search
     data = data.filter(r => r.title.toLowerCase().includes(keyword));
 
-    // Eksekusi Tampilan
     list.innerHTML = '';
-    
+
+    // 2. Logika Tampilan Gak Ketemu
     if (data.length === 0) {
-        // Baru tampilin pesan error kalau datanya emang beneran kosong setelah difilter
-        noResults.style.display = 'block';
+        noResults.style.display = 'flex';
+        
+        if (currentTab === 'fav' && keyword === "") {
+            errorTitle.textContent = "Belum Ada Favorit ❤️";
+            errorDesc.textContent = "Klik ikon hati di radio favoritmu biar muncul di sini.";
+        } else {
+            errorTitle.textContent = "Waduh, Gak Ketemu Nih... 🚩";
+            errorDesc.textContent = "Coba cek lagi keyword pencarianmu, bestie.";
+        }
+        
+        list.appendChild(noResults);
     } else {
+        noResults.style.display = 'none';
+        
+        // 3. Render Kartu
         data.forEach(radio => {
             const isFav = favorites.includes(radio.id);
             const card = document.createElement('div');
             card.className = 'radio-card';
             card.id = `card-${radio.id}`;
             card.innerHTML = `
-                <button class="fav-btn" onclick="toggleFav(event, ${radio.id})">
+                <button class="fav-btn" onclick="toggleFav(event, ${radio.id})" 
+                    style="position:absolute; top:15px; right:15px; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; color:${isFav ? '#ff4d4d' : '#ccc'}">
                     ${isFav ? '❤️' : '🤍'}
                 </button>
                 <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id})">
                     <img src="${radio.logo}" alt="${radio.title}">
-                    <h3>${radio.title}</h3>
+                    <h3 style="font-size:13px; margin-top:10px">${radio.title}</h3>
                 </div>
             `;
             list.appendChild(card);
@@ -79,44 +69,27 @@ function renderRadios() {
     }
 }
 
-// ... sisanya (playStream, toggleFav, switchTab) sama kayak sebelumnya ...
-
+// Play Stream Logic
 window.playStream = (url, type, title, id) => {
     const audio = document.getElementById('player');
-    const statusText = document.getElementById('now-playing');
-    
-    // Ganti status kartu yang lagi main
-    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    const activeCard = document.getElementById(`card-${id}`);
-    if(activeCard) activeCard.classList.add('playing');
-    
-    statusText.textContent = "🔥 Now Vibe-ing: " + title;
-
-    // Reset HLS biar gak tabrakan
+    document.getElementById('now-playing').textContent = "🔥 Playing: " + title;
     if (hls) { hls.destroy(); hls = null; }
 
-    const streamUrl = url.trim();
-
-    if (type.includes('mpegurl') || streamUrl.includes('.m3u8')) {
+    if (type.includes('mpegurl') || url.includes('.m3u8')) {
         if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(streamUrl);
-            hls.attachMedia(audio);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Play diblokir")));
-        } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
-            audio.src = streamUrl;
-            audio.play().catch(e => console.log("Play diblokir"));
+            hls = new Hls(); hls.loadSource(url); hls.attachMedia(audio);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play());
         }
     } else {
-        audio.src = streamUrl;
-        audio.play().catch(e => console.log("Play diblokir"));
+        audio.src = url; audio.play();
     }
 };
 
+// Toggle Fav Logic
 function toggleFav(event, id) {
     event.stopPropagation();
     if (favorites.includes(id)) {
-        favorites = favorites.filter(favId => favId !== id);
+        favorites = favorites.filter(f => f !== id);
     } else {
         favorites.push(id);
     }
@@ -124,6 +97,7 @@ function toggleFav(event, id) {
     renderRadios();
 }
 
+// Switch Tab Logic
 function switchTab(tab) {
     currentTab = tab;
     document.getElementById('tab-all').classList.toggle('active', tab === 'all');
@@ -133,5 +107,4 @@ function switchTab(tab) {
 
 function filterRadios() { renderRadios(); }
 
-// Jalankan aplikasi pas load
 loadRadios();
