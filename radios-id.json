@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "title": "Prambors FM",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
-    "type": "audio/aac",
+    "title": "Ardan Radio 105.9 FM",
+    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://stream.rcs.revma.com/ugpyzu9n5k3vv",
+    "type": "audio/mpeg",
     "favorite": false
   },
   {
@@ -17,14 +17,22 @@
   },
   {
     "id": 3,
-    "title": "Ardan Radio 105.9 FM",
-    "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://stream.rcs.revma.com/ugpyzu9n5k3vv",
+    "title": "Female Radio 97.9 FM (Jakarta)",
+    "logo": "https://images.noiceid.cc/catalog/content-1692789974803",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/female_radio/radio.mp3",
     "type": "audio/mpeg",
     "favorite": false
   },
   {
     "id": 4,
+    "title": "ISTARA 101.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1757312469755.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://live.radioistara.com/listen/radioistara/radioistara",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 5,
     "title": "KLCBS 100.4 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
@@ -32,18 +40,10 @@
     "favorite": false
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "MGT Radio 101.1 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1758512401958.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.gntr.net/listen/mgtradio/mgtradio",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
-  {
-    "id": 6,
-    "title": "Voks Radio 91.7 FM",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1699854536329.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -57,17 +57,17 @@
   },
   {
     "id": 8,
-    "title": "Female Radio 97.9 FM (Jakarta)",
-    "logo": "https://images.noiceid.cc/catalog/content-1692789974803",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/female_radio/radio.mp3",
-    "type": "audio/mpeg",
+    "title": "Prambors FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
+    "type": "audio/aac",
     "favorite": false
   },
   {
     "id": 9,
-    "title": "ISTARA 101.1 FM",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1757312469755.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://live.radioistara.com/listen/radioistara/radioistara",
+    "title": "Voks Radio 91.7 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1699854536329.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
     "type": "audio/mpeg",
     "favorite": false
   }
