@@ -33,6 +33,14 @@
   },
   {
     "id": 5,
+    "title": "Jeje Radio 105.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1733725181452.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://i.klikhost.com:8026/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 6,
     "title": "KLCBS 100.4 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
@@ -40,7 +48,7 @@
     "favorite": false
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "MGT Radio 101.1 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1758512401958.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.gntr.net/listen/mgtradio/mgtradio",
@@ -48,7 +56,7 @@
     "favorite": false
   },
   {
-    "id": 7,
+    "id": 8,
     "title": "Mix Radio 92.9 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708503548830.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://mixfm.haurgeulis.my.id/mixfm",
@@ -56,7 +64,7 @@
     "favorite": false
   },
   {
-    "id": 8,
+    "id": 9,
     "title": "Prambors FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
@@ -64,7 +72,7 @@
     "favorite": false
   },
   {
-    "id": 9,
+    "id": 10,
     "title": "Radio Geronimo 106.1 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1625051342813.jpg",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://ig.idstreamer.com:8090//live",
@@ -72,7 +80,7 @@
     "favorite": false
   },
   {
-    "id": 10,
+    "id": 11,
     "title": "Radio Jiz 89.5 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1646376201322",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://pu.klikhost.com/proxy/jizfm/stream",
@@ -80,7 +88,7 @@
     "favorite": false
   },
   {
-    "id": 11,
+    "id": 12,
     "title": "Voks Radio 91.7 FM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1699854536329.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
