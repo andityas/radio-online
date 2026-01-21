@@ -75,7 +75,7 @@
   "id": 10,
   "title": "Most FM",
   "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-  "streamUrl": "https://radio-proxy.yourname.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
+  "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
   "type": "application/vnd.apple.mpegurl",
   "favorite": false
 },
