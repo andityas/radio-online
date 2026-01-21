@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Radio Player Pro</title>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <!-- Hubungkan ke file CSS eksternal -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Player Pro</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h2 style="margin:0;">🎵 Radio Station</h2>
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Cari radio..." onkeyup="filterRadios()">
+    <header>
+        <h2>🎵 Radio Indonesia</h2>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Cari stasiun radio..." onkeyup="filterRadios()">
+        </div>
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">Semua</button>
+            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">Favorit ❤️</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="radio-list">Memuat daftar radio...</div>
+        <div id="no-results">Stasiun tidak ditemukan.</div>
+    </main>
+
+    <div class="player-container">
+        <div id="now-playing">Siap memutar musik...</div>
+        <audio id="player" controls></audio>
     </div>
-    <div class="tabs">
-      <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">Semua</button>
-      <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">Favorit ❤️</button>
-    </div>
-  </header>
 
-  <div id="radio-list">Memuat radio...</div>
-  <div id="no-results">Tidak ada radio ditemukan.</div>
-
-  <div class="player-container">
-    <div id="now-playing">Siap memutar musik...</div>
-    <audio id="player" controls></audio>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

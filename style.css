@@ -1,172 +1,174 @@
+/* Pengaturan Dasar */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #121212;
-  color: white;
-  margin: 0;
-  padding-bottom: 120px; /* sedikit lebih kecil di mobile */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    margin: 0;
+    padding-bottom: 140px; /* Ruang untuk player bawah */
 }
 
-/* Header */
+/* Header & Search */
 header {
-  background: #1db954;
-  padding: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  text-align: center;
+    background: #1db954;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .search-container {
-  max-width: 500px;
-  margin: 8px auto;
+    max-width: 500px;
+    margin: 10px auto;
 }
 
 #search-input {
-  width: 100%;
-  padding: 10px 16px;
-  border-radius: 25px;
-  border: none;
-  font-size: 15px;
-  outline: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
 }
 
-/* Tabs */
+/* Tab Filter */
 .tabs {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-  flex-wrap: wrap; /* biar tidak kepotong di layar kecil */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .tab-btn {
-  background: rgba(0,0,0,0.2);
-  border: none;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 12px;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
 }
 
 .tab-btn.active {
-  background: white;
-  color: #1db954;
-  font-weight: bold;
+    background: white;
+    color: #1db954;
+    font-weight: bold;
 }
 
-/* Grid radio */
+/* Responsif Grid (Kunci Mobile Friendly) */
 #radio-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
-  padding: 15px;
-  max-width: 100%;
-  margin: auto;
+    display: grid;
+    /* Otomatis: HP (2 kolom), Tablet (4 kolom), Laptop (6+ kolom) */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .radio-card {
-  background: #181818;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  transition: 0.3s;
-  cursor: pointer;
-  position: relative;
-  border: 1px solid #282828;
+    background: #181818;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #282828;
+    position: relative;
 }
 
 .radio-card:hover {
-  background: #282828;
-  border-color: #1db954;
+    background: #282828;
+    border-color: #1db954;
+    transform: translateY(-5px);
+}
+
+.radio-card.playing {
+    border-color: #1db954;
+    background: #222;
 }
 
 .radio-card img {
-  width: 100%;
-  border-radius: 8px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .radio-card h3 {
-  font-size: 12px;
-  margin: 8px 0;
-  height: 28px;
-  overflow: hidden;
-  line-height: 1.2;
+    font-size: 13px;
+    margin: 10px 0 5px 0;
+    height: 32px;
+    overflow: hidden;
+    line-height: 1.2;
 }
 
-/* Tombol favorit */
+/* Tombol Love */
 .fav-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(0,0,0,0.6);
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  font-size: 16px;
-  color: #ccc;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
 }
 
-.fav-btn.active {
-  color: #ff4d4d;
-}
+.fav-btn.active { color: #ff4d4d; }
 
-/* Player bawah */
+/* Sticky Player Container */
 .player-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #181818;
-  padding: 10px;
-  border-top: 2px solid #1db954;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #181818;
+    padding: 15px;
+    border-top: 3px solid #1db954;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    z-index: 2000;
 }
 
 #now-playing {
-  margin-bottom: 6px;
-  font-size: 13px;
-  color: #1db954;
-  font-weight: bold;
-  text-align: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #1db954;
+    font-weight: bold;
+    text-align: center;
 }
 
 audio {
-  width: 95%;
-  max-width: 500px;
-  height: 32px;
+    width: 95%;
+    max-width: 700px;
+    height: 35px;
 }
 
 #no-results {
-  display: none;
-  padding: 30px;
-  text-align: center;
-  color: #888;
+    display: none;
+    padding: 50px;
+    text-align: center;
+    color: #888;
 }
 
-/* Media query khusus layar kecil */
+/* Mobile Tweak */
 @media (max-width: 480px) {
-  header h2 {
-    font-size: 18px;
-  }
-  #search-input {
-    font-size: 14px;
-  }
-  .radio-card h3 {
-    font-size: 11px;
-  }
-  #now-playing {
-    font-size: 12px;
-  }
+    #radio-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+    .radio-card h3 { font-size: 11px; }
 }
