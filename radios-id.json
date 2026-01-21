@@ -68,7 +68,7 @@
     "title": "Radio MSTRI 104.2 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1691117661037",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://c2.siar.us:8120/live3",
-    "type": "audio/mp3",
+    "type": "audio/radio",
     "favorite": false
   }
 ]
