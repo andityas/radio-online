@@ -5,7 +5,8 @@
     "category": "Rock",
     "logo": "https://assets-static.therockinlife.com/wp-content/uploads/2024/12/TRL-LOGO-2024-04-300x300.png",
     "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv",
-    "type": "audio/aac"
+    "type": "audio/aac",
+    "favorite": false
   },
   {
     "id": 2,
@@ -13,6 +14,16 @@
     "category": "Jazz",
     "logo": "https://klcbsofficial.com/favicon.ico",
     "streamUrl": "https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
-    "type": "audio/aac"
+    "type": "audio/aac",
+    "favorite": false
+  },
+  {
+    "id": 3,
+    "title": "iRadio (Jakarta)",
+    "category": "Pop",
+    "logo": "https://op-static.files.joox.com/weaver/Iradio-1633325937850.jpg",
+    "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv",
+    "type": "audio/aac",
+    "favorite": false
   }
 ]
