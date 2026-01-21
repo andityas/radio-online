@@ -49,7 +49,7 @@
     "id": 7,
     "title": "iRadio (Jakarta)",
     "logo": "https://cdn.instant.audio/images/logos/radioonline-co-id/i-fm.png",
-    "streamUrl": "ttps://radioonline.co.id/#i-fm",
+    "streamUrl": "https://radioonline.co.id/#i-fm",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
