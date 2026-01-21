@@ -1,19 +1,17 @@
 [
-  {
+{
     "id": 1,
     "title": "PramborsFM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
     "streamUrl": "https://s2.cloudmu.id/listen/prambors/radio.aac",
-    "type": "audio/mpeg",
-    "favorite": false
+    "type": "audio/mpeg"
   },
   {
     "id": 2,
     "title": "Radio Gen 98.7 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
-    "type": "application/vnd.apple.mpegurl",
-    "favorite": false
+    "type": "application/vnd.apple.mpegurl"
   },
   {
     "id": 3,
@@ -57,12 +55,11 @@
   },
   {
     "id": 8,
-    "title": "Radio Mustang 88.0 FM (Jakarta)",
+    "title": "Radio Mustang 88.0 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1614529793044.jpg",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mustangfm/mustangfm/playlist.m3u8",
-    "type": "application/vnd.apple.mpegurl",
-    "favorite": false
-  },
+    "type": "application/vnd.apple.mpegurl"
+  }
   {
     "id": 9,
     "title": "Radio Kis 95.1 FM (Jakarta)",
@@ -84,8 +81,7 @@
     "title": "104,7 Rama FM Bandung",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://i.klikhost.com:8330/;",
-    "type": "audio/mpeg",
-    "favorite": false
+    "type": "audio/mpeg"
   },
   {
     "id": 12,
