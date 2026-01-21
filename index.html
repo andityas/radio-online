@@ -23,12 +23,15 @@
     <button id="toggle-layout">🔀 Switch Layout</button>
   </div>
   
+  <!-- 🎶 Radio list -->
   <div id="radio-list" class="grid-view"></div>
 
+  <!-- Footer -->
   <footer>
     Made with ❤️ by <b>Andit</b> &copy; 2026
   </footer>
 
+  <!-- Script -->
   <script>
     let radiosData = [];
 
@@ -45,12 +48,12 @@
 
         renderRadios(radiosData);
 
-        // 🔊 Auto play first card (may be blocked until user interacts)
+        // 🔊 Auto play first card (muted)
         const firstCard = document.querySelector('.radio-card');
         if (firstCard) {
           const firstAudio = firstCard.querySelector('audio');
           const firstBtn = firstCard.querySelector('.play-btn');
-          firstAudio.muted = true; // start muted to allow autoplay
+          firstAudio.muted = true;
           firstAudio.play().then(() => {
             firstCard.classList.add('active');
             firstCard.querySelector('.status').textContent = '▶ Auto Playing (muted)';
@@ -92,8 +95,9 @@
               <span class="label">Play</span>
             </button>
             <button class="fav-btn">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              Favorite
+              ${radio.favorite 
+                ? '<svg class="fav-icon" viewBox="0 0 24 24" style="fill:gold"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorited'
+                : '<svg class="fav-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorite'}
             </button>
           </div>
         `;
@@ -101,11 +105,12 @@
 
         const audio = card.querySelector('audio');
         const playBtn = card.querySelector('.play-btn');
+        const favBtn = card.querySelector('.fav-btn');
 
+        // Play/Pause logic
         playBtn.addEventListener('click', () => {
-          audio.muted = false; // unmute on user click
+          audio.muted = false;
           if (audio.paused) {
-            // pause all others
             document.querySelectorAll('audio').forEach(other => {
               if (other !== audio) {
                 other.pause();
@@ -135,12 +140,12 @@
           }
         });
 
-        const favBtn = card.querySelector('.fav-btn');
+        // Favorite toggle
         favBtn.addEventListener('click', () => {
           radiosData[index].favorite = !radiosData[index].favorite;
           favBtn.innerHTML = radiosData[index].favorite
-            ? '<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorited'
-            : '<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorite';
+            ? '<svg class="fav-icon" viewBox="0 0 24 24" style="fill:gold"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorited'
+            : '<svg class="fav-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Favorite';
 
           const favTitles = radiosData.filter(r => r.favorite).map(r => r.title);
           localStorage.setItem('favorites', JSON.stringify(favTitles));
@@ -171,13 +176,14 @@
       renderRadios(favRadios);
     });
 
-    // 🔀 Toggle layout
+        // 🔀 Toggle layout
     document.getElementById('toggle-layout').addEventListener('click', () => {
       const list = document.getElementById('radio-list');
       list.classList.toggle('grid-view');
       list.classList.toggle('list-view');
     });
 
+    // 🚀 Load radios on start
     loadRadios();
   </script>
 </body>
