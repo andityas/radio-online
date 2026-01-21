@@ -33,34 +33,18 @@
   },
   {
     "id": 5,
-    "title": "104,7 Rama FM Bandung",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://i.klikhost.com:8330/;",
-    "type": "audio/mpeg",
-    "favorite": false
-  },
-  {
-    "id": 6,
-    "title": "Most FM",
-    "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
-    "type": "application/vnd.apple.mpegurl",
-    "favorite": false
-  },
-  {
-    "id": 7,
-    "title": "Gen FM",
-    "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
-    "type": "application/vnd.apple.mpegurl",
-    "favorite": false
-  },
-  {
-    "id": 8,
     "title": "KLCBS FM Bandung",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
     "type": "audio/aac",
+    "favorite": false
+  },
+  {
+    "id": 6,
+    "title": "104,7 Rama FM Bandung",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1718357206525.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://i.klikhost.com:8330/;",
+    "type": "audio/mpeg",
     "favorite": false
   }
 ]
