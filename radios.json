@@ -21,9 +21,9 @@
     "id": 3,
     "title": "iRadio (Jakarta)",
     "category": "Pop",
-    "logo": "https://op-static.files.joox.com/weaver/Iradio-1633325937850.jpg",
-    "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv",
-    "type": "audio/aac",
+    "logo": "https://radioonline.co.id/wp-content/uploads/2021/07/iradio.png",
+    "streamUrl": "https://stream.radioonline.co.id/iradiojakarta",
+    "type": "audio/mpeg",
     "favorite": false
   }
 ]
