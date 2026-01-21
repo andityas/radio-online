@@ -65,9 +65,9 @@
   },
   {
     "id": 9,
-    "title": "Radio Rayya Channel",
-    "logo": "https://images.noiceid.cc/catalog/content-1614529778366.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_rayya/rayya.stream/playlist.m3u8",
+    "title": "ISTARA 101.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1757312469755.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://live.radioistara.com/listen/radioistara/radioistara",
     "type": "audio/mpeg",
     "favorite": false
   }
