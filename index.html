@@ -38,32 +38,24 @@
     async function loadRadios() {
       const container = document.getElementById('radio-list');
       try {
-        const response = await fetch('radios.json');
+        const response = await fetch('radios-id.json');
         radiosData = await response.json();
 
+        // Adaptasi: ubah field favorite (angka) jadi dua field
+        radiosData.forEach(radio => {
+          radio.favoriteCount = radio.favorite || 0; // simpan angka dari JSON
+          radio.favorite = false; // boolean lokal untuk toggle user
+        });
+
+        // Ambil favorit user dari localStorage
         const savedFavs = JSON.parse(localStorage.getItem('favorites')) || [];
         radiosData.forEach(radio => {
-          radio.favorite = savedFavs.includes(radio.title);
+          if (savedFavs.includes(radio.title)) {
+            radio.favorite = true;
+          }
         });
 
         renderRadios(radiosData);
-
-        // 🔊 Auto play first card (muted)
-        const firstCard = document.querySelector('.radio-card');
-        if (firstCard) {
-          const firstAudio = firstCard.querySelector('audio');
-          const firstBtn = firstCard.querySelector('.play-btn');
-          firstAudio.muted = true;
-          firstAudio.play().then(() => {
-            firstCard.classList.add('active');
-            firstCard.querySelector('.status').textContent = '▶ Auto Playing (muted)';
-            firstBtn.querySelector('.icon-play').style.display = 'none';
-            firstBtn.querySelector('.icon-pause').style.display = 'block';
-            firstBtn.querySelector('.label').textContent = 'Pause';
-          }).catch(() => {
-            firstCard.querySelector('.status').textContent = '⚠ Click Play to start';
-          });
-        }
       } catch (e) {
         container.innerHTML = "Failed to load radio data.";
       }
@@ -86,8 +78,9 @@
           <div class="card-content">
             <h3>${radio.title}</h3>
             <p class="status"></p>
+            <p class="fav-count">⭐ ${radio.favoriteCount} favorites</p>
             <audio>
-              <source src="${radio.streamUrl}" type="${radio.type}">
+              <source src="${radio.streamUrl}">
             </audio>
             <button class="play-btn">
               <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -140,7 +133,7 @@
           }
         });
 
-        // Favorite toggle
+        // Favorite toggle (boolean lokal + simpan ke localStorage)
         favBtn.addEventListener('click', () => {
           radiosData[index].favorite = !radiosData[index].favorite;
           favBtn.innerHTML = radiosData[index].favorite
@@ -176,7 +169,7 @@
       renderRadios(favRadios);
     });
 
-        // 🔀 Toggle layout
+    // 🔀 Toggle layout
     document.getElementById('toggle-layout').addEventListener('click', () => {
       const list = document.getElementById('radio-list');
       list.classList.toggle('grid-view');
@@ -186,5 +179,4 @@
     // 🚀 Load radios on start
     loadRadios();
   </script>
-</body>
-</html>
+</body

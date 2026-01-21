@@ -111,6 +111,13 @@ h1 {
 .status {
   font-size: 0.75rem;
   color: #38bdf8;
+  margin-bottom: 4px;
+}
+
+/* ⭐ Favorite count (global) */
+.fav-count {
+  font-size: 0.75rem;
+  color: #aaa;
   margin-bottom: 6px;
 }
 
