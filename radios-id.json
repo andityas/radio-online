@@ -3,7 +3,7 @@
     "id": 1,
     "title": "PramborsFM",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "title": "Radio Gen 98.7 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://streaming.sim-indonesia.com:8000/genfm",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://streaming.sim-indonesia.com:8000/genfm",
     "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "title": "Most Radio 105.8 FM (Jakarta)",
     "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1725008389287.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev/?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=http://103.246.184.62:1935/noice_mostfm/mostfm/playlist.m3u8",
     "type": "audio/mpeg",
     "favorite": false
   },
