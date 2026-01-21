@@ -11,8 +11,8 @@
     "id": 2,
     "title": "Radio Gen 98.7 FM (Jakarta)",
     "logo": "https://images.noiceid.cc/catalog/content-1614529848190.jpg",
-    "streamUrl": "http://103.246.184.62:1935/noice_genfm/genfm/playlist.m3u8",
-    "type": "audio/mpeg",
+    "streamUrl": "/api/proxy",
+    "type": "application/vnd.apple.mpegurl",
     "favorite": false
   },
   {
