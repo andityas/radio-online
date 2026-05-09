@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Player Pro | Anti Galau</title>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    
+    <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
+    <meta name="description" content="Dengarkan streaming radio Indonesia favorit seperti Prambors, Ardan, dan Delta FM secara gratis dengan kualitas suara jernih. Tanpa ribet, langsung dengerin!">
+    <meta name="keywords" content="radio online, streaming radio indonesia, prambors fm, ardan radio, delta fm, radio player id">
+    <meta name="author" content="Andit">
+    
+    <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia">
+    <meta property="og:description" content="Vibing Everyday No Cap 🧢 - Dengerin stasiun radio favoritmu di mana saja.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.noiceid.cc/catalog/content-1634888608805.png"> <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <span class="tagline">Vibing Everyday No Cap 🧢</span>
-        <h2>🎵 RADIO STATION</h2>
+        <h1>🎵 RADIO PLAYER PRO</h1>
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()">
+            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
         </div>
         <div class="tabs">
             <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Vibes</button>
@@ -22,13 +30,17 @@
     </header>
 
     <main>
+        <section class="seo-text" style="display:none;">
+            <p>Nikmati layanan radio streaming Indonesia terbaik. Kami menyediakan berbagai pilihan stasiun radio populer mulai dari Jakarta, Bandung, hingga Yogyakarta untuk menemani aktivitas harianmu.</p>
+        </section>
+
         <div id="radio-list">
             <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
         </div>
     </main>
 
     <div class="player-container">
-        <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+        <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
         <audio id="player" controls autoplay></audio>
         <div class="signature">
             Manifested with ❤️ by <span class="andit-name">Andit</span>
