@@ -4,48 +4,143 @@
     "title": "Ardan Radio 105.9 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1634888608805.png",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://stream.rcs.revma.com/ugpyzu9n5k3vv",
-    "type": "audio/mpeg"
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
     "id": 2,
     "title": "Delta 99.1 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1692789803987",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/delta_fm/radio.mp3",
-    "type": "audio/mpeg"
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
     "id": 3,
     "title": "Female Radio 97.9 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1692789974803",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.cloudmu.id/listen/female_radio/radio.mp3",
-    "type": "audio/mpeg"
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
     "id": 4,
-    "title": "Prambors FM Jakarta",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
-    "type": "audio/aac"
+    "title": "ISTARA 101.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1757312469755.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://live.radioistara.com/listen/radioistara/radioistara",
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
     "id": 5,
-    "title": "Gen FM 98.7 Jakarta",
-    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1625051342813.jpg",
-    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/genfm/radio.mp3",
-    "type": "audio/mpeg"
+    "title": "Jeje Radio 105.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1733725181452.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://i.klikhost.com:8026/stream",
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
-    "id": 20,
+    "id": 6,
+    "title": "KLCBS 100.4 FM (Jazz)",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1741595177171.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
+    "type": "audio/aac",
+    "favorite": false
+  },
+  {
+    "id": 7,
+    "title": "MGT Radio 101.1 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1758512401958.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s1.gntr.net/listen/mgtradio/mgtradio",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 8,
+    "title": "Mix Radio 92.9 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1708503548830.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://mixfm.haurgeulis.my.id/mixfm",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 9,
+    "title": "Prambors FM (Jakarta)",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/prambors/radio.aac",
+    "type": "audio/aac",
+    "favorite": false
+  },
+  {
+    "id": 10,
     "title": "Radio Geronimo 106.1 FM",
     "logo": "https://images.noiceid.cc/catalog/content-1625051342813.jpg",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://ig.idstreamer.com:8090//live",
-    "type": "audio/mpeg"
+    "type": "audio/mpeg",
+    "favorite": false
   },
   {
-    "id": 21,
+    "id": 11,
+    "title": "Radio Jiz 89.5 FM",
+    "logo": "https://images.noiceid.cc/catalog/content-1646376201322",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://pu.klikhost.com/proxy/jizfm/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 12,
+    "title": "Voks Radio 91.7 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1699854536329.webp",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://svara-stream.radioddns.net/bandung_voksradio",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 13,
+    "title": "Gen FM 98.7 Jakarta",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1625051342813.jpg",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/genfm/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 14,
+    "title": "Hard Rock FM 87.6",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1692790234710",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/hardrock_fm/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 15,
+    "title": "Trax FM 101.4",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1692790510103",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/trax_fm/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 16,
+    "title": "iRadio 89.6 FM",
+    "logo": "https://images-v2.noiceid.cc/catalog/300x300/content-1692790372810",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://s2.cloudmu.id/listen/iradio/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 17,
     "title": "Elshinta 90.0 FM (News)",
     "logo": "https://images.noiceid.cc/catalog/content-1625051342813.jpg",
     "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://live.elshinta.com/listen/elshinta/elshinta",
-    "type": "audio/mpeg"
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 18,
+    "title": "RRI Pro 2 Jakarta",
+    "logo": "https://images.noiceid.cc/catalog/content-1625051342813.jpg",
+    "streamUrl": "https://empty-credit-5eeb.suryadikusumah-anditya.workers.dev?url=https://rristream.kominfo.go.id/listen/pro2_jakarta/pro2_jakarta",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
