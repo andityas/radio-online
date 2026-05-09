@@ -6,14 +6,13 @@ let currentTab = 'all';
 async function loadRadios() {
     const list = document.getElementById('radio-list');
     try {
-        // Cache busting sederhana agar user selalu dapat data terbaru
         const res = await fetch('radios-id.json?v=' + Date.now());
         if (!res.ok) throw new Error();
         allRadios = await res.json();
         renderRadios();
     } catch (e) {
         list.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:50px;">
-            <h4>JSON Gak Ketemu 💀</h4><p>Cek filenya lagi ya, bestie.</p>
+            <h4>JSON Gak Ketemu 💀</h4><p>Pastikan file radios-id.json ada di folder yang sama.</p>
         </div>`;
     }
 }
@@ -35,7 +34,7 @@ function renderRadios() {
         let desc = "Coba cek lagi keyword pencarianmu, bestie.";
         if (currentTab === 'fav' && keyword === "") {
             title = "Masih Kosong Melompong 🚩";
-            desc = "Belum ada yang di-love nih. Cari radio terus klik ❤️ ya!";
+            desc = "Belum ada yang di-love. Cari radio terus klik ❤️ ya!";
         }
         
         list.innerHTML = `
@@ -53,15 +52,13 @@ function renderRadios() {
         const card = document.createElement('div');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
-        
-        // Optimasi SEO: Menambahkan Alt text dan loading lazy
         card.innerHTML = `
-            <button aria-label="Favoritkan ${radio.title}" onclick="toggleFav(event, ${radio.id})" 
+            <button aria-label="Favorit" onclick="toggleFav(event, ${radio.id})" 
                 style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; color:${isFav ? '#ff4d4d' : '#ccc'}; z-index:10;">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id})">
-                <img src="${radio.logo}" alt="Streaming ${radio.title}" loading="lazy">
+                <img src="${radio.logo}" alt="${radio.title}" loading="lazy">
                 <h3>${radio.title}</h3>
             </div>`;
         list.appendChild(card);
@@ -80,22 +77,32 @@ function toggleFav(e, id) {
     renderRadios();
 }
 
+// Global Function untuk Playback & Dynamic Title
 window.playStream = (url, type, title, id) => {
     const audio = document.getElementById('player');
+    
+    // Update Title di UI Player
     document.getElementById('now-playing').textContent = "🔥 Now Vibe-ing: " + title;
     
-    // Update Title Tag secara dinamis agar terlihat di tab browser (Bagus untuk UX/SEO)
+    // UPDATE DYNAMIC TITLE BROWSER (SEO & UX)
     document.title = "▶️ " + title + " | Radio Player Pro";
 
+    // Visual feedback pada card
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    document.getElementById(`card-${id}`)?.classList.add('playing');
+    const activeCard = document.getElementById(`card-${id}`);
+    if (activeCard) activeCard.classList.add('playing');
 
+    // HLS Support Logic
     if (hls) { hls.destroy(); hls = null; }
+    
     if (url.includes('.m3u8') && Hls.isSupported()) {
-        hls = new Hls(); hls.loadSource(url); hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play());
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay blocked")));
     } else {
-        audio.src = url; audio.play();
+        audio.src = url;
+        audio.play().catch(e => console.log("Autoplay blocked"));
     }
 };
 
@@ -107,4 +114,6 @@ function switchTab(tab) {
 }
 
 function filterRadios() { renderRadios(); }
-loadRadios();
+
+// Jalankan saat halaman siap
+document.addEventListener('DOMContentLoaded', loadRadios);
