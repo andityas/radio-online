@@ -19,22 +19,33 @@ async function loadRadios() {
 
 function renderRadios() {
     const list = document.getElementById('radio-list');
+    const countElement = document.getElementById('radio-count');
     const keyword = document.getElementById('search-input').value.toLowerCase().trim();
 
+    // Filter Logic
     const data = allRadios.filter(r => {
         const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
         const isMatch = r.title.toLowerCase().includes(keyword);
         return isFav && isMatch;
     });
 
+    // Update Jumlah Radio Secara Dinamis (SEO & UX)
+    if (keyword !== "") {
+        countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
+    } else if (currentTab === 'fav') {
+        countElement.innerText = `Ada ${data.length} stasiun di playlist kamu`;
+    } else {
+        countElement.innerText = `Streaming ${data.length} Stasiun Radio Indonesia`;
+    }
+
     list.innerHTML = '';
 
     if (data.length === 0) {
         let title = "Waduh, Gak Ketemu Nih... 🚩";
-        let desc = "Coba cek lagi keyword pencarianmu, bestie.";
+        let desc = "Coba cari dengan nama stasiun lain, bestie.";
         if (currentTab === 'fav' && keyword === "") {
-            title = "Masih Kosong Melompong 🚩";
-            desc = "Belum ada yang di-love. Cari radio terus klik ❤️ ya!";
+            title = "Playlist Kosong 🚩";
+            desc = "Belum ada radio favorit. Klik ❤️ pada stasiun pilihanmu!";
         }
         
         list.innerHTML = `
@@ -52,13 +63,15 @@ function renderRadios() {
         const card = document.createElement('div');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
+        
+        // Optimasi: Image Alt & Lazy Load
         card.innerHTML = `
-            <button aria-label="Favorit" onclick="toggleFav(event, ${radio.id})" 
+            <button aria-label="Simpan ke favorit" onclick="toggleFav(event, ${radio.id})" 
                 style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; color:${isFav ? '#ff4d4d' : '#ccc'}; z-index:10;">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id})">
-                <img src="${radio.logo}" alt="${radio.title}" loading="lazy">
+                <img src="${radio.logo}" alt="Streaming ${radio.title}" loading="lazy">
                 <h3>${radio.title}</h3>
             </div>`;
         list.appendChild(card);
@@ -77,32 +90,26 @@ function toggleFav(e, id) {
     renderRadios();
 }
 
-// Global Function untuk Playback & Dynamic Title
+// Global Function untuk Play & Update Title Dinamis
 window.playStream = (url, type, title, id) => {
     const audio = document.getElementById('player');
     
-    // Update Title di UI Player
+    // Update UI Player
     document.getElementById('now-playing').textContent = "🔥 Now Vibe-ing: " + title;
     
-    // UPDATE DYNAMIC TITLE BROWSER (SEO & UX)
+    // PERBAIKAN: Update Title Tab Browser (SEO & UX)
     document.title = "▶️ " + title + " | Radio Player Pro";
 
-    // Visual feedback pada card
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    const activeCard = document.getElementById(`card-${id}`);
-    if (activeCard) activeCard.classList.add('playing');
+    const currentCard = document.getElementById(`card-${id}`);
+    if (currentCard) currentCard.classList.add('playing');
 
-    // HLS Support Logic
     if (hls) { hls.destroy(); hls = null; }
-    
     if (url.includes('.m3u8') && Hls.isSupported()) {
-        hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay blocked")));
+        hls = new Hls(); hls.loadSource(url); hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play());
     } else {
-        audio.src = url;
-        audio.play().catch(e => console.log("Autoplay blocked"));
+        audio.src = url; audio.play();
     }
 };
 
@@ -115,5 +122,5 @@ function switchTab(tab) {
 
 function filterRadios() { renderRadios(); }
 
-// Jalankan saat halaman siap
-document.addEventListener('DOMContentLoaded', loadRadios);
+// Mulai muat data
+loadRadios();
