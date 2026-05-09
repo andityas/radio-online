@@ -6,6 +6,7 @@ let currentTab = 'all';
 async function loadRadios() {
     const list = document.getElementById('radio-list');
     try {
+        // Cache busting sederhana agar user selalu dapat data terbaru
         const res = await fetch('radios-id.json?v=' + Date.now());
         if (!res.ok) throw new Error();
         allRadios = await res.json();
@@ -21,7 +22,6 @@ function renderRadios() {
     const list = document.getElementById('radio-list');
     const keyword = document.getElementById('search-input').value.toLowerCase().trim();
 
-    // Filter Logic
     const data = allRadios.filter(r => {
         const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
         const isMatch = r.title.toLowerCase().includes(keyword);
@@ -53,13 +53,15 @@ function renderRadios() {
         const card = document.createElement('div');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
+        
+        // Optimasi SEO: Menambahkan Alt text dan loading lazy
         card.innerHTML = `
-            <button onclick="toggleFav(event, ${radio.id})" 
-                style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; color:${isFav ? '#ff4d4d' : '#ccc'};">
+            <button aria-label="Favoritkan ${radio.title}" onclick="toggleFav(event, ${radio.id})" 
+                style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; color:${isFav ? '#ff4d4d' : '#ccc'}; z-index:10;">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id})">
-                <img src="${radio.logo}" alt="${radio.title}">
+                <img src="${radio.logo}" alt="Streaming ${radio.title}" loading="lazy">
                 <h3>${radio.title}</h3>
             </div>`;
         list.appendChild(card);
@@ -82,6 +84,9 @@ window.playStream = (url, type, title, id) => {
     const audio = document.getElementById('player');
     document.getElementById('now-playing').textContent = "🔥 Now Vibe-ing: " + title;
     
+    // Update Title Tag secara dinamis agar terlihat di tab browser (Bagus untuk UX/SEO)
+    document.title = "▶️ " + title + " | Radio Player Pro";
+
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     document.getElementById(`card-${id}`)?.classList.add('playing');
 
