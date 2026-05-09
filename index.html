@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Radio Player Pro | Streaming Radio Indonesia Online</title>
-    <meta name="description" content="Dengarkan streaming radio Indonesia favorit seperti Prambors, Ardan, dan Delta FM secara online dengan kualitas audio jernih.">
+    <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
+    <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih. Update otomatis berbagai stasiun radio hits di Indonesia.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player">
     <meta name="author" content="Andit">
 
@@ -21,8 +21,13 @@
     <header>
         <span class="tagline">Vibing Everyday No Cap 🧢</span>
         <h1>🎵 RADIO PLAYER PRO</h1>
+        
+        <p id="radio-count" style="font-size: 11px; margin-top: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+            Menghubungkan frekuensi...
+        </p>
+
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari radio">
+            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
         </div>
         <div class="tabs">
             <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Vibes</button>
@@ -31,9 +36,9 @@
     </header>
 
     <main>
-        <div style="display:none">
-            <p>Aplikasi streaming radio Indonesia terbaik untuk mendengarkan musik favorit secara online gratis.</p>
-        </div>
+        <section style="display:none;">
+            <p>Selamat datang di Radio Player Pro. Nikmati layanan streaming radio online Indonesia terbaik mulai dari Jakarta, Bandung, hingga seluruh pelosok nusantara secara gratis.</p>
+        </section>
 
         <div id="radio-list">
             <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
@@ -41,8 +46,8 @@
     </main>
 
     <div class="player-container">
-        <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
-        <audio id="player" controls autoplay aria-label="Audio Player"></audio>
+        <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+        <audio id="player" controls autoplay></audio>
         <div class="signature">
             Manifested with ❤️ by <span class="andit-name">Andit</span>
         </div>
