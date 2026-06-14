@@ -19,7 +19,7 @@ body {
     background: radial-gradient(circle at top center, #131a26 0%, var(--bg-base) 70%);
     color: var(--text-pure);
     margin: 0;
-    padding-bottom: 180px; 
+    padding-bottom: 150px;
     letter-spacing: -0.2px;
 }
 
@@ -69,7 +69,7 @@ body {
     margin: 0 0 35px 0;
 }
 
-/* Search Container Meta UI */
+/* Search Container UI */
 .search-container {
     margin: 0 auto 30px auto;
     max-width: 480px;
@@ -117,7 +117,6 @@ body {
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
-    min-height: 44px; 
 }
 .tab-btn:hover { border-color: rgba(255,255,255,0.2); color: #ffffff; }
 .tab-btn.active { 
@@ -128,7 +127,7 @@ body {
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
 }
 
-/* SEO Description Block */
+/* SEO Content */
 .seo-intro-content { max-width: 900px; margin: 40px auto 0 auto; padding: 0 20px; text-align: center; }
 .seo-intro-content h2 { font-size: 16px; color: var(--text-pure); font-weight: 600; opacity: 0.9; }
 .seo-intro-content p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
@@ -143,7 +142,7 @@ body {
     margin: auto;
 }
 
-/* Radio Cards Core Component */
+/* Radio Cards Component */
 .radio-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-line);
@@ -163,14 +162,8 @@ body {
 
 .radio-card.playing {
     border-color: var(--primary);
-    background: rgba(29, 185, 84, 0.03);
-    animation: pulseGlow 2s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.1); }
-    50% { box-shadow: 0 0 30px rgba(29, 185, 84, 0.3); }
-    100% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.1); }
+    box-shadow: 0 0 20px var(--primary-glow);
+    background: rgba(29, 185, 84, 0.02);
 }
 
 .img-frame {
@@ -229,7 +222,7 @@ body {
 }
 .fav-btn:hover { transform: scale(1.15); background: rgba(0,0,0,0.5); }
 
-/* Master App Sticky Player */
+/* Master App Player Deck */
 .player-container {
     position: fixed;
     bottom: 24px;
@@ -250,6 +243,7 @@ body {
     z-index: 9999;
 }
 
+/* Player Sisi Kiri */
 .player-meta-block {
     display: flex;
     align-items: center;
@@ -261,7 +255,7 @@ body {
 .avatar-mini-wrapper {
     width: 44px;
     height: 44px;
-    background: #161b22; 
+    background: #ffffff; /* Mengembalikan background putih murni kesukaan kakak */
     border-radius: 10px;
     padding: 5px;
     display: flex;
@@ -269,7 +263,6 @@ body {
     justify-content: center;
     flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    overflow: hidden;
 }
 
 .avatar-mini-wrapper img {
@@ -295,21 +288,22 @@ body {
     margin-top: 2px;
 }
 
-/* Core SVG Dynamic Icon Styling */
+/* Styling Ikon Antena Default Saat Sepi */
 .default-player-icon {
     width: 24px;
     height: 24px;
-    color: var(--primary);
-    opacity: 0.7;
-    animation: pulseIcon 2.5s infinite ease-in-out;
+    color: #08090c; /* Diwarnai gelap agar kontras di atas background putih wrapper */
+    opacity: 0.6;
+    animation: pulseIcon 2s infinite ease-in-out;
 }
 
 @keyframes pulseIcon {
-    0% { transform: scale(0.95); opacity: 0.4; }
-    50% { transform: scale(1.08); opacity: 0.9; }
-    100% { transform: scale(0.95); opacity: 0.4; }
+    0% { transform: scale(0.92); opacity: 0.4; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(0.92); opacity: 0.4; }
 }
 
+/* Player Sisi Tengah */
 .player-controls-block {
     flex: 1.5;
     display: flex;
@@ -318,7 +312,10 @@ body {
 
 audio { width: 100%; max-width: 450px; height: 36px; }
 audio::-webkit-media-controls-panel { background-color: #1e232d; }
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display { color: #ffffff; }
 
+/* Player Sisi Kanan */
 .player-signature-block {
     flex: 1;
     display: flex;
@@ -328,7 +325,7 @@ audio::-webkit-media-controls-panel { background-color: #1e232d; }
 .signature { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
 .andit-name { color: var(--primary); font-weight: 700; }
 
-/* Responsive Media Viewports */
+/* Responsivitas Layar (Mobile Friendly Layout) */
 @media (max-width: 850px) {
     .player-container {
         flex-direction: column;
