@@ -130,8 +130,8 @@
   {
     "id": 17,
     "title": "Suara Giri FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19166.v5.png",
-    "streamUrl": "http://streaming.girifm.com:8010/;stream.mp3",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/19000.v8.png",
+    "streamUrl": "https://streaming.girifm.com:8010/stream",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -154,8 +154,8 @@
   {
     "id": 20,
     "title": "VIS FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19561.v11.png",
-    "streamUrl": "http://b.alhastream.com:5115/radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/58059.v9.png",
+    "streamUrl": "https://b.alhastream.com:5115/stream",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -258,8 +258,8 @@
   {
     "id": 33,
     "title": "Ringkas RadioNet Cirebon",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/144127.v12.png",
-    "streamUrl": "http://uk6freenew.listen2myradio.com:20828/;",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/92487.v4.png",
+    "streamUrl": "https://uk6freenew.listen2myradio.com:2199/tunein/ringkasradio.pls",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -362,7 +362,7 @@
   {
     "id": 46,
     "title": "Keilove FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/154800.v3.png",
+    "logo": "https://cdn.onlineradiobox.com/img/0/154800.v3.png",
     "streamUrl": "https://s3.alhastream.com:8440/keilove",
     "type": "audio/mpeg",
     "favorite": false
@@ -379,7 +379,7 @@
     "id": 48,
     "title": "Bontang Streamers",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/96091.v21.png",
-    "streamUrl": "http://atletik.biz.id:8000/radio.mp3",
+    "streamUrl": "https://atletik.biz.id:8000/radio.mp3",
     "type": "audio/mpeg",
     "favorite": false
   },
@@ -403,7 +403,7 @@
     "id": 51,
     "title": "Hits Radio Kandangan",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/149756.v3.png",
-    "streamUrl": "http://45.64.97.82:8030/stream",
+    "streamUrl": "https://45.64.97.82:8030/stream",
     "type": "audio/mpeg",
     "favorite": false
   },
