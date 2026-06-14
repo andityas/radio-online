@@ -1,175 +1,224 @@
-let hls = null;
-let allRadios = [];
-let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
+// Variabel global
+let radioData = [];
+let favorites = JSON.parse(localStorage.getItem('radio_favs')) || [];
+let currentStation = null;
 let currentTab = 'all';
+let hlsInstance = null;
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadRadios();
+const audio = document.getElementById('audioElement');
+const grid = document.getElementById('radioGrid');
+const searchBar = document.getElementById('searchBar');
+const playerBar = document.getElementById('playerBar');
+const btnPlayPause = document.getElementById('btnPlayPause');
+const playIcon = document.getElementById('playIcon');
+const volumeSlider = document.getElementById('volumeSlider');
+const playerStatus = document.getElementById('playerStatus');
+const liveDot = document.getElementById('liveDot');
 
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', () => renderRadios());
-    }
-
-    const tabAll = document.getElementById('tab-all');
-    const tabFav = document.getElementById('tab-fav');
-
-    if (tabAll && tabFav) {
-        tabAll.addEventListener('click', () => switchTab('all'));
-        tabFav.addEventListener('click', () => switchTab('fav'));
-    }
-});
-
-async function loadRadios() {
-    const list = document.getElementById('radio-list');
-    try {
-        const res = await fetch('radios-id.json?v=' + Date.now());
-        if (!res.ok) throw new Error();
-        allRadios = await res.json();
-        renderRadios();
-    } catch (e) {
-        list.innerHTML = `
-            <div style="grid-column:1/-1;text-align:center;padding:50px;">
-                <h4>JSON Gak Ketemu 💀</h4>
-                <p>Cek filenya lagi ya, bestie.</p>
-            </div>`;
-    }
-}
-
-function renderRadios() {
-    const list = document.getElementById('radio-list');
-    const countElement = document.getElementById('radio-count');
-    const searchInput = document.getElementById('search-input');
-    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
-
-    const data = allRadios.filter(r => {
-        const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
-        const isMatch = r.title.toLowerCase().includes(keyword);
-        return isFav && isMatch;
+// Ambil data radio dari file JSON eksternal
+fetch('data.json')
+    .then(response => {
+        if (!response.ok) throw new Error('Gagal memuat data.json');
+        return response.json();
+    })
+    .then(data => {
+        radioData = data;
+        renderRadio();
+        console.log(`✅ ${radioData.length} stasiun radio dimuat.`);
+    })
+    .catch(error => {
+        console.error('❌ Gagal memuat data radio:', error);
+        grid.innerHTML = `<div class="col-span-full text-center text-red-400 py-10">Gagal memuat data stasiun. Periksa koneksi atau file data.json.</div>`;
     });
 
-    if (countElement) {
-        if (keyword !== "") {
-            countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
-        } else {
-            countElement.innerText = `Streaming ${data.length} Stasiun Radio Indonesia`;
-        }
+// --- Render ---
+function renderRadio(filterText = '') {
+    if (!radioData.length) return;
+
+    grid.innerHTML = '';
+    let filtered = radioData.filter(r => r.title.toLowerCase().includes(filterText.toLowerCase()));
+
+    if (currentTab === 'fav') {
+        filtered = filtered.filter(r => favorites.includes(r.id));
     }
 
-    list.innerHTML = '';
+    document.getElementById('favCount').innerText = favorites.length;
 
-    if (data.length === 0) {
-        list.innerHTML = `
-            <div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
-                <h4>Gak Ketemu Nih... 🚩</h4>
-                <p>Coba cari stasiun lain atau cek playlist favoritmu.</p>
-            </div>`;
+    if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center text-slate-500 py-10">Stasiun tidak ditemukan...</div>`;
         return;
     }
 
-    data.forEach(radio => {
-        const isFav = favorites.includes(Number(radio.id));
-        const card = document.createElement('article');
-        card.className = 'radio-card';
-        card.id = `card-${radio.id}`;
-        
-        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kata Kunci
+    filtered.forEach(radio => {
+        const isFav = favorites.includes(radio.id);
+        const isPlayingThis = currentStation && currentStation.id === radio.id && !audio.paused;
+
+        const card = document.createElement('div');
+        card.className = `bg-slate-800 border ${isPlayingThis ? 'border-indigo-500 shadow-md shadow-indigo-500/10' : 'border-slate-700'} rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:border-slate-500 transition-all group`;
+
         card.innerHTML = `
-            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
-                ${isFav ? '❤️' : '🤍'}
+            <button class="fav-btn absolute top-3 right-3 text-sm cursor-pointer transition-colors ${isFav ? 'text-rose-500' : 'text-slate-500 group-hover:text-slate-300'}" data-id="${radio.id}">
+                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
             </button>
-            <div class="card-clickable">
-                <div class="img-frame">
-                    <img src="${radio.logo}" alt="Streaming Live ${radio.title} Indonesia Online" title="${radio.title} Player Pro" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
-                </div>
-                <h3>${radio.title}</h3>
-                <span class="live-badge">● LIVE</span>
-            </div>`;
-        
-        card.querySelector('.fav-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleFav(Number(radio.id));
-        });
-
-        card.querySelector('.card-clickable').addEventListener('click', () => {
-            playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
-        });
-
-        list.appendChild(card);
+            <div class="w-20 h-20 bg-white rounded-lg p-1.5 flex items-center justify-center mb-3 border border-slate-700 relative">
+                <img src="${radio.logo}" alt="${radio.title}" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=Radio'">
+                <button class="play-card-btn absolute inset-0 bg-slate-900/60 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white text-xl" data-id="${radio.id}">
+                    <i class="fa-solid ${isPlayingThis ? 'fa-pause' : 'fa-play'}"></i>
+                </button>
+            </div>
+            <h4 class="font-medium text-sm text-slate-200 truncate w-full px-1">${radio.title}</h4>
+        `;
+        grid.appendChild(card);
     });
+
+    // Bind event listeners
+    document.querySelectorAll('.fav-btn').forEach(btn => btn.addEventListener('click', toggleFavorite));
+    document.querySelectorAll('.play-card-btn').forEach(btn => btn.addEventListener('click', handleCardPlay));
 }
 
-function playStream(url, type, title, id, logoUrl) {
-    const audio = document.getElementById('player');
-    const miniLogo = document.getElementById('player-current-logo');
-    const defaultIcon = document.getElementById('player-default-icon');
-    
-    if (!audio) return;
+// --- Playback ---
+function playRadio(station) {
+    currentStation = station;
+    playerBar.classList.remove('hidden');
+    document.getElementById('currentLogo').src = station.logo;
+    document.getElementById('currentTitle').innerText = station.title;
 
-    // 1. UPDATE DYNAMIC TITLE BROWSER (SEO CTR)
-    document.title = "▶️ " + title + " | Radio Player Pro";
-    
-    // 2. UPDATE TEXT DI PLAYER BAR BAWAH
-    document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
-    
-    // 3. LOGIKA PENANGANAN GAMBAR/LOGO (Menghilangkan kekosongan saat sepi)
-    if (miniLogo && logoUrl) {
-        miniLogo.src = logoUrl;
-        miniLogo.alt = `Logo ${title} Pemutar Aktif`;
-        miniLogo.style.display = "block"; 
-        
-        if (defaultIcon) {
-            defaultIcon.style.display = "none"; 
+    liveDot.classList.add('hidden');
+    playerStatus.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Menghubungkan...';
+
+    // Hancurkan HLS sebelumnya
+    if (hlsInstance) {
+        hlsInstance.destroy();
+        hlsInstance = null;
+    }
+
+    // Jika stream HLS
+    if (station.streamUrl.includes('.m3u8')) {
+        if (Hls.isSupported()) {
+            hlsInstance = new Hls();
+            hlsInstance.loadSource(station.streamUrl);
+            hlsInstance.attachMedia(audio);
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+                audio.play().catch(err => showPlayError());
+            });
+            hlsInstance.on(Hls.Events.ERROR, (event, data) => {
+                console.error('HLS error:', data);
+                showPlayError('Format HLS tidak dapat diputar.');
+            });
+        } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+            // Native HLS (Safari)
+            audio.src = station.streamUrl;
+            audio.play().catch(err => showPlayError());
+        } else {
+            showPlayError('Browser tidak mendukung HLS.');
+            return;
         }
     } else {
-        if (miniLogo) miniLogo.style.display = "none";
-        if (defaultIcon) defaultIcon.style.display = "block";
+        // Stream biasa (MP3/AAC)
+        audio.src = station.streamUrl;
+        audio.load();
+        audio.play().catch(err => showPlayError());
     }
 
-    // 4. MANAGEMENT CLASS ACTIVE CARD
-    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    const currentCard = document.getElementById(`card-${id}`);
-    if (currentCard) currentCard.classList.add('playing');
+    updateUIPlayState(true);
+}
 
-    // 5. ENGINE STREAM AUDIO (HLS & MP3)
-    if (hls) { 
-        hls.destroy(); 
-        hls = null; 
-    }
+function showPlayError(msg = 'Gagal memutar streaming ini.') {
+    playerStatus.innerText = '⚠️ ' + msg;
+    updateUIPlayState(false);
+}
 
-    if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
-        hls = new Hls(); 
-        hls.loadSource(url); 
-        hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked System Stream")));
+function updateUIPlayState(isPlaying) {
+    playIcon.className = isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play ml-0.5';
+    renderRadio(searchBar.value);
+}
+
+// --- Event Handlers ---
+function handleCardPlay(e) {
+    const id = parseInt(e.currentTarget.getAttribute('data-id'));
+    const station = radioData.find(r => r.id === id);
+
+    if (!station) return;
+
+    if (currentStation && currentStation.id === id) {
+        // Toggle play/pause
+        if (audio.paused) {
+            audio.play();
+            updateUIPlayState(true);
+        } else {
+            audio.pause();
+            updateUIPlayState(false);
+        }
     } else {
-        audio.src = url; 
-        audio.play().catch(e => console.log("Blocked System Audio"));
+        playRadio(station);
     }
 }
 
-function toggleFav(targetId) {
-    if (favorites.includes(targetId)) {
-        favorites = favorites.filter(f => f !== targetId);
+function toggleFavorite(e) {
+    e.stopPropagation();
+    const id = parseInt(e.currentTarget.getAttribute('data-id'));
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(fid => fid !== id);
     } else {
-        favorites.push(targetId);
+        favorites.push(id);
     }
-    localStorage.setItem('radioFavs', JSON.stringify(favorites));
-    renderRadios();
+    localStorage.setItem('radio_favs', JSON.stringify(favorites));
+    renderRadio(searchBar.value);
 }
 
-function switchTab(tab) {
-    currentTab = tab;
-    const tabAll = document.getElementById('tab-all');
-    const tabFav = document.getElementById('tab-fav');
-    
-    if(tabAll && tabFav) {
-        const isAll = tab === 'all';
-        tabAll.classList.toggle('active', isAll);
-        tabAll.setAttribute('aria-selected', isAll ? 'true' : 'false');
-        
-        tabFav.classList.toggle('active', !isAll);
-        tabFav.setAttribute('aria-selected', !isAll ? 'true' : 'false');
+// --- Audio Events ---
+audio.addEventListener('playing', () => {
+    liveDot.classList.remove('hidden');
+    playerStatus.innerText = ' LIVE / STREAMING';
+});
+
+audio.addEventListener('pause', () => {
+    liveDot.classList.add('hidden');
+    playerStatus.innerText = ' DIHENTIKAN';
+    updateUIPlayState(false);
+});
+
+audio.addEventListener('error', () => {
+    showPlayError('Stream error / tidak tersedia.');
+});
+
+// Tombol Play/Pause di bar
+btnPlayPause.addEventListener('click', () => {
+    if (!currentStation) return;
+    if (audio.paused) {
+        audio.play();
+        updateUIPlayState(true);
+    } else {
+        audio.pause();
+        updateUIPlayState(false);
     }
-    renderRadios();
-}
+});
+
+// Volume
+volumeSlider.addEventListener('input', (e) => {
+    const vol = e.target.value;
+    audio.volume = vol;
+    const volIcon = document.getElementById('volumeIcon');
+    if (vol == 0) volIcon.className = 'fa-solid fa-volume-xmark text-slate-500';
+    else if (vol < 0.4) volIcon.className = 'fa-solid fa-volume-low text-slate-400';
+    else volIcon.className = 'fa-solid fa-volume-high text-slate-400';
+});
+audio.volume = volumeSlider.value;
+
+// Search
+searchBar.addEventListener('input', (e) => renderRadio(e.target.value));
+
+// Tabs
+document.getElementById('tabAll').addEventListener('click', function () {
+    currentTab = 'all';
+    this.className = 'px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white cursor-pointer';
+    document.getElementById('tabFav').className = 'px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer';
+    renderRadio(searchBar.value);
+});
+
+document.getElementById('tabFav').addEventListener('click', function () {
+    currentTab = 'fav';
+    this.className = 'px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white cursor-pointer';
+    document.getElementById('tabAll').className = 'px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer';
+    renderRadio(searchBar.value);
+});
