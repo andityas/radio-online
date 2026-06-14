@@ -190,8 +190,10 @@ h1 {
     width: 100%; 
     border-radius: 12px; 
     aspect-ratio: 1/1; 
-    object-fit: cover; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    object-fit: contain; /* FIX: Mengubah cover menjadi contain agar logo utuh & gak kepotong */
+    background-color: #ffffff; /* Menambahkan background putih agar logo menyatu dengan rapi */
+    padding: 10px; /* Memberikan jarak aman di dalam kotak agar logo tidak mentok ke pinggir */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .radio-card h3 { 
