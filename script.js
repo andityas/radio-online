@@ -73,7 +73,7 @@ function renderRadios() {
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
         
-        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kaya Kata Kunci
+        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kata Kunci
         card.innerHTML = `
             <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
                 ${isFav ? '❤️' : '🤍'}
@@ -102,21 +102,36 @@ function renderRadios() {
 function playStream(url, type, title, id, logoUrl) {
     const audio = document.getElementById('player');
     const miniLogo = document.getElementById('player-current-logo');
+    const defaultIcon = document.getElementById('player-default-icon');
     
-    // 1. UPDATE DYNAMIC TITLE BROWSER (Sangat Bagus untuk CTR SEO Pengguna)
+    if (!audio) return;
+
+    // 1. UPDATE DYNAMIC TITLE BROWSER (SEO CTR)
     document.title = "▶️ " + title + " | Radio Player Pro";
     
-    // 2. UPDATE TEXT & LOGO DI PLAYER BAR BAWAH
+    // 2. UPDATE TEXT DI PLAYER BAR BAWAH
     document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
-    if(miniLogo && logoUrl) {
+    
+    // 3. LOGIKA PENANGANAN GAMBAR/LOGO (Menghilangkan kekosongan saat sepi)
+    if (miniLogo && logoUrl) {
         miniLogo.src = logoUrl;
         miniLogo.alt = `Logo ${title} Pemutar Aktif`;
+        miniLogo.style.display = "block"; 
+        
+        if (defaultIcon) {
+            defaultIcon.style.display = "none"; 
+        }
+    } else {
+        if (miniLogo) miniLogo.style.display = "none";
+        if (defaultIcon) defaultIcon.style.display = "block";
     }
 
+    // 4. MANAGEMENT CLASS ACTIVE CARD
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     const currentCard = document.getElementById(`card-${id}`);
     if (currentCard) currentCard.classList.add('playing');
 
+    // 5. ENGINE STREAM AUDIO (HLS & MP3)
     if (hls) { 
         hls.destroy(); 
         hls = null; 
