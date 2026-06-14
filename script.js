@@ -73,13 +73,14 @@ function renderRadios() {
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
         
+        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kaya Kata Kunci
         card.innerHTML = `
             <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div class="card-clickable">
                 <div class="img-frame">
-                    <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+                    <img src="${radio.logo}" alt="Streaming Live ${radio.title} Indonesia Online" title="${radio.title} Player Pro" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
                 </div>
                 <h3>${radio.title}</h3>
                 <span class="live-badge">● LIVE</span>
@@ -91,7 +92,6 @@ function renderRadios() {
         });
 
         card.querySelector('.card-clickable').addEventListener('click', () => {
-            // Mengirim data logo ke fungsi player bawah
             playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
         });
 
@@ -103,14 +103,14 @@ function playStream(url, type, title, id, logoUrl) {
     const audio = document.getElementById('player');
     const miniLogo = document.getElementById('player-current-logo');
     
-    // 1. UPDATE DYNAMIC TITLE BROWSER
+    // 1. UPDATE DYNAMIC TITLE BROWSER (Sangat Bagus untuk CTR SEO Pengguna)
     document.title = "▶️ " + title + " | Radio Player Pro";
     
     // 2. UPDATE TEXT & LOGO DI PLAYER BAR BAWAH
     document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
     if(miniLogo && logoUrl) {
         miniLogo.src = logoUrl;
-        miniLogo.alt = title;
+        miniLogo.alt = `Logo ${title} Pemutar Aktif`;
     }
 
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -126,10 +126,10 @@ function playStream(url, type, title, id, logoUrl) {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked System Stream")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Blocked"));
+        audio.play().catch(e => console.log("Blocked System Audio"));
     }
 }
 
@@ -149,8 +149,12 @@ function switchTab(tab) {
     const tabFav = document.getElementById('tab-fav');
     
     if(tabAll && tabFav) {
-        tabAll.classList.toggle('active', tab === 'all');
-        tabFav.classList.toggle('active', tab === 'fav');
+        const isAll = tab === 'all';
+        tabAll.classList.toggle('active', isAll);
+        tabAll.setAttribute('aria-selected', isAll ? 'true' : 'false');
+        
+        tabFav.classList.toggle('active', !isAll);
+        tabFav.setAttribute('aria-selected', !isAll ? 'true' : 'false');
     }
     renderRadios();
 }
