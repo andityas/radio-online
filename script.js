@@ -3,17 +3,14 @@ let allRadios = [];
 let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
 
-// Mengikat fungsi setelah DOM sepenuhnya dimuat demi performa SEO & Rendering
 document.addEventListener('DOMContentLoaded', () => {
     loadRadios();
 
-    // Event Listener untuk input pencarian (Clean JS tanpa inline attribute HTML)
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', () => renderRadios());
     }
 
-    // Event Listener untuk perpindahan tab vibes
     const tabAll = document.getElementById('tab-all');
     const tabFav = document.getElementById('tab-fav');
 
@@ -51,7 +48,6 @@ function renderRadios() {
         return isFav && isMatch;
     });
 
-    // Update Text Keterangan Jumlah Dinamis untuk Dibaca Robot Google
     if (countElement) {
         if (keyword !== "") {
             countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
@@ -73,44 +69,49 @@ function renderRadios() {
 
     data.forEach(radio => {
         const isFav = favorites.includes(Number(radio.id));
-        
-        // Optimasi Semantik: Menggunakan tag <article> pengganti <div> polos agar lebih disukai Google Bot
         const card = document.createElement('article');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
         
         card.innerHTML = `
-            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}" 
-                style="position:absolute; top:10px; right:10px; background:none; border:none; cursor:pointer; font-size:18px; color:${isFav ? '#ff4d4d' : '#ccc'}; z-index:10;">
+            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div class="card-clickable">
-                <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+                <div class="img-frame">
+                    <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+                </div>
                 <h3>${radio.title}</h3>
+                <span class="live-badge">● LIVE</span>
             </div>`;
         
-        // Memasang Event Listener secara internal terisolasi
         card.querySelector('.fav-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             toggleFav(Number(radio.id));
         });
 
         card.querySelector('.card-clickable').addEventListener('click', () => {
-            playStream(radio.streamUrl, radio.type, radio.title, radio.id);
+            // Mengirim data logo ke fungsi player bawah
+            playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
         });
 
         list.appendChild(card);
     });
 }
 
-function playStream(url, type, title, id) {
+function playStream(url, type, title, id, logoUrl) {
     const audio = document.getElementById('player');
+    const miniLogo = document.getElementById('player-current-logo');
     
-    // 1. UPDATE DYNAMIC TITLE BROWSER (Sangat Bagus untuk CTR SEO)
-    document.title = "▶️ Sedang Memutar: " + title + " | Radio Player Pro";
+    // 1. UPDATE DYNAMIC TITLE BROWSER
+    document.title = "▶️ " + title + " | Radio Player Pro";
     
-    // 2. UPDATE TEXT DI PLAYER UI
-    document.getElementById('now-playing').innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
+    // 2. UPDATE TEXT & LOGO DI PLAYER BAR BAWAH
+    document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
+    if(miniLogo && logoUrl) {
+        miniLogo.src = logoUrl;
+        miniLogo.alt = title;
+    }
 
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     const currentCard = document.getElementById(`card-${id}`);
@@ -121,15 +122,14 @@ function playStream(url, type, title, id) {
         hls = null; 
     }
 
-    // Penanganan Protokol Streaming M3U8 (HLS) & Audio Biasa
     if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay diblokir")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Autoplay diblokir"));
+        audio.play().catch(e => console.log("Blocked"));
     }
 }
 
