@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
     <meta name="description" content="Dengarkan live streaming radio Indonesia favorit secara online. Kualitas audio HD jernih dari Prambors, Delta FM, Ardan Radio, dan ratusan stasiun radio FM/AM terlengkap gratis.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors live, ardan fm bandung, delta fm jakarta, radio player id, dengar radio gratis">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://andityas.github.io/radio-online/">
-    
     <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia Online Terlengkap">
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis tanpa buffering.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://andityas.github.io/radio-online/">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
@@ -22,11 +19,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -40,49 +35,42 @@
     </script>
 </head>
 <body>
-
     <header>
         <div class="header-badge">
             <span class="tagline">Vibing Everyday No Cap 🧢</span>
         </div>
         <h1>RADIO PLAYER PRO</h1>
         <p id="radio-count">Menghubungkan frekuensi...</p>
-
         <div class="search-container">
             <div class="search-box-wrapper">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
             </div>
         </div>
-        
         <div class="tabs">
             <button class="tab-btn active" id="tab-all">All Vibes</button>
             <button class="tab-btn" id="tab-fav">My Faves ❤️</button>
         </div>
     </header>
-
     <main>
         <section class="seo-intro-content">
             <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
             <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
         </section>
-
         <section id="radio-list-container" aria-label="Daftar Stasiun Radio">
             <div id="radio-list">
                 <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
             </div>
         </section>
     </main>
-
     <footer>
         <div class="player-container">
             <div class="player-meta-block">
                 <div class="avatar-mini-wrapper">
-                    <!-- Akan diisi oleh JS dengan ikon default atau gambar logo -->
+                    <!-- Akan diisi JS dengan ikon default atau gambar -->
                 </div>
                 <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
             </div>
-            
             <div class="player-controls-block">
                 <button id="stop-btn" class="ctrl-btn stop-btn" title="Stop">⏹️</button>
                 <button id="play-pause-btn" class="ctrl-btn play-btn" title="Play/Pause">▶️</button>
@@ -91,16 +79,12 @@
                     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
                 </div>
             </div>
-            
             <div class="player-signature-block">
-                <div class="signature">
-                    Manifested with ❤️ by <span class="andit-name">Andit</span>
-                </div>
+                <div class="signature">Manifested with ❤️ by <span class="andit-name">Andit</span></div>
             </div>
         </div>
         <audio id="player" style="display: none;"></audio>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
