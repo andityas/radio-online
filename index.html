@@ -38,7 +38,7 @@
 
         <!-- Grid Daftar Radio -->
         <div id="radioGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            <!-- Kartu Radio akan muncul di sini menggunakan JS -->
+            <!-- Loading State atau Kartu Radio akan muncul di sini menggunakan JS -->
         </div>
     </main>
 
@@ -80,53 +80,54 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // DATA RADIO DENGAN KATEGORI BARU (TANPA KOMENTAR DI DALAM ARRAY)
+        // DATA RADIO - DIPERBARUI (46 STASIUN, TERMASUK BEBERAPA PERUBAHAN JUDUL)
         const radioData = [
-            { "id": 1, "category": "Pop", "title": "Prambors FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png", "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv", "type": "audio/mpeg", "favorite": false },
-            { "id": 2, "category": "Pop", "title": "Gen FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png", "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8", "type": "audio/mpeg", "favorite": false },
-            { "id": 3, "category": "Pop", "title": "Jak 101 FM", "logo": "https://cdn.onlineradiobox.com/img/l/5/19705.v45.png", "streamUrl": "https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8", "type": "audio/mpeg", "favorite": false },
-            { "id": 4, "category": "Pop", "title": "Delta FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png", "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv", "type": "audio/mpeg", "favorite": false },
-            { "id": 5, "category": "Pop", "title": "FeMale Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png", "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv", "type": "audio/mpeg", "favorite": false },
-            { "id": 17, "category": "Pop", "title": "iSwara FM", "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png", "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv", "type": "audio/mpeg", "favorite": false },
-            { "id": 19, "category": "Pop", "title": "Trax FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png", "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv", "type": "audio/mpeg", "favorite": false },
-            { "id": 21, "category": "Pop", "title": "Bahana FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/19708.v25.png", "streamUrl": "https://s1.cloudmu.id/listen/bahana_fm/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 36, "category": "Pop", "title": "Mettaswara TOP 40", "logo": "https://cdn.onlineradiobox.com/img/l/3/111613.v14.png", "streamUrl": "https://mettaswara.com:8700/theone", "type": "audio/mpeg", "favorite": false },
-            { "id": 6, "category": "Berita", "title": "Radio Elshinta", "logo": "https://cdn.onlineradiobox.com/img/l/2/18812.v17.png", "streamUrl": "https://stream-ssl.arenastreaming.com:8000/jakarta", "type": "audio/mpeg", "favorite": false },
-            { "id": 7, "category": "Berita", "title": "Suara Surabaya", "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png", "streamUrl": "https://c5.siar.us/proxy/ssfm/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 8, "category": "Berita", "title": "RRI Pro 1", "logo": "https://cdn.onlineradiobox.com/img/l/4/18844.v17.png", "streamUrl": "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapr1.mp3", "type": "audio/mpeg", "favorite": false },
-            { "id": 22, "category": "Berita", "title": "Sonora FM Jakarta", "logo": "https://cdn.onlineradiobox.com/img/l/6/19176.v16.png", "streamUrl": "https://sonora-radio.arenastreaming.com/8130/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 9, "category": "Nostalgia", "title": "Golden Memories", "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png", "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv", "type": "audio/mpeg", "favorite": false },
-            { "id": 10, "category": "Nostalgia", "title": "Big 90's", "logo": "https://cdn.onlineradiobox.com/img/l/6/92666.v8.png", "streamUrl": "https://stream.zeno.fm/qmqe8k5e74zuv", "type": "audio/mpeg", "favorite": false },
-            { "id": 18, "category": "Nostalgia", "title": "Slow Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png", "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv", "type": "audio/mpeg", "favorite": false },
-            { "id": 35, "category": "Nostalgia", "title": "Ninetysix Radio Smooth", "logo": "https://cdn.onlineradiobox.com/img/l/9/117079.v4.png", "streamUrl": "https://stream.zeno.fm/1p7xwm841xhvv", "type": "audio/mpeg", "favorite": false },
-            { "id": 42, "category": "Nostalgia", "title": "Mettaswara Throwback 80's", "logo": "https://cdn.onlineradiobox.com/img/l/9/111569.v15.png", "streamUrl": "https://mettaswara.com:8700/mettatrow", "type": "audio/mpeg", "favorite": false },
-            { "id": 11, "category": "Rock", "title": "The Rockin' Life", "logo": "https://cdn.onlineradiobox.com/img/l/0/18880.v17.png", "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv", "type": "audio/mpeg", "favorite": false },
-            { "id": 12, "category": "Rock", "title": "Rock Rewind", "logo": "https://cdn.onlineradiobox.com/img/l/0/89300.v15.png", "streamUrl": "https://stream.zenolive.com/u18tuaphwzzuv.aac", "type": "audio/mpeg", "favorite": false },
-            { "id": 24, "category": "Rock", "title": "Rock Ballads", "logo": "https://cdn.onlineradiobox.com/img/l/4/110904.v2.png", "streamUrl": "https://stream.zeno.fm/ynepvmy14bhvv", "type": "audio/mpeg", "favorite": false },
-            { "id": 44, "category": "Rock", "title": "Jags Rock Music Radio", "logo": "https://cdn.onlineradiobox.com/img/l/1/71621.v34.png", "streamUrl": "https://stream.zeno.fm/q3mskdkgg6quv", "type": "audio/mpeg", "favorite": false },
-            { "id": 13, "category": "Dangdut", "title": "Mettaswara Dangdut", "logo": "https://cdn.onlineradiobox.com/img/l/9/124069.v7.png", "streamUrl": "https://mettaswara.com:8700/d4d", "type": "audio/mpeg", "favorite": false },
-            { "id": 14, "category": "Dangdut", "title": "Radio Imelda FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/19177.v15.png", "streamUrl": "https://server.radioimeldafm.co.id:8030/imeldafm", "type": "audio/mpeg", "favorite": false },
-            { "id": 15, "category": "Dangdut", "title": "Gajahmada FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19016.v10.png", "streamUrl": "https://server.radioimeldafm.co.id:8040/gajahmadafm", "type": "audio/mpeg", "favorite": false },
-            { "id": 16, "category": "Dangdut", "title": "Semarak FM", "logo": "https://cdn.onlineradiobox.com/img/l/1/155551.v2.png", "streamUrl": "https://ssg.streamingmurah.com:8076/", "type": "audio/mpeg", "favorite": false },
-            { "id": 25, "category": "Dangdut", "title": "NAGASWARA RADIOTEMEN", "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png", "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 37, "category": "Komunitas", "title": "Radio Budi Luhur", "logo": "https://cdn.onlineradiobox.com/img/l/8/19448.v8.png", "streamUrl": "https://c2.siar.us/listen/radiobudiluhur/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 45, "category": "Komunitas", "title": "RDK Fm Uin", "logo": "https://cdn.onlineradiobox.com/img/l/3/156493.v1.png", "streamUrl": "https://a1.siar.us/listen/rdk/radio.mp3", "type": "audio/mpeg", "favorite": false },
-            { "id": 27, "category": "Komunitas", "title": "Radio CEK FM", "logo": "https://cdn.onlineradiobox.com/img/l/5/156305.v6.png", "streamUrl": "https://a5.siar.us:8000/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 39, "category": "Komunitas", "title": "KUTA Radio 106 FM", "logo": "https://cdn.onlineradiobox.com/img/l/4/139824.v5.png", "streamUrl": "https://a7.siar.us/listen/radiokutafm/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 43, "category": "Komunitas", "title": "CDBS Radio Action", "logo": "https://cdn.onlineradiobox.com/img/l/9/138819.v5.png", "streamUrl": "https://a1.siar.us/listen/radiocdbs/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 23, "category": "Regional", "title": "OZ RADIO BANDUNG", "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png", "streamUrl": "https://streaming.ozradio.id:8443/ozbandung", "type": "audio/mpeg", "favorite": false },
-            { "id": 26, "category": "Regional", "title": "Ardan Radio", "logo": "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png", "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv", "type": "audio/mpeg", "favorite": false },
-            { "id": 29, "category": "Regional", "title": "Armada FM Ambon", "logo": "https://cdn.onlineradiobox.com/img/l/5/134015.v4.png", "streamUrl": "https://stream.zeno.fm/u5g9y3nmqtzvv", "type": "audio/mpeg", "favorite": false },
-            { "id": 38, "category": "Regional", "title": "AXR Jakarta", "logo": "https://cdn.onlineradiobox.com/img/l/4/93194.v6.png", "streamUrl": "https://jakartastream.axr.online/", "type": "audio/mpeg", "favorite": false },
-            { "id": 41, "category": "Regional", "title": "Metrum Radio Bandung", "logo": "https://cdn.onlineradiobox.com/img/l/4/84694.v9.png", "streamUrl": "http://103.28.149.117:8205/;", "type": "audio/mpeg", "favorite": false },
-            { "id": 20, "category": "General", "title": "Dengerin Musik", "logo": "https://cdn.onlineradiobox.com/img/l/8/18908.v17.png", "streamUrl": "https://stream.denger.in/musik.mp3", "type": "audio/mpeg", "favorite": false },
-            { "id": 28, "category": "General", "title": "Dna Fm Beta", "logo": "https://cdn.onlineradiobox.com/img/l/8/157588.v2.png", "streamUrl": "https://beta.dnafm.net/listen/beta/live", "type": "audio/mpeg", "favorite": false },
-            { "id": 30, "category": "General", "title": "Radio Kelaster Fm", "logo": "https://cdn.onlineradiobox.com/img/l/9/113609.v2.png", "streamUrl": "https://stream.zeno.fm/9cfeccvaa5zuv", "type": "audio/mpeg", "favorite": false },
-            { "id": 31, "category": "General", "title": "DNA FM LOVES", "logo": "https://cdn.onlineradiobox.com/img/l/0/148250.v4.png", "streamUrl": "https://sc.dnafm.net/listen/loves/live", "type": "audio/mpeg", "favorite": false },
-            { "id": 32, "category": "General", "title": "Nuswantara Radio", "logo": "https://cdn.onlineradiobox.com/img/l/4/156204.v1.png", "streamUrl": "https://a12.siar.us/listen/nuswantararadio/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 33, "category": "General", "title": "ZORA", "logo": "https://cdn.onlineradiobox.com/img/l/2/19102.v7.png", "streamUrl": "https://s1.gntr.net/listen/zora_radio/zora", "type": "audio/mpeg", "favorite": false },
-            { "id": 34, "category": "General", "title": "Diozz FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/157037.v2.png", "streamUrl": "https://a3.siar.us:8010/stream", "type": "audio/mpeg", "favorite": false },
-            { "id": 40, "category": "General", "title": "Arena Streaming", "logo": "https://cdn.onlineradiobox.com/img/l/5/157035.v1.png", "streamUrl": "https://stream-ssl.arenastreaming.com:8006/autodj", "type": "audio/mpeg", "favorite": false }
+            {"id":1,"title":"Prambors FM","logo":"https://cdn.onlineradiobox.com/img/l/7/18687.v44.png","streamUrl":"https://stream.rcs.revma.com/h77wwp48kxcwv","type":"audio/mpeg","favorite":false},
+            {"id":2,"title":"iSwara FM","logo":"https://cdn.onlineradiobox.com/img/l/9/18959.v12.png","streamUrl":"https://stream.radiojar.com/4ywdgup3bnzuv","type":"audio/mpeg","favorite":false},
+            {"id":3,"title":"Delta FM","logo":"https://cdn.onlineradiobox.com/img/l/8/58058.v32.png","streamUrl":"https://stream.rcs.revma.com/k02rmq48kxcwv","type":"audio/mpeg","favorite":false},
+            {"id":4,"title":"Slow Radio","logo":"https://cdn.onlineradiobox.com/img/l/6/91316.v16.png","streamUrl":"https://stream.zeno.fm/dpk2zq5np2zuv","type":"audio/mpeg","favorite":false},
+            {"id":5,"title":"FeMale Radio","logo":"https://cdn.onlineradiobox.com/img/l/6/60996.v19.png","streamUrl":"https://stream.rcs.revma.com/9thenqqd2ncwv","type":"audio/mpeg","favorite":false},
+            {"id":6,"title":"The Rockin' Life","logo":"https://cdn.onlineradiobox.com/img/l/0/18880.v17.png","streamUrl":"https://stream.radiojar.com/7csmg90fuqruv","type":"audio/mpeg","favorite":false},
+            {"id":7,"title":"Trax FM","logo":"https://cdn.onlineradiobox.com/img/l/6/18806.v13.png","streamUrl":"https://stream.radiojar.com/rrqf78p3bnzuv","type":"audio/mpeg","favorite":false},
+            {"id":8,"title":"Golden Memories","logo":"https://cdn.onlineradiobox.com/img/l/0/110170.v4.png","streamUrl":"https://stream.zeno.fm/xg7mcgf1bf9uv","type":"audio/mpeg","favorite":false},
+            {"id":9,"title":"Radio Elshinta","logo":"https://cdn.onlineradiobox.com/img/l/2/18812.v17.png","streamUrl":"https://stream-ssl.arenastreaming.com:8000/jakarta","type":"audio/mpeg","favorite":false},
+            {"id":10,"title":"Dengerin Musik","logo":"https://cdn.onlineradiobox.com/img/l/8/18908.v17.png","streamUrl":"https://stream.denger.in/musik.mp3","type":"audio/mpeg","favorite":false},
+            {"id":11,"title":"Bahana FM","logo":"https://cdn.onlineradiobox.com/img/l/8/19708.v25.png","streamUrl":"https://s1.cloudmu.id/listen/bahana_fm/stream","type":"audio/mpeg","favorite":false},
+            {"id":12,"title":"Gen FM","logo":"https://cdn.onlineradiobox.com/img/l/6/19026.v38.png","streamUrl":"https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8","type":"audio/mpeg","favorite":false},
+            {"id":13,"title":"Rock Rewind","logo":"https://cdn.onlineradiobox.com/img/l/0/89300.v15.png","streamUrl":"https://stream.zenolive.com/u18tuaphwzzuv.aac","type":"audio/mpeg","favorite":false},
+            {"id":14,"title":"Jak 101 FM","logo":"https://cdn.onlineradiobox.com/img/l/5/19705.v45.png","streamUrl":"https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8","type":"audio/mpeg","favorite":false},
+            {"id":15,"title":"Radio Imelda FM","logo":"https://cdn.onlineradiobox.com/img/l/7/19177.v15.png","streamUrl":"https://server.radioimeldafm.co.id:8030/imeldafm","type":"audio/mpeg","favorite":false},
+            {"id":16,"title":"Sonora FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/6/19176.v16.png","streamUrl":"https://sonora-radio.arenastreaming.com/8130/stream","type":"audio/mpeg","favorite":false},
+            {"id":17,"title":"Gajahmada FM","logo":"https://cdn.onlineradiobox.com/img/l/6/19016.v10.png","streamUrl":"https://server.radioimeldafm.co.id:8040/gajahmadafm","type":"audio/mpeg","favorite":false},
+            {"id":18,"title":"Mettaswara Dangdut","logo":"https://cdn.onlineradiobox.com/img/l/9/124069.v7.png","streamUrl":"https://mettaswara.com:8700/d4d","type":"audio/mpeg","favorite":false},
+            {"id":19,"title":"Suara Surabaya","logo":"https://cdn.onlineradiobox.com/img/l/8/18988.v10.png","streamUrl":"https://c5.siar.us/proxy/ssfm/stream","type":"audio/mpeg","favorite":false},
+            {"id":20,"title":"OZ RADIO BANDUNG","logo":"https://cdn.onlineradiobox.com/img/l/5/18985.v26.png","streamUrl":"https://streaming.ozradio.id:8443/ozbandung","type":"audio/mpeg","favorite":false},
+            {"id":21,"title":"Big 90's","logo":"https://cdn.onlineradiobox.com/img/l/6/92666.v8.png","streamUrl":"https://stream.zeno.fm/qmqe8k5e74zuv","type":"audio/mpeg","favorite":false},
+            {"id":22,"title":"Rock Ballads","logo":"https://cdn.onlineradiobox.com/img/l/4/110904.v2.png","streamUrl":"https://stream.zeno.fm/ynepvmy14bhvv","type":"audio/mpeg","favorite":false},
+            {"id":23,"title":"NAGASWARA RADIOTEMEN Bogor","logo":"https://cdn.onlineradiobox.com/img/l/2/19152.v27.png","streamUrl":"https://live.nagaswarafm.com/nagaswararadio/stream","type":"audio/mpeg","favorite":false},
+            {"id":24,"title":"Ardan Radio","logo":"https://cdn.onlineradiobox.com/img/l/7/18827.v12.png","streamUrl":"https://stream.rcs.revma.com/ugpyzu9n5k3vv","type":"audio/mpeg","favorite":false},
+            {"id":25,"title":"RRI Pro 1","logo":"https://cdn.onlineradiobox.com/img/l/4/18844.v17.png","streamUrl":"https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3","type":"audio/mpeg","favorite":false},
+            {"id":26,"title":"Radio CEK FM","logo":"https://cdn.onlineradiobox.com/img/l/5/156305.v6.png","streamUrl":"https://a5.siar.us:8000/stream","type":"audio/mpeg","favorite":false},
+            {"id":27,"title":"Dna Fm Beta","logo":"https://cdn.onlineradiobox.com/img/l/8/157588.v2.png","streamUrl":"https://beta.dnafm.net/listen/beta/live","type":"audio/mpeg","favorite":false},
+            {"id":28,"title":"Armada FM Ambon","logo":"https://cdn.onlineradiobox.com/img/l/5/134015.v4.png","streamUrl":"https://stream.zeno.fm/u5g9y3nmqtzvv","type":"audio/mpeg","favorite":false},
+            {"id":29,"title":"Radio Kelaster Fm","logo":"https://cdn.onlineradiobox.com/img/l/9/113609.v2.png","streamUrl":"https://stream.zeno.fm/9cfeccvaa5zuv","type":"audio/mpeg","favorite":false},
+            {"id":30,"title":"DNA FM LOVES","logo":"https://cdn.onlineradiobox.com/img/l/0/148250.v4.png","streamUrl":"https://sc.dnafm.net/listen/loves/live","type":"audio/mpeg","favorite":false},
+            {"id":31,"title":"Nuswantara Radio","logo":"https://cdn.onlineradiobox.com/img/l/4/156204.v1.png","streamUrl":"https://a12.siar.us/listen/nuswantararadio/stream","type":"audio/mpeg","favorite":false},
+            {"id":32,"title":"ZORA","logo":"https://cdn.onlineradiobox.com/img/l/2/19102.v7.png","streamUrl":"https://s1.gntr.net/listen/zora_radio/zora","type":"audio/mpeg","favorite":false},
+            {"id":33,"title":"Diozz FM","logo":"https://cdn.onlineradiobox.com/img/l/7/157037.v2.png","streamUrl":"https://a3.siar.us:8010/stream","type":"audio/mpeg","favorite":false},
+            {"id":34,"title":"Ninetysix Radio Smooth Song","logo":"https://cdn.onlineradiobox.com/img/l/9/117079.v4.png","streamUrl":"https://stream.zeno.fm/1p7xwm841xhvv","type":"audio/mpeg","favorite":false},
+            {"id":35,"title":"Mettaswara TOP 40","logo":"https://cdn.onlineradiobox.com/img/l/3/111613.v14.png","streamUrl":"https://mettaswara.com:8700/theone","type":"audio/mpeg","favorite":false},
+            {"id":36,"title":"Radio Budi Luhur","logo":"https://cdn.onlineradiobox.com/img/l/8/19448.v8.png","streamUrl":"https://c2.siar.us/listen/radiobudiluhur/stream","type":"audio/mpeg","favorite":false},
+            {"id":37,"title":"Semarak FM","logo":"https://cdn.onlineradiobox.com/img/l/1/155551.v2.png","streamUrl":"https://ssg.streamingmurah.com:8076/","type":"audio/mpeg","favorite":false},
+            {"id":38,"title":"AXR Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/4/93194.v6.png","streamUrl":"https://jakartastream.axr.online/","type":"audio/mpeg","favorite":false},
+            {"id":39,"title":"KUTA Radio 106 FM","logo":"https://cdn.onlineradiobox.com/img/l/4/139824.v5.png","streamUrl":"https://a7.siar.us/listen/radiokutafm/stream","type":"audio/mpeg","favorite":false},
+            {"id":40,"title":"Arena Streaming","logo":"https://cdn.onlineradiobox.com/img/l/5/157035.v1.png","streamUrl":"https://stream-ssl.arenastreaming.com:8006/autodj","type":"audio/mpeg","favorite":false},
+            {"id":41,"title":"Metrum Radio Bandung","logo":"https://cdn.onlineradiobox.com/img/l/4/84694.v9.png","streamUrl":"http://103.28.149.117:8205/;","type":"audio/mpeg","favorite":false},
+            {"id":42,"title":"Mettaswara Throwback 80's","logo":"https://cdn.onlineradiobox.com/img/l/9/111569.v15.png","streamUrl":"https://mettaswara.com:8700/mettatrow","type":"audio/mpeg","favorite":false},
+            {"id":43,"title":"CDBS Radio Action","logo":"https://cdn.onlineradiobox.com/img/l/9/138819.v5.png","streamUrl":"https://a1.siar.us/listen/radiocdbs/stream","type":"audio/mpeg","favorite":false},
+            {"id":44,"title":"Jags Rock Music Radio","logo":"https://cdn.onlineradiobox.com/img/l/1/71621.v34.png","streamUrl":"https://stream.zeno.fm/q3mskdkgg6quv","type":"audio/mpeg","favorite":false},
+            {"id":45,"title":"RDK Fm Uin","logo":"https://cdn.onlineradiobox.com/img/l/3/156493.v1.png","streamUrl":"https://a1.siar.us/listen/rdk/radio.mp3","type":"audio/mpeg","favorite":false},
+            {"id":46,"title":"RRI Pro 1","logo":"https://cdn.onlineradiobox.com/img/l/4/18844.v17.png","streamUrl":"https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3","type":"audio/mpeg","favorite":false}
         ];
 
         // Sistem Favorit Berbasis LocalStorage
@@ -145,38 +146,17 @@
         const playerStatus = document.getElementById('playerStatus');
         const liveDot = document.getElementById('liveDot');
 
-        // Prioritas urutan kategori baru
-        const categoryOrder = {
-            'Pop': 1,
-            'Berita': 2,
-            'Nostalgia': 3,
-            'Rock': 4,
-            'Dangdut': 5,
-            'Komunitas': 6,
-            'Regional': 7,
-            'General': 8
-        };
-
-        // Fungsi Render Kartu Radio (dengan pengurutan berdasarkan kategori)
+        // Fungsi Render Kartu Radio
         function renderRadio(filterText = '') {
             grid.innerHTML = '';
             
-            // Filter berdasarkan pencarian
             let filtered = radioData.filter(radio => 
                 radio.title.toLowerCase().includes(filterText.toLowerCase())
             );
 
-            // Filter berdasarkan tab favorit
             if (currentTab === 'fav') {
                 filtered = filtered.filter(radio => favorites.includes(radio.id));
             }
-
-            // Urutkan berdasarkan prioritas kategori
-            filtered.sort((a, b) => {
-                const orderA = categoryOrder[a.category] || 99;
-                const orderB = categoryOrder[b.category] || 99;
-                return orderA - orderB;
-            });
 
             document.getElementById('favCount').innerText = favorites.length;
 
