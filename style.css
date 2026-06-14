@@ -1,8 +1,8 @@
 :root {
-    --primary: #1db954;
+    --primary: #1db954;       /* Spotify Clean Green */
     --primary-glow: rgba(29, 185, 84, 0.25);
-    --bg-base: #08090c;
-    --bg-surface: #11141a;
+    --bg-base: #08090c;       /* Ultra Dark Velvet */
+    --bg-surface: #11141a;    /* Card Surface */
     --bg-surface-hover: #181d26;
     --text-pure: #ffffff;
     --text-soft: #a0a5b5;
@@ -23,11 +23,13 @@ body {
     letter-spacing: -0.2px;
 }
 
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-base); }
 ::-webkit-scrollbar-thumb { background: #222834; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
+/* Header & Identity */
 header {
     padding: 50px 20px 30px 20px;
     text-align: center;
@@ -67,6 +69,7 @@ h1 {
     margin: 0 0 35px 0;
 }
 
+/* Search Bar Wrapper */
 .search-container {
     margin: 0 auto 30px auto;
     max-width: 480px;
@@ -103,6 +106,7 @@ h1 {
     background: #0a0c10;
 }
 
+/* Navigation Tabs */
 .tabs { display: flex; justify-content: center; gap: 12px; }
 .tab-btn {
     background: rgba(255, 255, 255, 0.03);
@@ -123,10 +127,12 @@ h1 {
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
 }
 
+/* SEO Content */
 .seo-intro-content { max-width: 900px; margin: 40px auto 0 auto; padding: 0 20px; text-align: center; }
 .seo-intro-content h2 { font-size: 16px; color: var(--text-pure); font-weight: 600; opacity: 0.9; }
 .seo-intro-content p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
 
+/* Grid System */
 #radio-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -136,6 +142,7 @@ h1 {
     margin: auto;
 }
 
+/* Radio Card Object */
 .radio-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-line);
@@ -144,7 +151,6 @@ h1 {
     text-align: center;
     position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    cursor: pointer;
 }
 
 .radio-card:hover {
@@ -154,6 +160,7 @@ h1 {
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
+/* Efek Bernapas & Glow Saat Radio Aktif */
 .radio-card.playing {
     border-color: var(--primary);
     background: rgba(29, 185, 84, 0.03);
@@ -166,6 +173,7 @@ h1 {
     100% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.1); }
 }
 
+/* Wadah Penjaga Ukuran Gambar Bulat (Tidak Bongsor & Tidak Kepotong) */
 .img-frame {
     width: 96px;
     height: 96px;
@@ -203,6 +211,7 @@ h1 {
     opacity: 0.8;
 }
 
+/* Favorite Button Positioning */
 .fav-btn {
     position: absolute;
     top: 15px;
@@ -222,6 +231,7 @@ h1 {
 }
 .fav-btn:hover { transform: scale(1.15); background: rgba(0,0,0,0.5); }
 
+/* Master App Player Deck */
 .player-container {
     position: fixed;
     bottom: 24px;
@@ -242,6 +252,7 @@ h1 {
     z-index: 9999;
 }
 
+/* Player Sisi Kiri */
 .player-meta-block {
     display: flex;
     align-items: center;
@@ -286,6 +297,7 @@ h1 {
     margin-top: 2px;
 }
 
+/* Player Sisi Tengah */
 .player-controls-block {
     flex: 1.5;
     display: flex;
@@ -297,6 +309,7 @@ audio::-webkit-media-controls-panel { background-color: #1e232d; }
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display { color: #ffffff; }
 
+/* Player Sisi Kanan */
 .player-signature-block {
     flex: 1;
     display: flex;
@@ -306,6 +319,7 @@ audio::-webkit-media-controls-time-remaining-display { color: #ffffff; }
 .signature { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
 .andit-name { color: var(--primary); font-weight: 700; }
 
+/* Responsivitas Layar (Mobile Friendly Layout) */
 @media (max-width: 850px) {
     .player-container {
         flex-direction: column;
