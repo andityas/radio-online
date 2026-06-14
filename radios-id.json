@@ -115,7 +115,7 @@
     "id": 15,
     "title": "OZ Radio Bandung",
     "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png",
-    "streamUrl": "https://streaming.ozradio.id:8443/ozbandung",
+    "streamingUrl": "https://streaming.ozradio.id:8443/ozbandung",
     "type": "audio/mpeg",
     "favorite": false
   },
