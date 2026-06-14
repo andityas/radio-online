@@ -43,5 +43,12 @@
   {"id":42,"title":"Mettaswara Throwback","logo":"https://cdn.onlineradiobox.com/img/l/9/111569.v15.png","streamUrl":"https://mettaswara.com:8700/mettatrow"},
   {"id":43,"title":"CDBS Radio Action","logo":"https://cdn.onlineradiobox.com/img/l/9/138819.v5.png","streamUrl":"https://a1.siar.us/listen/radiocdbs/stream"},
   {"id":44,"title":"Jags Rock Music Radio","logo":"https://cdn.onlineradiobox.com/img/l/1/71621.v34.png","streamUrl":"https://stream.zeno.fm/q3mskdkgg6quv"},
-  {"id":45,"title":"RDK Fm Uin","logo":"https://cdn.onlineradiobox.com/img/l/3/156493.v1.png","streamUrl":"https://a1.siar.us/listen/rdk/radio.mp3"}
+  {"id":45,"title":"RDK Fm Uin","logo":"https://cdn.onlineradiobox.com/img/l/3/156493.v1.png","streamUrl":"https://a1.siar.us/listen/rdk/radio.mp3"},
+  {"id":46,"title":"Keilove FM","logo":"https://cdn.onlineradiobox.com/img/0/154800.v3.png","streamUrl":"https://s3.alhastream.com:8440/keilove"},
+  {"id":47,"title":"80s Radio Hits","logo":"https://cdn.onlineradiobox.com/img/l/5/71605.v58.png","streamUrl":"https://stream.zeno.fm/wy1pbnedd3quv"},
+  {"id":48,"title":"Bontang Streamers","logo":"https://cdn.onlineradiobox.com/img/l/1/96091.v21.png","streamUrl":"https://atletik.biz.id:8000/radio.mp3"},
+  {"id":49,"title":"Homebrew Station","logo":"https://cdn.onlineradiobox.com/img/l/3/157643.v1.png","streamUrl":"https://radio.homebrew.my.id/listen/homebrew-radio/radio.mp3"},
+  {"id":50,"title":"Free FM","logo":"https://cdn.onlineradiobox.com/img/l/5/81395.v9.png","streamUrl":"https://rocafmadrid.radioca.st/stream"},
+  {"id":51,"title":"Hits Radio Kandangan","logo":"https://cdn.onlineradiobox.com/img/l/6/149756.v3.png","streamUrl":"http://45.64.97.82:8030/stream"},
+  {"id":52,"title":"KISI","logo":"https://cdn.onlineradiobox.com/img/l/0/19460.v11.png","streamUrl":"https://live.kisifm.com/listen/kisifm/;"}
 ]
