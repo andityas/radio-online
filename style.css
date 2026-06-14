@@ -19,11 +19,11 @@ body {
     background: radial-gradient(circle at top center, #131a26 0%, var(--bg-base) 70%);
     color: var(--text-pure);
     margin: 0;
-    padding-bottom: 180px; /* Melindungi overlap footer player sticky */
+    padding-bottom: 180px; 
     letter-spacing: -0.2px;
 }
 
-/* Minimalist Scrollbar Customization */
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-base); }
 ::-webkit-scrollbar-thumb { background: #222834; border-radius: 10px; }
@@ -69,7 +69,7 @@ body {
     margin: 0 0 35px 0;
 }
 
-/* Google-Friendly Search Engine Form UI */
+/* Search Container Meta UI */
 .search-container {
     margin: 0 auto 30px auto;
     max-width: 480px;
@@ -106,7 +106,7 @@ body {
     background: #0a0c10;
 }
 
-/* Tab Filtering Engines */
+/* Tab Filter UI */
 .tabs { display: flex; justify-content: center; gap: 12px; }
 .tab-btn {
     background: rgba(255, 255, 255, 0.03);
@@ -117,7 +117,7 @@ body {
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
-    min-height: 44px; /* Sesuai standar Google Mobile Accessibility */
+    min-height: 44px; 
 }
 .tab-btn:hover { border-color: rgba(255,255,255,0.2); color: #ffffff; }
 .tab-btn.active { 
@@ -128,7 +128,7 @@ body {
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
 }
 
-/* Strategic SEO Context Block */
+/* SEO Description Block */
 .seo-intro-content { max-width: 900px; margin: 40px auto 0 auto; padding: 0 20px; text-align: center; }
 .seo-intro-content h2 { font-size: 16px; color: var(--text-pure); font-weight: 600; opacity: 0.9; }
 .seo-intro-content p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
@@ -143,7 +143,7 @@ body {
     margin: auto;
 }
 
-/* Advanced Cards Block */
+/* Radio Cards Core Component */
 .radio-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-line);
@@ -161,7 +161,6 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
-/* Efek Glow Animasi Bernapas Saat Radio Sedang Diputar */
 .radio-card.playing {
     border-color: var(--primary);
     background: rgba(29, 185, 84, 0.03);
@@ -174,7 +173,6 @@ body {
     100% { box-shadow: 0 0 15px rgba(29, 185, 84, 0.1); }
 }
 
-/* Image Frame Container */
 .img-frame {
     width: 96px;
     height: 96px;
@@ -212,7 +210,6 @@ body {
     opacity: 0.8;
 }
 
-/* Favorite Circular Switcher */
 .fav-btn {
     position: absolute;
     top: 15px;
@@ -232,7 +229,7 @@ body {
 }
 .fav-btn:hover { transform: scale(1.15); background: rgba(0,0,0,0.5); }
 
-/* Master Floating Stickied Deck */
+/* Master App Sticky Player */
 .player-container {
     position: fixed;
     bottom: 24px;
@@ -253,7 +250,6 @@ body {
     z-index: 9999;
 }
 
-/* Layout Komponen Mini Meta */
 .player-meta-block {
     display: flex;
     align-items: center;
@@ -265,7 +261,7 @@ body {
 .avatar-mini-wrapper {
     width: 44px;
     height: 44px;
-    background: #ffffff;
+    background: #161b22; 
     border-radius: 10px;
     padding: 5px;
     display: flex;
@@ -273,6 +269,7 @@ body {
     justify-content: center;
     flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
 }
 
 .avatar-mini-wrapper img {
@@ -298,7 +295,21 @@ body {
     margin-top: 2px;
 }
 
-/* Audio Control Layout */
+/* Core SVG Dynamic Icon Styling */
+.default-player-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+    opacity: 0.7;
+    animation: pulseIcon 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0% { transform: scale(0.95); opacity: 0.4; }
+    50% { transform: scale(1.08); opacity: 0.9; }
+    100% { transform: scale(0.95); opacity: 0.4; }
+}
+
 .player-controls-block {
     flex: 1.5;
     display: flex;
@@ -307,10 +318,7 @@ body {
 
 audio { width: 100%; max-width: 450px; height: 36px; }
 audio::-webkit-media-controls-panel { background-color: #1e232d; }
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display { color: #ffffff; }
 
-/* Signature Author Block */
 .player-signature-block {
     flex: 1;
     display: flex;
@@ -320,7 +328,7 @@ audio::-webkit-media-controls-time-remaining-display { color: #ffffff; }
 .signature { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
 .andit-name { color: var(--primary); font-weight: 700; }
 
-/* Media Queries Responsivitas (Lolos Audit Mobile-Friendly Google Index) */
+/* Responsive Media Viewports */
 @media (max-width: 850px) {
     .player-container {
         flex-direction: column;
