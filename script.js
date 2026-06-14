@@ -3,17 +3,17 @@ let allRadios = [];
 let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
 
-// Inisialisasi Event Listener setelah DOM Siap
+// Mengikat fungsi setelah DOM sepenuhnya dimuat demi performa SEO & Rendering
 document.addEventListener('DOMContentLoaded', () => {
     loadRadios();
 
-    // Event Listener untuk Fitur Pencarian (Ganti onkeyup inline)
+    // Event Listener untuk input pencarian (Clean JS tanpa inline attribute HTML)
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', () => renderRadios());
     }
 
-    // Event Listener untuk Filter Tab (Ganti onclick inline)
+    // Event Listener untuk perpindahan tab vibes
     const tabAll = document.getElementById('tab-all');
     const tabFav = document.getElementById('tab-fav');
 
@@ -51,7 +51,7 @@ function renderRadios() {
         return isFav && isMatch;
     });
 
-    // Update jumlah radio untuk UX & Keterbacaan Dynamic Text oleh Search Engine
+    // Update Text Keterangan Jumlah Dinamis untuk Dibaca Robot Google
     if (countElement) {
         if (keyword !== "") {
             countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
@@ -74,7 +74,7 @@ function renderRadios() {
     data.forEach(radio => {
         const isFav = favorites.includes(Number(radio.id));
         
-        // Optimasi SEO: Mengubah div menjadi tag elemen semantik <article>
+        // Optimasi Semantik: Menggunakan tag <article> pengganti <div> polos agar lebih disukai Google Bot
         const card = document.createElement('article');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
@@ -84,12 +84,12 @@ function renderRadios() {
                 style="position:absolute; top:10px; right:10px; background:none; border:none; cursor:pointer; font-size:18px; color:${isFav ? '#ff4d4d' : '#ccc'}; z-index:10;">
                 ${isFav ? '❤️' : '🤍'}
             </button>
-            <div class="card-clickable" data-url="${radio.streamUrl}" data-type="${radio.type}" data-title="${radio.title}" data-id="${radio.id}">
+            <div class="card-clickable">
                 <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
                 <h3>${radio.title}</h3>
             </div>`;
         
-        // Memasang Event secara internal JavaScript
+        // Memasang Event Listener secara internal terisolasi
         card.querySelector('.fav-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             toggleFav(Number(radio.id));
@@ -106,7 +106,7 @@ function renderRadios() {
 function playStream(url, type, title, id) {
     const audio = document.getElementById('player');
     
-    // 1. UPDATE JUDUL TAB BROWSER (Sangat Bagus untuk SEO CTR saat tab di-pin/dibuka user)
+    // 1. UPDATE DYNAMIC TITLE BROWSER (Sangat Bagus untuk CTR SEO)
     document.title = "▶️ Sedang Memutar: " + title + " | Radio Player Pro";
     
     // 2. UPDATE TEXT DI PLAYER UI
@@ -121,15 +121,15 @@ function playStream(url, type, title, id) {
         hls = null; 
     }
 
-    // Pengecekan Protokol Streaming HLS (.m3u8)
+    // Penanganan Protokol Streaming M3U8 (HLS) & Audio Biasa
     if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay diblokir browser")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay diblokir")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Autoplay diblokir browser"));
+        audio.play().catch(e => console.log("Autoplay diblokir"));
     }
 }
 
