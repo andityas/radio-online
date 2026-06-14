@@ -6,20 +6,22 @@
     "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv",
     "type": "audio/mpeg"
   },
-  {
-    "id": 2,
-    "title": "Gen FM Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png",
-    "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 3,
-    "title": "Jak 101 FM Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/19705.v45.png",
-    "streamUrl": "https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8",
-    "type": "audio/mpeg"
-  },
+      {
+      "id": 2,
+      "title": "Gen FM Jakarta",
+      "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png",
+      "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8",
+      "type": "audio/mpeg",
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "title": "Jak 101 FM Jakarta",
+      "logo": "https://cdn.onlineradiobox.com/img/l/5/19705.v45.png",
+      "streamUrl": "https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8",
+      "type": "audio/mpeg",
+      "favorite": false
+    },
   {
     "id": 4,
     "title": "Ardan Radio Bandung",
