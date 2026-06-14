@@ -1,80 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Radio Player Pro</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome 6 (free icons) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- HLS.js for m3u8 streams -->
+  <!-- HLS.js -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1e1a2f">
 </head>
 <body>
   <div class="app-container">
-    <!-- Header -->
     <header class="app-header">
       <div class="logo-area">
         <i class="fas fa-broadcast-tower"></i>
         <h1>Radio Player Pro</h1>
       </div>
       <div class="header-actions">
-        <button id="stop-global" class="btn-stop" title="Stop playback"><i class="fas fa-stop"></i></button>
-        <button id="volume-toggle" class="btn-volume" title="Mute"><i class="fas fa-volume-up"></i></button>
+        <button id="stop-global" class="btn-stop" title="Stop"><i class="fas fa-stop"></i></button>
+        <button id="volume-toggle" class="btn-volume"><i class="fas fa-volume-up"></i></button>
         <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
       </div>
     </header>
 
-    <!-- Now Playing Bar -->
     <div class="now-playing-bar">
-      <div class="np-avatar">
-        <img id="np-logo" src="https://cdn.onlineradiobox.com/img/l/7/18687.v44.png" alt="station logo">
-      </div>
+      <div class="np-avatar"><img id="np-logo" src="https://cdn.onlineradiobox.com/img/l/7/18687.v44.png" alt="logo"></div>
       <div class="np-info">
-        <div id="np-title">Select a station</div>
+        <div id="np-title">Pilih stasiun</div>
         <div id="np-status"><i class="fas fa-pause"></i> idle</div>
       </div>
       <div class="np-controls">
-        <button id="play-pause-btn" class="play-pause" disabled><i class="fas fa-play"></i></button>
-        <button id="stop-btn" class="stop-btn"><i class="fas fa-stop"></i></button>
+        <button id="play-pause-btn" disabled><i class="fas fa-play"></i></button>
+        <button id="stop-btn"><i class="fas fa-stop"></i></button>
       </div>
     </div>
 
-    <!-- Search + filters -->
     <div class="search-filter-bar">
       <div class="search-wrapper">
         <i class="fas fa-search"></i>
-        <input type="text" id="search-input" placeholder="Search station... (press / to focus)" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Cari stasiun... (tekan /)">
       </div>
       <div class="tab-bar">
-        <button data-view="all" class="tab-btn active">📻 All Stations</button>
-        <button data-view="fav" class="tab-btn">❤️ Favorites</button>
+        <button data-view="all" class="tab-btn active">📻 Semua</button>
+        <button data-view="fav" class="tab-btn">❤️ Favorit</button>
       </div>
       <div class="category-chips" id="category-chips"></div>
     </div>
 
-    <!-- Main grid + recent section -->
     <div class="main-layout">
-      <section class="stations-grid" id="stations-grid">
-        <div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> Loading stations...</div>
-      </section>
+      <div class="stations-grid" id="stations-grid">
+        <div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> Memuat...</div>
+      </div>
       <aside class="recent-sidebar">
-        <h3><i class="fas fa-clock"></i> Recent</h3>
-        <div id="recent-list" class="recent-list">
-          <div class="empty-recent">No recent stations</div>
-        </div>
+        <h3><i class="fas fa-clock"></i> Baru Didengar</h3>
+        <div id="recent-list" class="recent-list"></div>
       </aside>
     </div>
   </div>
-
-  <audio id="audio-player" preload="none"></audio>
+  <audio id="audio-player"></audio>
   <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').catch(err => console.warn('SW registration failed', err));
-    }
-  </script>
 </body>
 </html>
