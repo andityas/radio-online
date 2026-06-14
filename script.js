@@ -1,7 +1,64 @@
 // ========================
-// 1. Ambil data dari JSON
+// DATA RADIO (52 STASIUN) - LANGSUNG DI SINI, TIDAK PERLU FETCH
 // ========================
-let radioData = [];
+const radioData = [
+    {"id":1,"title":"Prambors FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/7/18687.v44.png","streamUrl":"https://stream.rcs.revma.com/h77wwp48kxcwv"},
+    {"id":2,"title":"Gen FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/6/19026.v38.png","streamUrl":"https://s1.cloudmu.id/listen/gen_fm/stream"},
+    {"id":3,"title":"Jak 101 FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/5/19705.v45.png","streamUrl":"https://s1.cloudmu.id/listen/jak_fm/stream"},
+    {"id":4,"title":"Delta FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/8/58058.v32.png","streamUrl":"https://stream.rcs.revma.com/k02rmq48kxcwv"},
+    {"id":5,"title":"Radio Elshinta Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/2/18812.v17.png","streamUrl":"https://stream-ssl.arenastreaming.com:8000/jakarta"},
+    {"id":6,"title":"Sonora FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/6/19176.v16.png","streamUrl":"https://sonora-radio.arenastreaming.com/8130/stream"},
+    {"id":7,"title":"Trax FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/6/18806.v13.png","streamUrl":"https://stream.radiojar.com/rrqf78p3bnzuv"},
+    {"id":8,"title":"FeMale Radio Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/6/60996.v19.png","streamUrl":"https://stream.rcs.revma.com/9thenqqd2ncwv"},
+    {"id":9,"title":"Bahana FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/8/19708.v25.png","streamUrl":"https://s1.cloudmu.id/listen/bahana_fm/stream"},
+    {"id":10,"title":"iSwara FM Jakarta","logo":"https://cdn.onlineradiobox.com/img/l/9/18959.v12.png","streamUrl":"https://stream.radiojar.com/4ywdgup3bnzuv"},
+    {"id":11,"title":"RRI Pro 1","logo":"https://cdn.onlineradiobox.com/img/l/4/18844.v17.png","streamUrl":"https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3"},
+    {"id":12,"title":"RRI Pro 2","logo":"https://cdn.onlineradiobox.com/img/l/2/18862.v17.png","streamUrl":"https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3"},
+    {"id":13,"title":"Suara Surabaya FM","logo":"https://cdn.onlineradiobox.com/img/l/8/18988.v10.png","streamUrl":"https://c5.siar.us/proxy/ssfm/stream"},
+    {"id":14,"title":"Ardan Radio Bandung","logo":"https://cdn.onlineradiobox.com/img/l/7/18827.v12.png","streamUrl":"https://stream.rcs.revma.com/ugpyzu9n5k3vv"},
+    {"id":15,"title":"OZ Radio Bandung","logo":"https://cdn.onlineradiobox.com/img/l/5/18985.v26.png","streamUrl":"https://streaming.ozradio.id:8443/ozbandung"},
+    {"id":16,"title":"Gajahmada FM","logo":"https://cdn.onlineradiobox.com/img/l/6/19016.v10.png","streamUrl":"https://server.radioimeldafm.co.id:8040/gajahmadafm"},
+    {"id":17,"title":"Radio Imelda FM","logo":"https://cdn.onlineradiobox.com/img/l/7/19177.v15.png","streamUrl":"https://server.radioimeldafm.co.id:8030/imeldafm"},
+    {"id":18,"title":"Telstar FM Makassar","logo":"https://cdn.onlineradiobox.com/img/l/1/20661.v9.png","streamUrl":"https://stream-eu-nc.arenastreaming.com:5101/stream"},
+    {"id":19,"title":"Suara Giri FM","logo":"https://cdn.onlineradiobox.com/img/l/0/19000.v8.png","streamUrl":"http://streaming.girifm.com:8010/;stream.mp3"},
+    {"id":20,"title":"NAGASWARA RADIOTEMEN","logo":"https://cdn.onlineradiobox.com/img/l/2/19152.v27.png","streamUrl":"https://live.nagaswarafm.com/nagaswararadio/stream"},
+    {"id":21,"title":"Mettaswara TOP 40","logo":"https://cdn.onlineradiobox.com/img/l/3/111613.v14.png","streamUrl":"https://mettaswara.com:8700/theone"},
+    {"id":22,"title":"Mettaswara Hits","logo":"https://cdn.onlineradiobox.com/img/l/5/113955.v11.png","streamUrl":"https://mettaswara.com:8700/hits"},
+    {"id":23,"title":"Mettaswara Dangdut","logo":"https://cdn.onlineradiobox.com/img/l/9/124069.v7.png","streamUrl":"https://mettaswara.com:8700/d4d"},
+    {"id":24,"title":"Loker Musik Radio Indonesia","logo":"https://cdn.onlineradiobox.com/img/l/9/75039.v11.png","streamUrl":"https://stream.lokermusik.com/listen/lokermusik/lokermusik"},
+    {"id":25,"title":"Dengerin Musik","logo":"https://cdn.onlineradiobox.com/img/l/8/18908.v17.png","streamUrl":"https://stream.denger.in/musik.mp3"},
+    {"id":26,"title":"Hits Radio Kandangan","logo":"https://cdn.onlineradiobox.com/img/l/6/149756.v3.png","streamUrl":"http://45.64.97.82:8030/stream"},
+    {"id":27,"title":"Golden Memories","logo":"https://cdn.onlineradiobox.com/img/l/0/110170.v4.png","streamUrl":"https://stream.zeno.fm/xg7mcgf1bf9uv"},
+    {"id":28,"title":"Big 90's","logo":"https://cdn.onlineradiobox.com/img/l/6/92666.v8.png","streamUrl":"https://stream.zeno.fm/qmqe8k5e74zuv"},
+    {"id":29,"title":"80s Radio Hits","logo":"https://cdn.onlineradiobox.com/img/l/5/71605.v58.png","streamUrl":"https://stream.zeno.fm/wy1pbnedd3quv"},
+    {"id":30,"title":"Mettaswara Throwback","logo":"https://cdn.onlineradiobox.com/img/l/9/111569.v15.png","streamUrl":"https://mettaswara.com:8700/mettatrow"},
+    {"id":31,"title":"Slow Radio","logo":"https://cdn.onlineradiobox.com/img/l/6/91316.v16.png","streamUrl":"https://stream.zeno.fm/dpk2zq5np2zuv"},
+    {"id":32,"title":"Ninetysix Radio Smooth","logo":"https://cdn.onlineradiobox.com/img/l/9/117079.v4.png","streamUrl":"https://stream.zeno.fm/1p7xwm841xhvv"},
+    {"id":33,"title":"The Rockin Life","logo":"https://cdn.onlineradiobox.com/img/l/0/18880.v17.png","streamUrl":"https://stream.radiojar.com/7csmg90fuqruv"},
+    {"id":34,"title":"Rock Rewind","logo":"https://cdn.onlineradiobox.com/img/l/0/89300.v15.png","streamUrl":"https://stream.zenolive.com/u18tuaphwzzuv.aac"},
+    {"id":35,"title":"Rock Ballads","logo":"https://cdn.onlineradiobox.com/img/l/4/110904.v2.png","streamUrl":"https://stream.zeno.fm/ynepvmy14bhvv"},
+    {"id":36,"title":"RD Revival Rocks!","logo":"https://cdn.onlineradiobox.com/img/l/6/131296.v5.png","streamUrl":"https://stream.zeno.fm/wuznwqnzgk3uv"},
+    {"id":37,"title":"Jags Rock Music Radio","logo":"https://cdn.onlineradiobox.com/img/l/1/71621.v34.png","streamUrl":"https://stream.zeno.fm/q3mskdkgg6quv"},
+    {"id":38,"title":"Kis Rock","logo":"https://cdn.onlineradiobox.com/img/l/0/106040.v7.png","streamUrl":"https://stream.zeno.fm/2nbxgbynb18uv"},
+    {"id":39,"title":"CDBS Radio Action","logo":"https://cdn.onlineradiobox.com/img/l/9/138819.v5.png","streamUrl":"https://a1.siar.us/listen/radiocdbs/stream"},
+    {"id":40,"title":"Ringkas RadioNet Cirebon","logo":"https://cdn.onlineradiobox.com/img/l/7/92487.v4.png","streamUrl":"http://uk6freenew.listen2myradio.com:20828/;"},
+    {"id":41,"title":"Homebrew Station","logo":"https://cdn.onlineradiobox.com/img/l/3/157643.v1.png","streamUrl":"https://radio.homebrew.my.id/listen/homebrew-radio/radio.mp3"},
+    {"id":42,"title":"Fourtyfive Radio","logo":"https://cdn.onlineradiobox.com/img/l/8/148288.v3.png","streamUrl":"https://a5.siar.us/listen/fourtyfiveradio/stream"},
+    {"id":43,"title":"Radio Budi Luhur","logo":"https://cdn.onlineradiobox.com/img/l/8/19448.v8.png","streamUrl":"https://c2.siar.us/listen/radiobudiluhur/stream"},
+    {"id":44,"title":"Nuswantara Radio","logo":"https://cdn.onlineradiobox.com/img/l/4/156204.v1.png","streamUrl":"https://a12.siar.us/listen/nuswantararadio/stream"},
+    {"id":45,"title":"ZORA","logo":"https://cdn.onlineradiobox.com/img/l/2/19102.v7.png","streamUrl":"https://s1.gntr.net/listen/zora_radio/zora"},
+    {"id":46,"title":"Semarak FM","logo":"https://cdn.onlineradiobox.com/img/l/1/155551.v2.png","streamUrl":"https://ssg.streamingmurah.com:8076/"},
+    {"id":47,"title":"Arena Streaming","logo":"https://cdn.onlineradiobox.com/img/l/5/157035.v1.png","streamUrl":"https://stream-ssl.arenastreaming.com:8006/autodj"},
+    {"id":48,"title":"Metrum Radio Bandung","logo":"https://cdn.onlineradiobox.com/img/l/4/84694.v9.png","streamUrl":"http://103.28.149.117:8205/;"},
+    {"id":49,"title":"Bontang Streamers","logo":"https://cdn.onlineradiobox.com/img/l/1/96091.v21.png","streamUrl":"http://atletik.biz.id:8000/radio.mp3"},
+    {"id":50,"title":"VIS FM","logo":"https://cdn.onlineradiobox.com/img/l/9/58059.v9.png","streamUrl":"http://b.alhastream.com:5115/radio"},
+    {"id":51,"title":"KISI","logo":"https://cdn.onlineradiobox.com/img/l/0/19460.v11.png","streamUrl":"https://live.kisifm.com/listen/kisifm/;"},
+    {"id":52,"title":"Free FM","logo":"https://cdn.onlineradiobox.com/img/l/5/81395.v9.png","streamUrl":"https://rocafmadrid.radioca.st/stream"}
+];
+
+// ========================
+// SISTEM FAVORIT & PLAYER (LANGSUNG DARI VERSI SINGLE FILE YANG BERHASIL)
+// ========================
 let favorites = JSON.parse(localStorage.getItem('radio_favs')) || [];
 let currentStation = null;
 let currentTab = 'all';
@@ -18,29 +75,10 @@ const playerStatus = document.getElementById('playerStatus');
 const liveDot = document.getElementById('liveDot');
 const favCountSpan = document.getElementById('favCount');
 
-// ========================
-// 2. Load data dari stations.json
-// ========================
-async function loadRadioData() {
-    try {
-        const response = await fetch('./stations.json');
-        if (!response.ok) throw new Error('Gagal memuat stations.json');
-        radioData = await response.json();
-        renderRadio();
-    } catch (error) {
-        console.error(error);
-        grid.innerHTML = `<div class="col-span-full text-center text-red-500 py-10">Gagal memuat data stasiun. Pastikan file stations.json ada dan diakses via server (bukan file://).</div>`;
-    }
-}
-
-// ========================
-// 3. Render kartu radio
-// ========================
 function renderRadio(filterText = '') {
-    if (!radioData.length) return;
     grid.innerHTML = '';
-
-    let filtered = radioData.filter(radio =>
+    
+    let filtered = radioData.filter(radio => 
         radio.title.toLowerCase().includes(filterText.toLowerCase())
     );
 
@@ -61,9 +99,9 @@ function renderRadio(filterText = '') {
 
         const card = document.createElement('div');
         card.className = `bg-slate-800 border ${isPlayingThis ? 'border-indigo-500 shadow-md shadow-indigo-500/10' : 'border-slate-700'} rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:border-slate-500 transition-all group`;
-
+        
         card.innerHTML = `
-            <button class="fav-btn absolute top-3 right-3 text-sm cursor-pointer ${isFav ? 'text-rose-500' : 'text-slate-500 group-hover:text-slate-300'}" data-id="${radio.id}">
+            <button class="fav-btn absolute top-3 right-3 text-sm cursor-pointer transition-colors ${isFav ? 'text-rose-500' : 'text-slate-500 group-hover:text-slate-300'}" data-id="${radio.id}">
                 <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
             </button>
             <div class="w-20 h-20 bg-white rounded-lg p-1.5 flex items-center justify-center mb-3 border border-slate-700 relative">
@@ -77,14 +115,10 @@ function renderRadio(filterText = '') {
         grid.appendChild(card);
     });
 
-    // Re-attach event listeners
     document.querySelectorAll('.fav-btn').forEach(btn => btn.addEventListener('click', toggleFavorite));
     document.querySelectorAll('.play-card-btn').forEach(btn => btn.addEventListener('click', handleCardPlay));
 }
 
-// ========================
-// 4. Play radio (support HLS & normal)
-// ========================
 function playRadio(station) {
     currentStation = station;
     playerBar.classList.remove('hidden');
@@ -101,7 +135,6 @@ function playRadio(station) {
 
     const streamUrl = station.streamUrl;
 
-    // Deteksi HLS (.m3u8)
     if (streamUrl.includes('.m3u8')) {
         if (Hls && Hls.isSupported()) {
             hlsInstance = new Hls();
@@ -127,7 +160,7 @@ function playRadio(station) {
 
 function showPlayError(err) {
     console.warn(err);
-    playerStatus.innerText = "⚠️ Gagal memutar streaming.";
+    playerStatus.innerText = "⚠️ Gagal memutar streaming. Mungkin format tidak didukung atau CORS.";
     updateUIPlayState(false);
 }
 
@@ -136,9 +169,6 @@ function updateUIPlayState(isPlaying) {
     renderRadio(searchBar.value);
 }
 
-// ========================
-// 5. Event Handlers
-// ========================
 function handleCardPlay(e) {
     const id = parseInt(e.currentTarget.getAttribute('data-id'));
     const station = radioData.find(r => r.id === id);
@@ -169,9 +199,6 @@ function toggleFavorite(e) {
     renderRadio(searchBar.value);
 }
 
-// ========================
-// 6. Audio event listeners
-// ========================
 audio.addEventListener('playing', () => {
     liveDot.classList.remove('hidden');
     playerStatus.innerText = " LIVE / STREAMING";
@@ -207,9 +234,6 @@ volumeSlider.addEventListener('input', (e) => {
     else volIcon.className = "fa-solid fa-volume-high text-slate-400";
 });
 
-// ========================
-// 7. Tab & Search
-// ========================
 document.getElementById('tabAll').addEventListener('click', () => {
     currentTab = 'all';
     document.getElementById('tabAll').className = "px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white";
@@ -226,8 +250,5 @@ document.getElementById('tabFav').addEventListener('click', () => {
 
 searchBar.addEventListener('input', (e) => renderRadio(e.target.value));
 
-// Inisialisasi volume
 audio.volume = volumeSlider.value;
-
-// Mulai dengan memuat data dari JSON
-loadRadioData();
+renderRadio();
