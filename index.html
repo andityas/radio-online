@@ -9,31 +9,30 @@
     <meta name="description" content="Dengarkan live streaming radio Indonesia favorit secara online. Kualitas audio HD jernih dari Prambors, Delta FM, Ardan Radio, dan ratusan stasiun radio FM/AM terlengkap gratis.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors live, ardan fm bandung, delta fm jakarta, radio player id, dengar radio gratis">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.domain-anda.com/">
+    <link rel="canonical" href="https://andityas.github.io/radio-online/">
     
     <!-- Open Graph / Facebook SEO -->
     <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia Online Terlengkap">
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis tanpa buffering.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.domain-anda.com/">
-    <meta property="og:image" content="https://www.domain-anda.com/og-image.jpg">
+    <meta property="og:url" content="https://andityas.github.io/radio-online/">
 
     <!-- Twitter SEO -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
 
-    <!-- Memuat HLS.js secara Defer untuk mempercepat loading speed halaman (Faktor SEO Penting) -->
+    <!-- Memuat HLS.js secara Defer untuk mempercepat loading speed halaman (Faktor Penting SEO Core Web Vitals) -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Schema Markup JSON-LD untuk Web Application -->
+    <!-- Schema Markup JSON-LD untuk SEO Hasil Pencarian Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Radio Player Pro",
-      "url": "https://www.domain-anda.com/",
+      "url": "https://andityas.github.io/radio-online/",
       "description": "Aplikasi streaming radio online Indonesia gratis untuk mendengarkan stasiun FM dan AM favorit.",
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "All"
@@ -47,12 +46,9 @@
         <span class="tagline">Vibing Everyday No Cap 🧢</span>
         <h1>🎵 RADIO PLAYER PRO</h1>
         
-        <p id="radio-count">
-            Menghubungkan frekuensi...
-        </p>
+        <p id="radio-count">Menghubungkan frekuensi...</p>
 
         <div class="search-container">
-            <!-- Menghapus inline onkeyup, beralih ke Event Listener di script.js -->
             <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
         </div>
         <div class="tabs">
@@ -63,10 +59,10 @@
 
     <!-- Konten Utama Semantik -->
     <main>
-        <!-- Teks SEO yang valid secara organik (Tidak disembunyikan dengan display:none) -->
+        <!-- Teks Intro SEO Organik (Tidak disembunyikan lewat display:none agar ramah crawler Google) -->
         <section class="seo-intro-content">
             <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
-            <p>Dengarkan musik pop, jazz, dangdut, berita terkini, dan hiburan seru dari stasiun radio populer di Jakarta, Bandung, Surabaya, dan berbagai kota lainnya langsung lewat browser Anda.</p>
+            <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit di Jakarta, Bandung, Surabaya secara live 24 jam tanpa interupsi buffer.</p>
         </section>
 
         <!-- Container Grid Daftar Radio -->
@@ -77,7 +73,7 @@
         </section>
     </main>
 
-    <!-- Footer & Player Area -->
+    <!-- Floating Player Area -->
     <footer>
         <div class="player-container">
             <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
@@ -88,7 +84,7 @@
         </div>
     </footer>
 
-    <!-- Memuat Script Utama -->
+    <!-- Memuat Script Utama di Akhir Halaman -->
     <script src="script.js"></script>
 </body>
 </html>
