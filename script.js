@@ -4,7 +4,6 @@ let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
 let currentStation = null;
 
-// DOM elements
 const audio = document.getElementById('player');
 const searchInput = document.getElementById('search-input');
 const tabAll = document.getElementById('tab-all');
@@ -16,8 +15,8 @@ const stopBtn = document.getElementById('stop-btn');
 const volumeSlider = document.getElementById('volume-slider');
 const nowPlayingDiv = document.getElementById('now-playing');
 const currentLogo = document.getElementById('player-current-logo');
-let playPauseIcon = playPauseBtn; // karena tombol berisi teks emoji
 
+// Inisialisasi event listener
 document.addEventListener('DOMContentLoaded', () => {
     loadRadios();
     if (searchInput) searchInput.addEventListener('input', () => renderRadios());
@@ -27,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (stopBtn) stopBtn.addEventListener('click', stopPlayback);
     if (volumeSlider) volumeSlider.addEventListener('input', (e) => { audio.volume = e.target.value; });
     audio.volume = volumeSlider ? volumeSlider.value : 0.8;
-    
-    // Audio events
+
     audio.addEventListener('play', () => {
         playPauseBtn.textContent = '⏸️';
         document.title = `▶️ ${currentStation?.title || 'Radio'} | Radio Player Pro`;
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = 'Radio Player Pro';
     });
     audio.addEventListener('error', () => {
-        console.warn('Stream error');
         if (currentStation) {
             nowPlayingDiv.innerHTML = `<b>${currentStation.title}</b><span class="sub-vibe">Gagal memutar</span>`;
         }
@@ -47,17 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadRadios() {
     try {
-        // Gunakan data.json yang sudah berisi 52 stasiun dengan HLS untuk Gen & Jak
+        // PASTIKAN NAMA FILE JSON SESUAI: data.json
         const res = await fetch('data.json?v=' + Date.now());
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         allRadios = await res.json();
+        console.log('✅ Data loaded:', allRadios.length);
         renderRadios();
     } catch (e) {
-        radioList.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;">❌ Gagal memuat data. Pastikan file data.json ada.</div>`;
+        console.error(e);
+        radioList.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:40px;">
+                ❌ Gagal memuat data. Cek file <strong>data.json</strong>.<br>
+                Pesan error: ${e.message}
+            </div>`;
+        if (radioCount) radioCount.innerText = 'Gagal memuat stasiun';
     }
 }
 
 function renderRadios() {
+    if (!allRadios.length) return;
     const keyword = searchInput?.value.toLowerCase().trim() || '';
     let filtered = allRadios.filter(r => {
         const matchTab = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
@@ -65,7 +70,9 @@ function renderRadios() {
         return matchTab && matchSearch;
     });
 
-    radioCount.innerText = keyword ? `Ditemukan ${filtered.length} stasiun untuk "${keyword}"` : `Streaming ${filtered.length} Stasiun Radio Indonesia`;
+    if (radioCount) {
+        radioCount.innerText = keyword ? `Ditemukan ${filtered.length} stasiun untuk "${keyword}"` : `Streaming ${filtered.length} Stasiun Radio Indonesia`;
+    }
 
     if (filtered.length === 0) {
         radioList.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;">😢 Stasiun tidak ditemukan.</div>`;
@@ -111,17 +118,13 @@ function renderRadios() {
 
 function playStream(station) {
     if (currentStation && currentStation.id === station.id && !audio.paused) return;
-    
-    // Stop current playback
-    stopPlayback(false); // false = jangan reset UI sepenuhnya
-    
+    stopPlayback(false);
+
     currentStation = station;
     nowPlayingDiv.innerHTML = `<b>${station.title}</b><span class="sub-vibe">Now Vibing</span>`;
     currentLogo.src = station.logo;
-    currentLogo.alt = station.title;
     document.title = `▶️ ${station.title} | Radio Player Pro`;
-    
-    // Highlight active card
+
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     const activeCard = document.querySelector(`.radio-card[data-id="${station.id}"]`);
     if (activeCard) activeCard.classList.add('playing');
@@ -134,7 +137,7 @@ function playStream(station) {
         hlsInstance.attachMedia(audio);
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.warn(e)));
         hlsInstance.on(Hls.Events.ERROR, (_, data) => {
-            if (data.fatal) console.error('HLS error');
+            if (data.fatal) console.error('HLS error', data);
         });
     } else {
         audio.src = station.streamUrl;
@@ -176,7 +179,7 @@ function toggleFav(id) {
         favorites.push(id);
     }
     localStorage.setItem('radioFavs', JSON.stringify(favorites));
-    renderRadios(); // refresh tampilan
+    renderRadios();
 }
 
 function switchTab(tab) {
