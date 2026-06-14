@@ -1,1 +1,15 @@
-
+{
+  "name": "Radio Player Pro",
+  "short_name": "RadioPro",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1e1a2f",
+  "theme_color": "#c084fc",
+  "icons": [
+    {
+      "src": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
+}
