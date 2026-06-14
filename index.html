@@ -3,68 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nusantara Streaming - Radio Player</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+    
+    <!-- SEO Meta Tags Utama -->
+    <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
+    <meta name="description" content="Dengarkan live streaming radio Indonesia favorit secara online. Kualitas audio HD jernih dari Prambors, Delta FM, Ardan Radio, dan ratusan stasiun radio FM/AM terlengkap gratis.">
+    <meta name="keywords" content="radio online, streaming radio indonesia, prambors live, ardan fm bandung, delta fm jakarta, radio player id, dengar radio gratis">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://andityas.github.io/radio-online/">
+    
+    <!-- Open Graph / Facebook SEO -->
+    <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia Online Terlengkap">
+    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis tanpa buffering.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://andityas.github.io/radio-online/">
 
-    <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-            <div class="bg-indigo-600 p-2 rounded-lg text-white animate-pulse">
-                <i class="fa-solid fa-radio text-xl"></i>
-            </div>
-            <h1 class="text-xl font-bold bg-gradient-to-r captains from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Nusantara Radio Player</h1>
+    <!-- Twitter SEO -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
+    <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
+
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- HLS.js dari CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Schema Markup JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Radio Player Pro",
+      "url": "https://andityas.github.io/radio-online/",
+      "description": "Aplikasi streaming radio online Indonesia gratis untuk mendengarkan stasiun FM dan AM favorit.",
+      "applicationCategory": "EntertainmentApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="header-badge">
+            <span class="tagline">Vibing Everyday No Cap 🧢</span>
         </div>
-        <div class="relative w-full sm:w-72">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-400"></i>
-            <input type="text" id="searchBar" placeholder="Cari stasiun radio..." class="w-full bg-slate-900 border border-slate-700 rounded-full py-2 pl-10 pr-4 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors">
+        <h1>RADIO PLAYER PRO</h1>
+        <p id="radio-count">Menghubungkan frekuensi...</p>
+
+        <div class="search-container">
+            <div class="search-box-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all">All Vibes</button>
+            <button class="tab-btn" id="tab-fav">My Faves ❤️</button>
         </div>
     </header>
 
-    <main class="flex-1 p-6 max-w-7xl mx-auto w-full pb-28">
-        <div class="flex gap-2 mb-6">
-            <button id="tabAll" class="px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white transition-colors cursor-pointer">Semua Stasiun</button>
-            <button id="tabFav" class="px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors cursor-pointer">Favorit <span id="favCount" class="ml-1 px-1.5 py-0.5 text-xs bg-slate-900 rounded-full">0</span></button>
-        </div>
+    <main>
+        <section class="seo-intro-content">
+            <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
+            <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
+        </section>
 
-        <div id="radioGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            <div class="col-span-full text-center text-slate-400 py-10"><i class="fa-solid fa-spinner animate-spin"></i> Memuat data radio...</div>
-        </div>
+        <section id="radio-list-container" aria-label="Daftar Stasiun Radio">
+            <div id="radio-list">
+                <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
+            </div>
+        </section>
     </main>
 
-    <footer id="playerBar" class="bg-slate-800 border-t border-slate-700 sticky bottom-0 left-0 right-0 p-4 shadow-xl hidden z-50">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-4 w-full sm:w-1/3">
-                <img id="currentLogo" src="" alt="Logo" class="w-14 h-14 object-contain bg-white rounded-lg p-1 border border-slate-600">
-                <div class="overflow-hidden">
-                    <h3 id="currentTitle" class="font-semibold text-slate-100 truncate">Nama Radio</h3>
-                    <p id="playerStatus" class="text-xs text-indigo-400 font-medium flex items-center gap-1">
-                        <span class="flex h-2 w-2 relative hidden" id="liveDot">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        Menghubungkan...
-                    </p>
+    <footer>
+        <div class="player-container">
+            <div class="player-meta-block">
+                <div class="avatar-mini-wrapper">
+                    <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Mini Logo">
                 </div>
+                <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
             </div>
-
-            <div class="flex items-center gap-6">
-                <button id="btnPlayPause" class="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center text-lg shadow-lg cursor-pointer transition-transform transform active:scale-95">
-                    <i class="fa-solid fa-play ml-0.5" id="playIcon"></i>
-                </button>
+            
+            <div class="player-controls-block">
+                <audio id="player" controls aria-label="Audio Player"></audio>
             </div>
-
-            <div class="flex items-center gap-2 w-full sm:w-1/3 justify-end">
-                <i class="fa-solid fa-volume-high text-slate-400" id="volumeIcon"></i>
-                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.8" class="w-24 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+            
+            <div class="player-signature-block">
+                <div class="signature">
+                    Manifested with ❤️ by <span class="andit-name">Andit</span>
+                </div>
             </div>
         </div>
     </footer>
-
-    <audio id="audioElement"></audio>
 
     <script src="script.js"></script>
 </body>
