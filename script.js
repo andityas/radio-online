@@ -38,79 +38,68 @@ async function loadRadios() {
 
 function renderRadios() {
     const list = document.getElementById('radio-list');
-    const countElement = document.getElementById('radio-count');
     const searchInput = document.getElementById('search-input');
-    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-    const data = allRadios.filter(r => {
-        const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
-        const isMatch = r.title.toLowerCase().includes(keyword);
-        return isFav && isMatch;
-    });
-
-    if (countElement) {
-        if (keyword !== "") {
-            countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
-        } else {
-            countElement.innerText = `Streaming ${data.length} Stasiun Radio Indonesia`;
-        }
-    }
-
+    if (!list) return;
     list.innerHTML = '';
 
-    if (data.length === 0) {
+    let filtered = allRadios.filter(radio => radio.title.toLowerCase().includes(query));
+
+    if (currentTab === 'fav') {
+        filtered = filtered.filter(radio => favorites.includes(radio.id));
+    }
+
+    if (filtered.length === 0) {
         list.innerHTML = `
-            <div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
-                <h4>Gak Ketemu Nih... 🚩</h4>
-                <p>Coba cari stasiun lain atau cek playlist favoritmu.</p>
+            <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-soft)">
+                Mati lampu atau radionya gak ada nih... 🛰️
             </div>`;
         return;
     }
 
-    data.forEach(radio => {
-        const isFav = favorites.includes(Number(radio.id));
-        const card = document.createElement('article');
+    filtered.forEach(radio => {
+        const isFav = favorites.includes(radio.id);
+        const card = document.createElement('div');
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
-        
+
+        // MENYUNTIKKAN STRUKTUR KARTU SEO & AKSESIBILITAS TINGGI
         card.innerHTML = `
-            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
-                ${isFav ? '❤️' : '🤍'}
-            </button>
-            <div class="card-clickable">
-                <div class="img-frame">
-                    <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+            <div class="card-image-container" onclick="playStation(${radio.id}, '${radio.streamUrl}', '${radio.title}', '${radio.logo}')">
+                <img src="${radio.logo}" alt="Streaming Live ${radio.title} Indonesia Online" loading="lazy" class="radio-logo">
+                <div class="play-overlay">
+                    <span class="play-icon-pulse">▶</span>
                 </div>
-                <h3>${radio.title}</h3>
-                <span class="live-badge">● LIVE</span>
-            </div>`;
-        
-        card.querySelector('.fav-btn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleFav(Number(radio.id));
-        });
-
-        card.querySelector('.card-clickable').addEventListener('click', () => {
-            // Mengirim data logo ke fungsi player bawah
-            playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
-        });
-
+            </div>
+            <div class="card-details">
+                <h3 class="radio-title-text">${radio.title}</h3>
+                <button class="fav-toggle-btn ${isFav ? 'is-fav' : ''}" onclick="toggleFav(${radio.id})" aria-label="Tambah ${radio.title} ke favorit">
+                    ${isFav ? '❤️' : '🤍'}
+                </button>
+            </div>
+        `;
         list.appendChild(card);
     });
 }
 
-function playStream(url, type, title, id, logoUrl) {
+function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('tab-all').classList.toggle('active', tab === 'all');
+    document.getElementById('tab-fav').classList.toggle('active', tab === 'fav');
+    renderRadios();
+}
+
+function playStation(id, url, title, logoUrl) {
     const audio = document.getElementById('player');
     const miniLogo = document.getElementById('player-current-logo');
     
-    // 1. UPDATE DYNAMIC TITLE BROWSER
-    document.title = "▶️ " + title + " | Radio Player Pro";
-    
-    // 2. UPDATE TEXT & LOGO DI PLAYER BAR BAWAH
+    if (!audio) return;
+
     document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
     if(miniLogo && logoUrl) {
         miniLogo.src = logoUrl;
-        miniLogo.alt = title;
+        miniLogo.alt = `Logo ${title} Pemutar Aktif`;
     }
 
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -119,17 +108,17 @@ function playStream(url, type, title, id, logoUrl) {
 
     if (hls) { 
         hls.destroy(); 
-        hls = null; 
+        hls = null;
     }
 
     if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked by Browser Policy")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Blocked"));
+        audio.play().catch(e => console.log("Blocked by Browser Policy"));
     }
 }
 
@@ -140,17 +129,5 @@ function toggleFav(targetId) {
         favorites.push(targetId);
     }
     localStorage.setItem('radioFavs', JSON.stringify(favorites));
-    renderRadios();
-}
-
-function switchTab(tab) {
-    currentTab = tab;
-    const tabAll = document.getElementById('tab-all');
-    const tabFav = document.getElementById('tab-fav');
-    
-    if(tabAll && tabFav) {
-        tabAll.classList.toggle('active', tab === 'all');
-        tabFav.classList.toggle('active', tab === 'fav');
-    }
     renderRadios();
 }
