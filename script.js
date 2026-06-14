@@ -28,6 +28,8 @@ function showDefaultPlayerIcon() {
     avatarWrapper.innerHTML = '';
     const icon = document.createElement('i');
     icon.className = 'fa-solid fa-tower-broadcast default-player-icon';
+    icon.style.display = 'inline-block';
+    icon.style.animation = 'pulseIcon 2s infinite ease-in-out';
     avatarWrapper.appendChild(icon);
 }
 
