@@ -73,14 +73,13 @@ function renderRadios() {
         card.className = 'radio-card';
         card.id = `card-${radio.id}`;
         
-        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kata Kunci
         card.innerHTML = `
-            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
+            <button class="fav-btn" aria-label="Tambah ke Favorit" data-id="${radio.id}">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div class="card-clickable">
                 <div class="img-frame">
-                    <img src="${radio.logo}" alt="Streaming Live ${radio.title} Indonesia Online" title="${radio.title} Player Pro" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+                    <img src="${radio.logo}" alt="${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
                 </div>
                 <h3>${radio.title}</h3>
                 <span class="live-badge">● LIVE</span>
@@ -106,16 +105,13 @@ function playStream(url, type, title, id, logoUrl) {
     
     if (!audio) return;
 
-    // 1. UPDATE DYNAMIC TITLE BROWSER (SEO CTR)
-    document.title = "▶️ " + title + " | Radio Player Pro";
-    
-    // 2. UPDATE TEXT DI PLAYER BAR BAWAH
+    // 1. UPDATE TEXT DI PLAYER BAR BAWAH
     document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
     
-    // 3. LOGIKA PENANGANAN GAMBAR/LOGO (Menghilangkan kekosongan saat sepi)
+    // 2. LOGIKA FIX AMAN GAMBAR (Sembunyikan SVG ikon saat memutar radio asli)
     if (miniLogo && logoUrl) {
         miniLogo.src = logoUrl;
-        miniLogo.alt = `Logo ${title} Pemutar Aktif`;
+        miniLogo.alt = title;
         miniLogo.style.display = "block"; 
         
         if (defaultIcon) {
@@ -126,12 +122,10 @@ function playStream(url, type, title, id, logoUrl) {
         if (defaultIcon) defaultIcon.style.display = "block";
     }
 
-    // 4. MANAGEMENT CLASS ACTIVE CARD
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     const currentCard = document.getElementById(`card-${id}`);
     if (currentCard) currentCard.classList.add('playing');
 
-    // 5. ENGINE STREAM AUDIO (HLS & MP3)
     if (hls) { 
         hls.destroy(); 
         hls = null; 
@@ -141,10 +135,10 @@ function playStream(url, type, title, id, logoUrl) {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked System Stream")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Blocked System Audio"));
+        audio.play().catch(e => console.log("Blocked"));
     }
 }
 
