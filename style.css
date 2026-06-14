@@ -99,3 +99,44 @@ audio { width: 90%; max-width: 500px; height: 35px; }
 @media (max-width: 480px) {
     #radio-list { grid-template-columns: repeat(2, 1fr); padding: 15px; }
 }
+
+/* --- Sisa kode style.css Anda yang lama tetap dibiarkan di atas --- */
+
+/* Gaya Tambahan untuk Teks Optimasi SEO Organik */
+.seo-intro-content {
+    max-width: 1000px;
+    margin: 20px auto 10px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.seo-intro-content h2 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.seo-intro-content p {
+    font-size: 13px;
+    color: #b3b3b3;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Memperbaiki posisi footer agar membungkus player container secara teratur */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+/* Mengurangi padding bawah body agar pas setelah ditambah teks SEO */
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    margin: 0;
+    padding-bottom: 160px; /* Disesuaikan */
+}
