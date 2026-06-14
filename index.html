@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags Utama -->
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
@@ -11,27 +11,27 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://andityas.github.io/radio-online/">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook SEO -->
     <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia Online Terlengkap">
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis tanpa buffering.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://andityas.github.io/radio-online/">
 
-    <!-- Twitter -->
+    <!-- Twitter SEO -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
 
-    <!-- Google Fonts Inter -->
+    <!-- Google Fonts Inter untuk Tipografi Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-    <!-- HLS.js -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Memuat HLS.js secara Defer -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Schema Markup -->
+    <!-- Schema Markup JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,6 +46,7 @@
 </head>
 <body>
 
+    <!-- Header Dashboard -->
     <header>
         <div class="header-badge">
             <span class="tagline">Vibing Everyday No Cap 🧢</span>
@@ -66,12 +67,15 @@
         </div>
     </header>
 
+    <!-- Konten Utama -->
     <main>
+        <!-- Teks Intro SEO Organik -->
         <section class="seo-intro-content">
             <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
             <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
         </section>
 
+        <!-- Grid Daftar Radio -->
         <section id="radio-list-container" aria-label="Daftar Stasiun Radio">
             <div id="radio-list">
                 <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
@@ -79,9 +83,10 @@
         </section>
     </main>
 
-    <!-- Floating Player Bar (Redesigned) -->
+    <!-- Master Floating App Player -->
     <footer>
         <div class="player-container">
+            <!-- Sisi Kiri: Detail Musik Aktif -->
             <div class="player-meta-block">
                 <div class="avatar-mini-wrapper">
                     <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Mini Logo">
@@ -89,24 +94,21 @@
                 <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
             </div>
             
+            <!-- Sisi Tengah: Kontrol Pemutar -->
             <div class="player-controls-block">
-                <button id="stop-btn" class="ctrl-btn stop-btn" title="Stop"><i class="stop-icon">⏹️</i></button>
-                <button id="play-pause-btn" class="ctrl-btn play-btn" title="Play/Pause"><span id="play-pause-icon">▶️</span></button>
-                <div class="volume-wrapper">
-                    <span class="volume-icon">🔊</span>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8">
-                </div>
+                <audio id="player" controls aria-label="Audio Player"></audio>
             </div>
             
+            <!-- Sisi Kanan: Signature Developer -->
             <div class="player-signature-block">
                 <div class="signature">
                     Manifested with ❤️ by <span class="andit-name">Andit</span>
                 </div>
             </div>
         </div>
-        <audio id="player" style="display: none;"></audio>
     </footer>
 
+    <!-- Script Utama -->
     <script src="script.js"></script>
 </body>
 </html>
