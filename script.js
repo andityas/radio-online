@@ -16,7 +16,11 @@ const volumeSlider = document.getElementById('volume-slider');
 const nowPlayingDiv = document.getElementById('now-playing');
 const currentLogo = document.getElementById('player-current-logo');
 
-// Inisialisasi event listener
+// Fallback gambar SVG
+function handleImageError(img, fallbackText = 'R') {
+    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%233b82f6'/%3E%3Ctext x='50' y='55' font-size='14' text-anchor='middle' fill='%23ffffff'%3E${fallbackText.charAt(0)}%3C/text%3E%3C/svg%3E`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadRadios();
     if (searchInput) searchInput.addEventListener('input', () => renderRadios());
@@ -44,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadRadios() {
     try {
-        // PASTIKAN NAMA FILE JSON SESUAI: data.json
         const res = await fetch('data.json?v=' + Date.now());
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         allRadios = await res.json();
@@ -87,7 +90,7 @@ function renderRadios() {
                 <button class="fav-btn" data-id="${radio.id}">${isFav ? '❤️' : '🤍'}</button>
                 <div class="card-clickable">
                     <div class="img-frame">
-                        <img src="${radio.logo}" alt="${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/100?text=Radio'">
+                        <img src="${radio.logo}" alt="${radio.title}" loading="lazy" data-fallback="${radio.title}">
                     </div>
                     <h3>${radio.title}</h3>
                     <span class="live-badge">● LIVE</span>
@@ -96,7 +99,7 @@ function renderRadios() {
         `;
     }).join('');
 
-    // Attach event listeners
+    // Event listeners + fallback gambar
     document.querySelectorAll('.radio-card').forEach(card => {
         const clickable = card.querySelector('.card-clickable');
         if (clickable) {
@@ -113,6 +116,13 @@ function renderRadios() {
                 toggleFav(parseInt(favBtn.dataset.id));
             });
         }
+        // Fallback gambar kartu
+        const img = card.querySelector('img');
+        if (img && img.complete && img.naturalWidth === 0) {
+            handleImageError(img, img.getAttribute('data-fallback') || 'R');
+        } else if (img) {
+            img.onerror = () => handleImageError(img, img.getAttribute('data-fallback') || 'R');
+        }
     });
 }
 
@@ -122,7 +132,13 @@ function playStream(station) {
 
     currentStation = station;
     nowPlayingDiv.innerHTML = `<b>${station.title}</b><span class="sub-vibe">Now Vibing</span>`;
-    currentLogo.src = station.logo;
+    
+    // Set logo player bar dengan fallback
+    if (currentLogo) {
+        currentLogo.src = station.logo;
+        currentLogo.onerror = () => handleImageError(currentLogo, station.title.charAt(0));
+    }
+    
     document.title = `▶️ ${station.title} | Radio Player Pro`;
 
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -156,7 +172,10 @@ function stopPlayback(resetUI = true) {
     if (resetUI) {
         currentStation = null;
         nowPlayingDiv.innerHTML = `Lagi sepi nih, dengerin sesuatu yuk... 🎧`;
-        currentLogo.src = 'https://via.placeholder.com/150?text=Radio';
+        if (currentLogo) {
+            currentLogo.src = 'https://via.placeholder.com/150?text=Radio';
+            currentLogo.onerror = () => handleImageError(currentLogo, '🎵');
+        }
         document.title = 'Radio Player Pro';
         playPauseBtn.textContent = '▶️';
         document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -194,4 +213,9 @@ function switchTab(tab) {
         }
     }
     renderRadios();
+}
+
+// Set fallback awal untuk currentLogo jika placeholder gagal
+if (currentLogo) {
+    currentLogo.onerror = () => handleImageError(currentLogo, '🎵');
 }
