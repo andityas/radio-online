@@ -4,7 +4,6 @@ let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
 let currentStation = null;
 
-// DOM elements
 const audio = document.getElementById('player');
 const searchInput = document.getElementById('search-input');
 const tabAll = document.getElementById('tab-all');
@@ -17,23 +16,21 @@ const volumeSlider = document.getElementById('volume-slider');
 const nowPlayingDiv = document.getElementById('now-playing');
 const avatarWrapper = document.querySelector('.avatar-mini-wrapper');
 
-// Helper: fallback gambar SVG
 function handleImageError(img, fallbackText = 'R') {
     img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%233b82f6'/%3E%3Ctext x='50' y='55' font-size='14' text-anchor='middle' fill='%23ffffff'%3E${fallbackText.charAt(0)}%3C/text%3E%3C/svg%3E`;
 }
 
-// Tampilkan ikon default (pemancar radio berdenyut) saat player sepi
 function showDefaultPlayerIcon() {
     if (!avatarWrapper) return;
     avatarWrapper.innerHTML = '';
     const icon = document.createElement('i');
     icon.className = 'fa-solid fa-tower-broadcast default-player-icon';
+    // pastikan style inline untuk menghindari override
     icon.style.display = 'inline-block';
     icon.style.animation = 'pulseIcon 2s infinite ease-in-out';
     avatarWrapper.appendChild(icon);
 }
 
-// Ganti ikon default dengan gambar logo station
 function setPlayerLogo(station) {
     if (!avatarWrapper) return;
     avatarWrapper.innerHTML = '';
@@ -67,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nowPlayingDiv.innerHTML = `<b>${currentStation.title}</b><span class="sub-vibe">Gagal memutar</span>`;
         }
     });
-
-    // Tampilkan ikon default di awal
-    showDefaultPlayerIcon();
+    showDefaultPlayerIcon(); // tampilkan ikon default di awal
 });
 
 async function loadRadios() {
@@ -98,16 +93,13 @@ function renderRadios() {
         const matchSearch = r.title.toLowerCase().includes(keyword);
         return matchTab && matchSearch;
     });
-
     if (radioCount) {
         radioCount.innerText = keyword ? `Ditemukan ${filtered.length} stasiun untuk "${keyword}"` : `Streaming ${filtered.length} Stasiun Radio Indonesia`;
     }
-
     if (filtered.length === 0) {
         radioList.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;">😢 Stasiun tidak ditemukan.</div>`;
         return;
     }
-
     radioList.innerHTML = filtered.map(radio => {
         const isFav = favorites.includes(Number(radio.id));
         const isActive = currentStation && currentStation.id === radio.id && !audio.paused;
@@ -124,8 +116,6 @@ function renderRadios() {
             </article>
         `;
     }).join('');
-
-    // Event listeners dan fallback gambar
     document.querySelectorAll('.radio-card').forEach(card => {
         const clickable = card.querySelector('.card-clickable');
         if (clickable) {
@@ -156,16 +146,13 @@ function renderRadios() {
 function playStream(station) {
     if (currentStation && currentStation.id === station.id && !audio.paused) return;
     stopPlayback(false);
-
     currentStation = station;
     nowPlayingDiv.innerHTML = `<b>${station.title}</b><span class="sub-vibe">Now Vibing</span>`;
     setPlayerLogo(station);
     document.title = `▶️ ${station.title} | Radio Player Pro`;
-
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
     const activeCard = document.querySelector(`.radio-card[data-id="${station.id}"]`);
     if (activeCard) activeCard.classList.add('playing');
-
     const isHls = station.streamUrl && station.streamUrl.includes('.m3u8');
     if (isHls && typeof Hls !== 'undefined' && Hls.isSupported()) {
         if (hlsInstance) hlsInstance.destroy();
@@ -173,9 +160,7 @@ function playStream(station) {
         hlsInstance.loadSource(station.streamUrl);
         hlsInstance.attachMedia(audio);
         hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.warn(e)));
-        hlsInstance.on(Hls.Events.ERROR, (_, data) => {
-            if (data.fatal) console.error('HLS error', data);
-        });
+        hlsInstance.on(Hls.Events.ERROR, (_, data) => { if (data.fatal) console.error('HLS error', data); });
     } else {
         audio.src = station.streamUrl;
         audio.play().catch(e => console.warn(e));
@@ -183,10 +168,7 @@ function playStream(station) {
 }
 
 function stopPlayback(resetUI = true) {
-    if (hlsInstance) {
-        hlsInstance.destroy();
-        hlsInstance = null;
-    }
+    if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
     audio.pause();
     audio.src = '';
     audio.load();
@@ -202,19 +184,13 @@ function stopPlayback(resetUI = true) {
 
 function togglePlayPause() {
     if (!currentStation) return;
-    if (audio.paused) {
-        audio.play().catch(e => console.warn(e));
-    } else {
-        audio.pause();
-    }
+    if (audio.paused) audio.play().catch(e => console.warn(e));
+    else audio.pause();
 }
 
 function toggleFav(id) {
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-    } else {
-        favorites.push(id);
-    }
+    if (favorites.includes(id)) favorites = favorites.filter(f => f !== id);
+    else favorites.push(id);
     localStorage.setItem('radioFavs', JSON.stringify(favorites));
     renderRadios();
 }
@@ -222,13 +198,8 @@ function toggleFav(id) {
 function switchTab(tab) {
     currentTab = tab;
     if (tabAll && tabFav) {
-        if (tab === 'all') {
-            tabAll.classList.add('active');
-            tabFav.classList.remove('active');
-        } else {
-            tabFav.classList.add('active');
-            tabAll.classList.remove('active');
-        }
+        if (tab === 'all') { tabAll.classList.add('active'); tabFav.classList.remove('active'); }
+        else { tabFav.classList.add('active'); tabAll.classList.remove('active'); }
     }
     renderRadios();
 }
