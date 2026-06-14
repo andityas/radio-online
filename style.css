@@ -187,13 +187,15 @@ h1 {
 }
 
 .radio-card img { 
-    width: 100%; 
-    border-radius: 12px; 
-    aspect-ratio: 1/1; 
-    object-fit: contain; /* FIX: Mengubah cover menjadi contain agar logo utuh & gak kepotong */
-    background-color: #ffffff; /* Menambahkan background putih agar logo menyatu dengan rapi */
-    padding: 10px; /* Memberikan jarak aman di dalam kotak agar logo tidak mentok ke pinggir */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    width: 90px;          /* FIX: Batasi lebar maksimal agar tidak kegedean */
+    height: 90px;         /* FIX: Batasi tinggi agar tetap simetris 1:1 */
+    object-fit: contain;  /* Memastikan logo radio pas dan tidak terpotong */
+    background-color: #ffffff; 
+    border-radius: 50%;   /* Mengubah jadi bulat rapi (ala Spotify/Apple Music) */
+    padding: 12px;        /* Jarak aman di dalam bulatannya */
+    margin: 10px auto 15px auto; /* Memposisikan logo pas di tengah-tengah kartu */
+    display: block;       /* Mengaktifkan fungsi margin auto */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 .radio-card h3 { 
