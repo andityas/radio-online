@@ -254,5 +254,165 @@
     "streamUrl": "https://stream.denger.in/musik.mp3",
     "type": "audio/mpeg",
     "favorite": false
+  },
+  {
+    "id": 33,
+    "title": "Ringkas RadioNet Cirebon",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/144127.v12.png",
+    "streamUrl": "http://uk6freenew.listen2myradio.com:20828/;",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 34,
+    "title": "Fourtyfive Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/148288.v3.png",
+    "streamUrl": "https://a5.siar.us/listen/fourtyfiveradio/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 35,
+    "title": "Mettaswara Hits",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/113955.v11.png",
+    "streamUrl": "https://mettaswara.com:8700/hits",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 36,
+    "title": "RD Revival Rocks!",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/131296.v5.png",
+    "streamUrl": "https://stream.zeno.fm/wuznwqnzgk3uv",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 37,
+    "title": "Bonas Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/156775.v1.png",
+    "streamUrl": "https://bonas-radio.nailsstethic.com:8000/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 38,
+    "title": "Nuswantara Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/156204.v1.png",
+    "streamUrl": "https://a12.siar.us/listen/nuswantararadio/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 39,
+    "title": "Kard Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/101161.v13.png",
+    "streamUrl": "https://stream.zeno.fm/38bvpz8xzp8uv",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 40,
+    "title": "ZORA",
+    "logo": "https://cdn.onlineradiobox.com/img/l/2/19102.v7.png",
+    "streamUrl": "https://s1.gntr.net/listen/zora_radio/zora",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 41,
+    "title": "SANews Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/156564.v1.png",
+    "streamUrl": "https://s7.alhastream.com:8350/radio",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 42,
+    "title": "YOURTAS RADIO",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/89965.v14.png",
+    "streamUrl": "https://stream.zeno.fm/9eu2z4y1pufvv",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 43,
+    "title": "Semarak FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/155551.v2.png",
+    "streamUrl": "https://ssg.streamingmurah.com:8076/",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 44,
+    "title": "Ine Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/155597.v5.png",
+    "streamUrl": "https://s3.alhastream.com:8060/radio",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 45,
+    "title": "Crown Media Center Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/152954.v2.png",
+    "streamUrl": "https://stream.crownmediacenter.my.id/listen/cmcradio/station2.aac",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 46,
+    "title": "Keilove FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/154800.v3.png",
+    "streamUrl": "https://s3.alhastream.com:8440/keilove",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 47,
+    "title": "80s Radio Hits",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/71605.v58.png",
+    "streamUrl": "https://stream.zeno.fm/wy1pbnedd3quv",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 48,
+    "title": "Bontang Streamers",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/96091.v21.png",
+    "streamUrl": "http://atletik.biz.id:8000/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 49,
+    "title": "Homebrew Station",
+    "logo": "https://cdn.onlineradiobox.com/img/l/3/157643.v1.png",
+    "streamUrl": "https://radio.homebrew.my.id/listen/homebrew-radio/radio.mp3",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 50,
+    "title": "Free FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/81395.v9.png",
+    "streamUrl": "https://rocafmadrid.radioca.st/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 51,
+    "title": "Hits Radio Kandangan",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/149756.v3.png",
+    "streamUrl": "http://45.64.97.82:8030/stream",
+    "type": "audio/mpeg",
+    "favorite": false
+  },
+  {
+    "id": 52,
+    "title": "KISI",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/19460.v11.png",
+    "streamUrl": "https://live.kisifm.com/listen/kisifm/;",
+    "type": "audio/mpeg",
+    "favorite": false
   }
 ]
