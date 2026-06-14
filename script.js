@@ -1,205 +1,175 @@
-let hlsInstance = null;
+let hls = null;
 let allRadios = [];
 let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
-let currentStation = null;
-
-const audio = document.getElementById('player');
-const searchInput = document.getElementById('search-input');
-const tabAll = document.getElementById('tab-all');
-const tabFav = document.getElementById('tab-fav');
-const radioList = document.getElementById('radio-list');
-const radioCount = document.getElementById('radio-count');
-const playPauseBtn = document.getElementById('play-pause-btn');
-const stopBtn = document.getElementById('stop-btn');
-const volumeSlider = document.getElementById('volume-slider');
-const nowPlayingDiv = document.getElementById('now-playing');
-const avatarWrapper = document.querySelector('.avatar-mini-wrapper');
-
-function handleImageError(img, fallbackText = 'R') {
-    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%233b82f6'/%3E%3Ctext x='50' y='55' font-size='14' text-anchor='middle' fill='%23ffffff'%3E${fallbackText.charAt(0)}%3C/text%3E%3C/svg%3E`;
-}
-
-function showDefaultPlayerIcon() {
-    if (!avatarWrapper) return;
-    avatarWrapper.innerHTML = '';
-    const icon = document.createElement('i');
-    icon.className = 'fa-solid fa-tower-broadcast default-player-icon';
-    // pastikan style inline untuk menghindari override
-    icon.style.display = 'inline-block';
-    icon.style.animation = 'pulseIcon 2s infinite ease-in-out';
-    avatarWrapper.appendChild(icon);
-}
-
-function setPlayerLogo(station) {
-    if (!avatarWrapper) return;
-    avatarWrapper.innerHTML = '';
-    const img = document.createElement('img');
-    img.src = station.logo;
-    img.alt = station.title;
-    img.onerror = () => handleImageError(img, station.title.charAt(0));
-    avatarWrapper.appendChild(img);
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     loadRadios();
-    if (searchInput) searchInput.addEventListener('input', () => renderRadios());
-    if (tabAll) tabAll.addEventListener('click', () => switchTab('all'));
-    if (tabFav) tabFav.addEventListener('click', () => switchTab('fav'));
-    if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
-    if (stopBtn) stopBtn.addEventListener('click', () => stopPlayback(true));
-    if (volumeSlider) volumeSlider.addEventListener('input', (e) => { audio.volume = e.target.value; });
-    audio.volume = volumeSlider ? volumeSlider.value : 0.8;
 
-    audio.addEventListener('play', () => {
-        playPauseBtn.textContent = '⏸️';
-        document.title = `▶️ ${currentStation?.title || 'Radio'} | Radio Player Pro`;
-    });
-    audio.addEventListener('pause', () => {
-        playPauseBtn.textContent = '▶️';
-        document.title = 'Radio Player Pro';
-    });
-    audio.addEventListener('error', () => {
-        if (currentStation) {
-            nowPlayingDiv.innerHTML = `<b>${currentStation.title}</b><span class="sub-vibe">Gagal memutar</span>`;
-        }
-    });
-    showDefaultPlayerIcon(); // tampilkan ikon default di awal
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => renderRadios());
+    }
+
+    const tabAll = document.getElementById('tab-all');
+    const tabFav = document.getElementById('tab-fav');
+
+    if (tabAll && tabFav) {
+        tabAll.addEventListener('click', () => switchTab('all'));
+        tabFav.addEventListener('click', () => switchTab('fav'));
+    }
 });
 
 async function loadRadios() {
+    const list = document.getElementById('radio-list');
     try {
-        const res = await fetch('data.json?v=' + Date.now());
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const res = await fetch('radios-id.json?v=' + Date.now());
+        if (!res.ok) throw new Error();
         allRadios = await res.json();
-        console.log('✅ Data loaded:', allRadios.length);
         renderRadios();
     } catch (e) {
-        console.error(e);
-        radioList.innerHTML = `
-            <div style="grid-column:1/-1;text-align:center;padding:40px;">
-                ❌ Gagal memuat data. Cek file <strong>data.json</strong>.<br>
-                Pesan error: ${e.message}
+        list.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:50px;">
+                <h4>JSON Gak Ketemu 💀</h4>
+                <p>Cek filenya lagi ya, bestie.</p>
             </div>`;
-        if (radioCount) radioCount.innerText = 'Gagal memuat stasiun';
     }
 }
 
 function renderRadios() {
-    if (!allRadios.length) return;
-    const keyword = searchInput?.value.toLowerCase().trim() || '';
-    let filtered = allRadios.filter(r => {
-        const matchTab = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
-        const matchSearch = r.title.toLowerCase().includes(keyword);
-        return matchTab && matchSearch;
+    const list = document.getElementById('radio-list');
+    const countElement = document.getElementById('radio-count');
+    const searchInput = document.getElementById('search-input');
+    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+    const data = allRadios.filter(r => {
+        const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
+        const isMatch = r.title.toLowerCase().includes(keyword);
+        return isFav && isMatch;
     });
-    if (radioCount) {
-        radioCount.innerText = keyword ? `Ditemukan ${filtered.length} stasiun untuk "${keyword}"` : `Streaming ${filtered.length} Stasiun Radio Indonesia`;
+
+    if (countElement) {
+        if (keyword !== "") {
+            countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
+        } else {
+            countElement.innerText = `Streaming ${data.length} Stasiun Radio Indonesia`;
+        }
     }
-    if (filtered.length === 0) {
-        radioList.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;">😢 Stasiun tidak ditemukan.</div>`;
+
+    list.innerHTML = '';
+
+    if (data.length === 0) {
+        list.innerHTML = `
+            <div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
+                <h4>Gak Ketemu Nih... 🚩</h4>
+                <p>Coba cari stasiun lain atau cek playlist favoritmu.</p>
+            </div>`;
         return;
     }
-    radioList.innerHTML = filtered.map(radio => {
+
+    data.forEach(radio => {
         const isFav = favorites.includes(Number(radio.id));
-        const isActive = currentStation && currentStation.id === radio.id && !audio.paused;
-        return `
-            <article class="radio-card ${isActive ? 'playing' : ''}" data-id="${radio.id}">
-                <button class="fav-btn" data-id="${radio.id}">${isFav ? '❤️' : '🤍'}</button>
-                <div class="card-clickable">
-                    <div class="img-frame">
-                        <img src="${radio.logo}" alt="${radio.title}" loading="lazy" data-fallback="${radio.title}">
-                    </div>
-                    <h3>${radio.title}</h3>
-                    <span class="live-badge">● LIVE</span>
+        const card = document.createElement('article');
+        card.className = 'radio-card';
+        card.id = `card-${radio.id}`;
+        
+        // OPTIMASI SEO GAMBAR: Menggunakan Alt Tag Kontekstual Kata Kunci
+        card.innerHTML = `
+            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
+                ${isFav ? '❤️' : '🤍'}
+            </button>
+            <div class="card-clickable">
+                <div class="img-frame">
+                    <img src="${radio.logo}" alt="Streaming Live ${radio.title} Indonesia Online" title="${radio.title} Player Pro" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
                 </div>
-            </article>
-        `;
-    }).join('');
-    document.querySelectorAll('.radio-card').forEach(card => {
-        const clickable = card.querySelector('.card-clickable');
-        if (clickable) {
-            clickable.addEventListener('click', () => {
-                const id = parseInt(card.dataset.id);
-                const station = allRadios.find(r => r.id === id);
-                if (station) playStream(station);
-            });
-        }
-        const favBtn = card.querySelector('.fav-btn');
-        if (favBtn) {
-            favBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleFav(parseInt(favBtn.dataset.id));
-            });
-        }
-        const img = card.querySelector('img');
-        if (img) {
-            if (img.complete && img.naturalWidth === 0) {
-                handleImageError(img, img.getAttribute('data-fallback') || 'R');
-            } else {
-                img.onerror = () => handleImageError(img, img.getAttribute('data-fallback') || 'R');
-            }
-        }
+                <h3>${radio.title}</h3>
+                <span class="live-badge">● LIVE</span>
+            </div>`;
+        
+        card.querySelector('.fav-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleFav(Number(radio.id));
+        });
+
+        card.querySelector('.card-clickable').addEventListener('click', () => {
+            playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
+        });
+
+        list.appendChild(card);
     });
 }
 
-function playStream(station) {
-    if (currentStation && currentStation.id === station.id && !audio.paused) return;
-    stopPlayback(false);
-    currentStation = station;
-    nowPlayingDiv.innerHTML = `<b>${station.title}</b><span class="sub-vibe">Now Vibing</span>`;
-    setPlayerLogo(station);
-    document.title = `▶️ ${station.title} | Radio Player Pro`;
-    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    const activeCard = document.querySelector(`.radio-card[data-id="${station.id}"]`);
-    if (activeCard) activeCard.classList.add('playing');
-    const isHls = station.streamUrl && station.streamUrl.includes('.m3u8');
-    if (isHls && typeof Hls !== 'undefined' && Hls.isSupported()) {
-        if (hlsInstance) hlsInstance.destroy();
-        hlsInstance = new Hls();
-        hlsInstance.loadSource(station.streamUrl);
-        hlsInstance.attachMedia(audio);
-        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.warn(e)));
-        hlsInstance.on(Hls.Events.ERROR, (_, data) => { if (data.fatal) console.error('HLS error', data); });
+function playStream(url, type, title, id, logoUrl) {
+    const audio = document.getElementById('player');
+    const miniLogo = document.getElementById('player-current-logo');
+    const defaultIcon = document.getElementById('player-default-icon');
+    
+    if (!audio) return;
+
+    // 1. UPDATE DYNAMIC TITLE BROWSER (SEO CTR)
+    document.title = "▶️ " + title + " | Radio Player Pro";
+    
+    // 2. UPDATE TEXT DI PLAYER BAR BAWAH
+    document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
+    
+    // 3. LOGIKA PENANGANAN GAMBAR/LOGO (Menghilangkan kekosongan saat sepi)
+    if (miniLogo && logoUrl) {
+        miniLogo.src = logoUrl;
+        miniLogo.alt = `Logo ${title} Pemutar Aktif`;
+        miniLogo.style.display = "block"; 
+        
+        if (defaultIcon) {
+            defaultIcon.style.display = "none"; 
+        }
     } else {
-        audio.src = station.streamUrl;
-        audio.play().catch(e => console.warn(e));
+        if (miniLogo) miniLogo.style.display = "none";
+        if (defaultIcon) defaultIcon.style.display = "block";
+    }
+
+    // 4. MANAGEMENT CLASS ACTIVE CARD
+    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
+    const currentCard = document.getElementById(`card-${id}`);
+    if (currentCard) currentCard.classList.add('playing');
+
+    // 5. ENGINE STREAM AUDIO (HLS & MP3)
+    if (hls) { 
+        hls.destroy(); 
+        hls = null; 
+    }
+
+    if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
+        hls = new Hls(); 
+        hls.loadSource(url); 
+        hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Blocked System Stream")));
+    } else {
+        audio.src = url; 
+        audio.play().catch(e => console.log("Blocked System Audio"));
     }
 }
 
-function stopPlayback(resetUI = true) {
-    if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
-    audio.pause();
-    audio.src = '';
-    audio.load();
-    if (resetUI) {
-        currentStation = null;
-        nowPlayingDiv.innerHTML = `Lagi sepi nih, dengerin sesuatu yuk... 🎧`;
-        showDefaultPlayerIcon();
-        document.title = 'Radio Player Pro';
-        playPauseBtn.textContent = '▶️';
-        document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
+function toggleFav(targetId) {
+    if (favorites.includes(targetId)) {
+        favorites = favorites.filter(f => f !== targetId);
+    } else {
+        favorites.push(targetId);
     }
-}
-
-function togglePlayPause() {
-    if (!currentStation) return;
-    if (audio.paused) audio.play().catch(e => console.warn(e));
-    else audio.pause();
-}
-
-function toggleFav(id) {
-    if (favorites.includes(id)) favorites = favorites.filter(f => f !== id);
-    else favorites.push(id);
     localStorage.setItem('radioFavs', JSON.stringify(favorites));
     renderRadios();
 }
 
 function switchTab(tab) {
     currentTab = tab;
-    if (tabAll && tabFav) {
-        if (tab === 'all') { tabAll.classList.add('active'); tabFav.classList.remove('active'); }
-        else { tabFav.classList.add('active'); tabAll.classList.remove('active'); }
+    const tabAll = document.getElementById('tab-all');
+    const tabFav = document.getElementById('tab-fav');
+    
+    if(tabAll && tabFav) {
+        const isAll = tab === 'all';
+        tabAll.classList.toggle('active', isAll);
+        tabAll.setAttribute('aria-selected', isAll ? 'true' : 'false');
+        
+        tabFav.classList.toggle('active', !isAll);
+        tabFav.setAttribute('aria-selected', !isAll ? 'true' : 'false');
     }
     renderRadios();
 }
