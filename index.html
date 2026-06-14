@@ -22,14 +22,13 @@
     <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
 
-    <!-- Google Fonts Inter -->
+    <!-- Google Fonts Inter untuk Tipografi Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-    <!-- HLS.js dari CDN -->
+    <!-- Memuat HLS.js secara Defer -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
-    
     <link rel="stylesheet" href="style.css">
 
     <!-- Schema Markup JSON-LD -->
@@ -47,6 +46,7 @@
 </head>
 <body>
 
+    <!-- Header Dashboard -->
     <header>
         <div class="header-badge">
             <span class="tagline">Vibing Everyday No Cap 🧢</span>
@@ -67,12 +67,15 @@
         </div>
     </header>
 
+    <!-- Konten Utama -->
     <main>
+        <!-- Teks Intro SEO Organik -->
         <section class="seo-intro-content">
             <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
             <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
         </section>
 
+        <!-- Grid Daftar Radio -->
         <section id="radio-list-container" aria-label="Daftar Stasiun Radio">
             <div id="radio-list">
                 <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
@@ -80,8 +83,10 @@
         </section>
     </main>
 
+    <!-- Master Floating App Player -->
     <footer>
         <div class="player-container">
+            <!-- Sisi Kiri: Detail Musik Aktif -->
             <div class="player-meta-block">
                 <div class="avatar-mini-wrapper">
                     <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Mini Logo">
@@ -89,10 +94,12 @@
                 <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
             </div>
             
+            <!-- Sisi Tengah: Kontrol Pemutar -->
             <div class="player-controls-block">
                 <audio id="player" controls aria-label="Audio Player"></audio>
             </div>
             
+            <!-- Sisi Kanan: Signature Developer -->
             <div class="player-signature-block">
                 <div class="signature">
                     Manifested with ❤️ by <span class="andit-name">Andit</span>
@@ -101,6 +108,7 @@
         </div>
     </footer>
 
+    <!-- Script Utama -->
     <script src="script.js"></script>
 </body>
 </html>
