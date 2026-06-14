@@ -4,6 +4,7 @@ let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentTab = 'all';
 let currentStation = null;
 
+// DOM elements
 const audio = document.getElementById('player');
 const searchInput = document.getElementById('search-input');
 const tabAll = document.getElementById('tab-all');
@@ -14,11 +15,31 @@ const playPauseBtn = document.getElementById('play-pause-btn');
 const stopBtn = document.getElementById('stop-btn');
 const volumeSlider = document.getElementById('volume-slider');
 const nowPlayingDiv = document.getElementById('now-playing');
-const currentLogo = document.getElementById('player-current-logo');
+const avatarWrapper = document.querySelector('.avatar-mini-wrapper');
 
-// Fallback gambar SVG
+// Helper: fallback gambar SVG
 function handleImageError(img, fallbackText = 'R') {
     img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%233b82f6'/%3E%3Ctext x='50' y='55' font-size='14' text-anchor='middle' fill='%23ffffff'%3E${fallbackText.charAt(0)}%3C/text%3E%3C/svg%3E`;
+}
+
+// Tampilkan ikon default (pemancar radio berdenyut) saat player sepi
+function showDefaultPlayerIcon() {
+    if (!avatarWrapper) return;
+    avatarWrapper.innerHTML = '';
+    const icon = document.createElement('i');
+    icon.className = 'fa-solid fa-tower-broadcast default-player-icon';
+    avatarWrapper.appendChild(icon);
+}
+
+// Ganti ikon default dengan gambar logo station
+function setPlayerLogo(station) {
+    if (!avatarWrapper) return;
+    avatarWrapper.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = station.logo;
+    img.alt = station.title;
+    img.onerror = () => handleImageError(img, station.title.charAt(0));
+    avatarWrapper.appendChild(img);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabAll) tabAll.addEventListener('click', () => switchTab('all'));
     if (tabFav) tabFav.addEventListener('click', () => switchTab('fav'));
     if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlayPause);
-    if (stopBtn) stopBtn.addEventListener('click', stopPlayback);
+    if (stopBtn) stopBtn.addEventListener('click', () => stopPlayback(true));
     if (volumeSlider) volumeSlider.addEventListener('input', (e) => { audio.volume = e.target.value; });
     audio.volume = volumeSlider ? volumeSlider.value : 0.8;
 
@@ -44,6 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nowPlayingDiv.innerHTML = `<b>${currentStation.title}</b><span class="sub-vibe">Gagal memutar</span>`;
         }
     });
+
+    // Tampilkan ikon default di awal
+    showDefaultPlayerIcon();
 });
 
 async function loadRadios() {
@@ -99,7 +123,7 @@ function renderRadios() {
         `;
     }).join('');
 
-    // Event listeners + fallback gambar
+    // Event listeners dan fallback gambar
     document.querySelectorAll('.radio-card').forEach(card => {
         const clickable = card.querySelector('.card-clickable');
         if (clickable) {
@@ -116,12 +140,13 @@ function renderRadios() {
                 toggleFav(parseInt(favBtn.dataset.id));
             });
         }
-        // Fallback gambar kartu
         const img = card.querySelector('img');
-        if (img && img.complete && img.naturalWidth === 0) {
-            handleImageError(img, img.getAttribute('data-fallback') || 'R');
-        } else if (img) {
-            img.onerror = () => handleImageError(img, img.getAttribute('data-fallback') || 'R');
+        if (img) {
+            if (img.complete && img.naturalWidth === 0) {
+                handleImageError(img, img.getAttribute('data-fallback') || 'R');
+            } else {
+                img.onerror = () => handleImageError(img, img.getAttribute('data-fallback') || 'R');
+            }
         }
     });
 }
@@ -132,13 +157,7 @@ function playStream(station) {
 
     currentStation = station;
     nowPlayingDiv.innerHTML = `<b>${station.title}</b><span class="sub-vibe">Now Vibing</span>`;
-    
-    // Set logo player bar dengan fallback
-    if (currentLogo) {
-        currentLogo.src = station.logo;
-        currentLogo.onerror = () => handleImageError(currentLogo, station.title.charAt(0));
-    }
-    
+    setPlayerLogo(station);
     document.title = `▶️ ${station.title} | Radio Player Pro`;
 
     document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -172,10 +191,7 @@ function stopPlayback(resetUI = true) {
     if (resetUI) {
         currentStation = null;
         nowPlayingDiv.innerHTML = `Lagi sepi nih, dengerin sesuatu yuk... 🎧`;
-        if (currentLogo) {
-            currentLogo.src = 'https://via.placeholder.com/150?text=Radio';
-            currentLogo.onerror = () => handleImageError(currentLogo, '🎵');
-        }
+        showDefaultPlayerIcon();
         document.title = 'Radio Player Pro';
         playPauseBtn.textContent = '▶️';
         document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
@@ -213,9 +229,4 @@ function switchTab(tab) {
         }
     }
     renderRadios();
-}
-
-// Set fallback awal untuk currentLogo jika placeholder gagal
-if (currentLogo) {
-    currentLogo.onerror = () => handleImageError(currentLogo, '🎵');
 }
