@@ -1,241 +1,207 @@
-let hls = null;
-let allRadios = [];
-let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
-let currentTab = 'all';
-let currentAudio = null;
+let radioData = []; // Data akan diisi dari data.json
+let favorites = JSON.parse(localStorage.getItem('radio_favs')) || [];
+let currentStation = null;
+let currentTab = 'all'; 
+let hlsInstance = null;
 
-// Data fallback jika JSON gagal dimuat (3 stasiun populer)
-const FALLBACK_RADIOS = [
-    { id: 1, title: "Prambors FM Jakarta", logo: "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png", streamUrl: "https://stream.rcs.revma.com/h77wwp48kxcwv", type: "audio/mpeg", favorite: false },
-    { id: 2, title: "Ardan Radio Bandung", logo: "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png", streamUrl: "https://stream.rcs.revma.com/ugpyzu9n5k3vv", type: "audio/mpeg", favorite: false },
-    { id: 3, title: "Delta FM Jakarta", logo: "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png", streamUrl: "https://stream.rcs.revma.com/k02rmq48kxcwv", type: "audio/mpeg", favorite: false }
-];
+const audio = document.getElementById('audioElement');
+const grid = document.getElementById('radioGrid');
+const searchBar = document.getElementById('searchBar');
+const playerBar = document.getElementById('playerBar');
+const btnPlayPause = document.getElementById('btnPlayPause');
+const playIcon = document.getElementById('playIcon');
+const volumeSlider = document.getElementById('volumeSlider');
+const playerStatus = document.getElementById('playerStatus');
+const liveDot = document.getElementById('liveDot');
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadRadios();
+// 1. Fungsi Mengambil Data JSON
+async function loadData() {
+    try {
+        const response = await fetch('data.json');
+        if (!response.ok) throw new Error('Gagal mengambil data');
+        radioData = await response.json();
+        renderRadio();
+    } catch (error) {
+        console.error(error);
+        grid.innerHTML = `<div class="col-span-full text-center text-red-500 py-10">Gagal memuat data radio. Pastikan dijalankan menggunakan Local Server / GitHub Pages.</div>`;
+    }
+}
 
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', () => renderRadios());
+// 2. Fungsi Render Kartu Radio
+function renderRadio(filterText = '') {
+    grid.innerHTML = '';
+    
+    let filtered = radioData.filter(radio => 
+        radio.title.toLowerCase().includes(filterText.toLowerCase())
+    );
+
+    if (currentTab === 'fav') {
+        filtered = filtered.filter(radio => favorites.includes(radio.id));
     }
 
-    const tabAll = document.getElementById('tab-all');
-    const tabFav = document.getElementById('tab-fav');
-    if (tabAll && tabFav) {
-        tabAll.addEventListener('click', () => switchTab('all'));
-        tabFav.addEventListener('click', () => switchTab('fav'));
+    document.getElementById('favCount').innerText = favorites.length;
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center text-slate-500 py-10">Stasiun tidak ditemukan...</div>`;
+        return;
     }
 
-    // Tangani jika autoplay diblokir (beri petunjuk klik pertama)
-    const audioPlayer = document.getElementById('player');
-    if (audioPlayer) {
-        audioPlayer.addEventListener('error', (e) => {
-            console.warn("Audio error", e);
-            const nowPlaying = document.getElementById('now-playing');
-            if (nowPlaying) nowPlaying.innerHTML = `<b>Gagal memutar</b><span class="sub-vibe">Coba stasiun lain</span>`;
-        });
+    filtered.forEach(radio => {
+        const isFav = favorites.includes(radio.id);
+        const isPlayingThis = currentStation && currentStation.id === radio.id && !audio.paused;
+
+        const card = document.createElement('div');
+        card.className = `bg-slate-800 border ${isPlayingThis ? 'border-indigo-500 shadow-md shadow-indigo-500/10' : 'border-slate-700'} rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:border-slate-500 transition-all group`;
+        
+        card.innerHTML = `
+            <button class="fav-btn absolute top-3 right-3 text-sm cursor-pointer transition-colors ${isFav ? 'text-rose-500' : 'text-slate-500 group-hover:text-slate-300'}" data-id="${radio.id}">
+                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+            </button>
+            <div class="w-20 h-20 bg-white rounded-lg p-1.5 flex items-center justify-center mb-3 border border-slate-700 relative">
+                <img src="${radio.logo}" alt="${radio.title}" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/100x100/1e293b/ffffff?text=Radio'">
+                <button class="play-card-btn absolute inset-0 bg-slate-900/60 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white text-xl" data-id="${radio.id}">
+                    <i class="fa-solid ${isPlayingThis ? 'fa-pause' : 'fa-play'}"></i>
+                </button>
+            </div>
+            <h4 class="font-medium text-sm text-slate-200 truncate w-full px-1">${radio.title}</h4>
+        `;
+        grid.appendChild(card);
+    });
+
+    // Re-bind Event Listeners
+    document.querySelectorAll('.fav-btn').forEach(btn => btn.addEventListener('click', toggleFavorite));
+    document.querySelectorAll('.play-card-btn').forEach(btn => btn.addEventListener('click', handleCardPlay));
+}
+
+// 3. Fungsi Mainkan Audio
+function playRadio(station) {
+    currentStation = station;
+    playerBar.classList.remove('hidden');
+    document.getElementById('currentLogo').src = station.logo;
+    document.getElementById('currentTitle').innerText = station.title;
+
+    liveDot.classList.add('hidden');
+    playerStatus.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Menghubungkan...';
+
+    if (hlsInstance) {
+        hlsInstance.destroy();
+        hlsInstance = null;
+    }
+
+    if (station.streamUrl.includes('.m3u8')) {
+        if (Hls.isSupported()) {
+            hlsInstance = new Hls();
+            hlsInstance.loadSource(station.streamUrl);
+            hlsInstance.attachMedia(audio);
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() {
+                audio.play().catch(err => showPlayError());
+            });
+        } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+            audio.src = station.streamUrl;
+            audio.play().catch(err => showPlayError());
+        } else {
+            playerStatus.innerText = "Browser tidak mendukung format ini.";
+        }
+    } else {
+        audio.src = station.streamUrl;
+        audio.play().catch(err => showPlayError());
+    }
+
+    updateUIPlayState(true);
+}
+
+function showPlayError() {
+    playerStatus.innerText = "⚠️ Gagal memutar streaming.";
+    updateUIPlayState(false);
+}
+
+function updateUIPlayState(isPlaying) {
+    if (isPlaying) {
+        playIcon.className = "fa-solid fa-pause";
+    } else {
+        playIcon.className = "fa-solid fa-play ml-0.5";
+    }
+    renderRadio(searchBar.value);
+}
+
+// 4. Event Handlers
+function handleCardPlay(e) {
+    const id = parseInt(e.currentTarget.getAttribute('data-id'));
+    const station = radioData.find(r => r.id === id);
+
+    if (currentStation && currentStation.id === id) {
+        if (audio.paused) {
+            audio.play();
+            updateUIPlayState(true);
+        } else {
+            audio.pause();
+            updateUIPlayState(false);
+        }
+    } else {
+        playRadio(station);
+    }
+}
+
+function toggleFavorite(e) {
+    e.stopPropagation();
+    const id = parseInt(e.currentTarget.getAttribute('data-id'));
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(favId => favId !== id);
+    } else {
+        favorites.push(id);
+    }
+    localStorage.setItem('radio_favs', JSON.stringify(favorites));
+    renderRadio(searchBar.value);
+}
+
+// 5. Audio Status Events
+audio.addEventListener('playing', () => {
+    liveDot.classList.remove('hidden');
+    playerStatus.innerText = " LIVE / STREAMING";
+});
+
+audio.addEventListener('pause', () => {
+    liveDot.classList.add('hidden');
+    playerStatus.innerText = " DIHENTIKAN";
+    updateUIPlayState(false);
+});
+
+btnPlayPause.addEventListener('click', () => {
+    if (!currentStation) return;
+    if (audio.paused) {
+        audio.play();
+        updateUIPlayState(true);
+    } else {
+        audio.pause();
+        updateUIPlayState(false);
     }
 });
 
-async function loadRadios() {
-    const list = document.getElementById('radio-list');
-    if (!list) return;
+volumeSlider.addEventListener('input', (e) => {
+    const vol = e.target.value;
+    audio.volume = vol;
+    if (vol == 0) volumeIcon.className = "fa-solid fa-volume-xmark text-slate-500";
+    else if (vol < 0.4) volumeIcon.className = "fa-solid fa-volume-low text-slate-400";
+    else volumeIcon.className = "fa-solid fa-volume-high text-slate-400";
+});
 
-    try {
-        // Coba load dari file radios-id.json
-        const res = await fetch('radios-id.json?v=' + Date.now());
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-            allRadios = data;
-            renderRadios();
-            return;
-        } else {
-            throw new Error("Data kosong");
-        }
-    } catch (err) {
-        console.error("Gagal load radios-id.json:", err);
-        // Tampilkan pesan error yang informatif
-        let errorMsg = "";
-        if (err.message === "Failed to fetch") {
-            errorMsg = "Tidak dapat mengakses file radios-id.json. Pastikan Anda menjalankan aplikasi melalui server (bukan file://). Gunakan Live Server di VS Code atau 'python -m http.server'.";
-        } else {
-            errorMsg = `Gagal memuat data: ${err.message}. Gunakan data cadangan.`;
-        }
-        
-        // Tampilkan di container
-        list.innerHTML = `
-            <div style="grid-column:1/-1; text-align:center; padding:30px; background:#111; border-radius:20px;">
-                <h3>⚠️ Gagal memuat data stasiun</h3>
-                <p style="color:#ff8888">${errorMsg}</p>
-                <p>Menampilkan ${FALLBACK_RADIOS.length} stasiun contoh.</p>
-                <button id="retry-load" style="margin-top:15px; padding:8px 20px; background:#1db954; border:none; border-radius:30px; color:black; font-weight:bold; cursor:pointer;">Coba Lagi</button>
-            </div>
-        `;
-        // Gunakan fallback data
-        allRadios = [...FALLBACK_RADIOS];
-        renderRadios();
-        
-        // Pasang event retry
-        const retryBtn = document.getElementById('retry-load');
-        if (retryBtn) {
-            retryBtn.addEventListener('click', () => {
-                loadRadios(); // reload ulang
-            });
-        }
-        return;
-    }
-    
-    renderRadios();
-}
+// 6. Search & Tab Events
+searchBar.addEventListener('input', (e) => renderRadio(e.target.value));
 
-function renderRadios() {
-    const list = document.getElementById('radio-list');
-    const countElement = document.getElementById('radio-count');
-    const searchInput = document.getElementById('search-input');
-    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+document.getElementById('tabAll').addEventListener('click', (e) => {
+    currentTab = 'all';
+    e.target.className = "px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white transition-colors cursor-pointer";
+    document.getElementById('tabFav').className = "px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors cursor-pointer";
+    renderRadio(searchBar.value);
+});
 
-    if (!allRadios.length) {
-        if (list) list.innerHTML = '<div>Belum ada data stasiun.</div>';
-        return;
-    }
+document.getElementById('tabFav').addEventListener('click', (e) => {
+    currentTab = 'fav';
+    e.target.className = "px-4 py-1.5 rounded-full text-sm font-medium bg-indigo-600 text-white transition-colors cursor-pointer";
+    document.getElementById('tabAll').className = "px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors cursor-pointer";
+    renderRadio(searchBar.value);
+});
 
-    const data = allRadios.filter(r => {
-        const isFav = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(Number(r.id)));
-        const isMatch = r.title.toLowerCase().includes(keyword);
-        return isFav && isMatch;
-    });
-
-    if (countElement) {
-        if (keyword !== "") {
-            countElement.innerText = `Ditemukan ${data.length} stasiun untuk "${keyword}"`;
-        } else {
-            countElement.innerText = `Streaming ${data.length} Stasiun Radio Indonesia`;
-        }
-    }
-
-    if (!list) return;
-    list.innerHTML = '';
-
-    if (data.length === 0) {
-        list.innerHTML = `
-            <div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
-                <h4>Gak Ketemu Nih... 🚩</h4>
-                <p>${currentTab === 'fav' ? 'Belum ada stasiun favorit. Tambahkan dengan klik ikon 🤍 di card.' : 'Coba kata kunci lain.'}</p>
-            </div>`;
-        return;
-    }
-
-    data.forEach(radio => {
-        const isFav = favorites.includes(Number(radio.id));
-        const card = document.createElement('article');
-        card.className = 'radio-card';
-        card.id = `card-${radio.id}`;
-        
-        card.innerHTML = `
-            <button class="fav-btn" aria-label="Tambah ${radio.title} ke Favorit" data-id="${radio.id}">
-                ${isFav ? '❤️' : '🤍'}
-            </button>
-            <div class="card-clickable">
-                <div class="img-frame">
-                    <img src="${radio.logo}" alt="Live Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
-                </div>
-                <h3>${escapeHtml(radio.title)}</h3>
-                <span class="live-badge">● LIVE</span>
-            </div>`;
-        
-        const favBtn = card.querySelector('.fav-btn');
-        favBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleFav(Number(radio.id));
-        });
-
-        const clickable = card.querySelector('.card-clickable');
-        clickable.addEventListener('click', () => {
-            playStream(radio.streamUrl, radio.type, radio.title, radio.id, radio.logo);
-        });
-
-        list.appendChild(card);
-    });
-}
-
-function playStream(url, type, title, id, logoUrl) {
-    const audio = document.getElementById('player');
-    const miniLogo = document.getElementById('player-current-logo');
-    
-    // Update title browser
-    document.title = "▶️ " + title + " | Radio Player Pro";
-    
-    // Update text dan logo di player bar
-    const nowPlayingDiv = document.getElementById('now-playing');
-    if (nowPlayingDiv) {
-        nowPlayingDiv.innerHTML = `<b>${escapeHtml(title)}</b><span class="sub-vibe">Now Vibing</span>`;
-    }
-    if (miniLogo && logoUrl) {
-        miniLogo.src = logoUrl;
-        miniLogo.alt = title;
-    }
-
-    // Highlight card yang sedang diputar
-    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-    const currentCard = document.getElementById(`card-${id}`);
-    if (currentCard) currentCard.classList.add('playing');
-
-    // Hentikan HLS sebelumnya
-    if (hls) {
-        hls.destroy();
-        hls = null;
-    }
-
-    // Jika stream .m3u8 dan HLS tersedia
-    if (url.includes('.m3u8') && typeof Hls !== 'undefined' && Hls.isSupported()) {
-        hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            audio.play().catch(e => console.log("Autoplay blocked:", e));
-        });
-        hls.on(Hls.Events.ERROR, (event, data) => {
-            console.error("HLS Error", data);
-            if (nowPlayingDiv) nowPlayingDiv.innerHTML = `<b>${escapeHtml(title)}</b><span class="sub-vibe">Stream error</span>`;
-        });
-    } else {
-        audio.src = url;
-        audio.play().catch(e => {
-            console.log("Play blocked:", e);
-            if (nowPlayingDiv) nowPlayingDiv.innerHTML = `<b>${escapeHtml(title)}</b><span class="sub-vibe">Klik play manual</span>`;
-        });
-    }
-}
-
-function toggleFav(targetId) {
-    if (favorites.includes(targetId)) {
-        favorites = favorites.filter(f => f !== targetId);
-    } else {
-        favorites.push(targetId);
-    }
-    localStorage.setItem('radioFavs', JSON.stringify(favorites));
-    renderRadios();
-}
-
-function switchTab(tab) {
-    currentTab = tab;
-    const tabAll = document.getElementById('tab-all');
-    const tabFav = document.getElementById('tab-fav');
-    
-    if (tabAll && tabFav) {
-        tabAll.classList.toggle('active', tab === 'all');
-        tabFav.classList.toggle('active', tab === 'fav');
-    }
-    renderRadios();
-}
-
-// Helper untuk menghindari XSS
-function escapeHtml(str) {
-    return str.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    });
-}
+// 7. Boot Pertama Kali
+audio.volume = volumeSlider.value;
+loadData(); // Memanggil fetch data JSON
