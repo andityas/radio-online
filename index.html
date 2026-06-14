@@ -22,11 +22,16 @@
     <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta name="twitter:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
 
-    <!-- Memuat HLS.js secara Defer untuk mempercepat loading speed halaman (Faktor Penting SEO Core Web Vitals) -->
+    <!-- Google Fonts Inter untuk Tipografi Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Memuat HLS.js secara Defer -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Schema Markup JSON-LD untuk SEO Hasil Pencarian Google -->
+    <!-- Schema Markup JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -41,31 +46,36 @@
 </head>
 <body>
 
-    <!-- Header Semantik -->
+    <!-- Header Dashboard -->
     <header>
-        <span class="tagline">Vibing Everyday No Cap 🧢</span>
-        <h1>🎵 RADIO PLAYER PRO</h1>
-        
+        <div class="header-badge">
+            <span class="tagline">Vibing Everyday No Cap 🧢</span>
+        </div>
+        <h1>RADIO PLAYER PRO</h1>
         <p id="radio-count">Menghubungkan frekuensi...</p>
 
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
+            <div class="search-box-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
+            </div>
         </div>
+        
         <div class="tabs">
             <button class="tab-btn active" id="tab-all">All Vibes</button>
             <button class="tab-btn" id="tab-fav">My Faves ❤️</button>
         </div>
     </header>
 
-    <!-- Konten Utama Semantik -->
+    <!-- Konten Utama -->
     <main>
-        <!-- Teks Intro SEO Organik (Tidak disembunyikan lewat display:none agar ramah crawler Google) -->
+        <!-- Teks Intro SEO Organik -->
         <section class="seo-intro-content">
             <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
-            <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit di Jakarta, Bandung, Surabaya secara live 24 jam tanpa interupsi buffer.</p>
+            <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
         </section>
 
-        <!-- Container Grid Daftar Radio -->
+        <!-- Grid Daftar Radio -->
         <section id="radio-list-container" aria-label="Daftar Stasiun Radio">
             <div id="radio-list">
                 <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
@@ -73,18 +83,32 @@
         </section>
     </main>
 
-    <!-- Floating Player Area -->
+    <!-- Master Floating App Player -->
     <footer>
         <div class="player-container">
-            <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
-            <audio id="player" controls aria-label="Audio Player"></audio>
-            <div class="signature">
-                Manifested with ❤️ by <span class="andit-name">Andit</span>
+            <!-- Sisi Kiri: Detail Musik Aktif -->
+            <div class="player-meta-block">
+                <div class="avatar-mini-wrapper">
+                    <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Mini Logo">
+                </div>
+                <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+            </div>
+            
+            <!-- Sisi Tengah: Kontrol Pemutar -->
+            <div class="player-controls-block">
+                <audio id="player" controls aria-label="Audio Player"></audio>
+            </div>
+            
+            <!-- Sisi Kanan: Signature Developer -->
+            <div class="player-signature-block">
+                <div class="signature">
+                    Manifested with ❤️ by <span class="andit-name">Andit</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Memuat Script Utama di Akhir Halaman -->
+    <!-- Script Utama -->
     <script src="script.js"></script>
 </body>
 </html>
