@@ -173,5 +173,180 @@
     "logo": "https://cdn.onlineradiobox.com/img/l/1/73661.v8.png",
     "streamUrl": "http://i.klikhost.com:9014/;",
     "type": "audio/mpeg"
+  },
+  {
+    "id": 146,
+    "title": "Radio SJFM Juwana",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/73661.v8.png",
+    "streamUrl": "http://i.klikhost.com:9014/;",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 147,
+    "title": "Radio Swara Koncotani",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/75278.v6.png",
+    "streamUrl": "https://r5.siar.us:8711/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 148,
+    "title": "Bens Radio 106.2 FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/2/19062.v9.png",
+    "streamUrl": "https://streaming.bensradio.com:8522/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 149,
+    "title": "Medan FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/19318.v8.png",
+    "streamUrl": "https://sc.medanfm.id/;",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 150,
+    "title": "MTV Rewind",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/124124.v3.png",
+    "streamUrl": "https://stream.zeno.fm/l8brto4lw3atv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 151,
+    "title": "KARMILA FM 107.9",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/123878.v48.png",
+    "streamUrl": "https://r8.siar.us:8030/karmilafm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 152,
+    "title": "Jakarta Rock Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/110038.v4.png",
+    "streamUrl": "https://stream.zeno.fm/cy0zetda9e9uv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 153,
+    "title": "Radio Maria",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/19107.v9.png",
+    "streamUrl": "https://dreamsiteradiocp2.com/proxy/rmindonesia2?mp=/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 154,
+    "title": "Radio Pelita Kasih",
+    "logo": "https://cdn.onlineradiobox.com/img/l/3/19043.v11.png",
+    "streamUrl": "https://streaming.classynetradio.com:8040/rpkfm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 155,
+    "title": "Jakarta The Classics radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/75028.v25.png",
+    "streamUrl": "https://stream.zeno.fm/gx0pazemknzuv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 156,
+    "title": "Andika FM (Kediri)",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/139990.v4.png",
+    "streamUrl": "https://r5.siar.us:1057/andikafm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 157,
+    "title": "UB Radio 107.5 FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/75438.v14.png",
+    "streamUrl": "https://r8.siar.us:8120/ubradio",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 158,
+    "title": "Suara Islam!",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/126079.v7.png",
+    "streamUrl": "https://c4.siar.us:8065/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 159,
+    "title": "SuaraSoneta Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/19557.v5.png",
+    "streamUrl": "https://a2.siar.us/listen/suarasoneta/radio.mp3",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 160,
+    "title": "Kharisma FM - Pare Kediri",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/20376.v11.png",
+    "streamUrl": "http://stream.kharismafm.com:9550/kharismafm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 161,
+    "title": "Radio Kesehatan",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/72468.v16.png",
+    "streamUrl": "http://pu.klikhost.com:8202/radiokesehatan",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 162,
+    "title": "Radio Badratun FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/79767.v54.png",
+    "streamUrl": "https://stream.badratunmedia.id/radio/badratunfm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 163,
+    "title": "Retrosquad Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/118949.v13.png",
+    "streamUrl": "https://radio.retrosquad.id/listen/retrosquad/mid",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 164,
+    "title": "Pop FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/133138.v3.png",
+    "streamUrl": "https://i.klikhost.com/8272/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 165,
+    "title": "Radio Magelang FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/2/79562.v6.png",
+    "streamUrl": "http://202.65.114.229:9952/;",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 166,
+    "title": "SUARA GRATIA FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/1/19681.v9.png",
+    "streamUrl": "https://ssg.streamingmurah.com:8224/;",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 167,
+    "title": "Spirit Excellent",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/84967.v17.png",
+    "streamUrl": "https://radio.spirittoc.com:8060/EXCELLENT",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 168,
+    "title": "MTV 00s",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/124560.v3.png",
+    "streamUrl": "https://stream.zeno.fm/c26kplsdxgttv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 169,
+    "title": "Radio Famili Minang",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/81909.v15.png",
+    "streamUrl": "https://a7.alhastream.com:4180/radio",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 170,
+    "title": "DNA FM JEPARA",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/19758.v12.png",
+    "streamUrl": "https://sc.dnafm.net/listen/dnafm/live",
+    "type": "audio/mpeg"
   }
 ]
