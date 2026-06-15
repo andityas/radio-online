@@ -1,72 +1,72 @@
 [
   {
     "id": 1,
-    "title": "Suara Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png",
-    "streamUrl": "https://c5.siar.us/proxy/ssfm/stream",
+    "title": "Ardan Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png",
+    "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
     "type": "audio/mpeg"
   },
   {
     "id": 2,
-    "title": "Prambors FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png",
-    "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv",
+    "title": "Bahana FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/19708.v25.png",
+    "streamUrl": "https://s1.cloudmu.id/listen/bahana_fm/stream",
     "type": "audio/mpeg"
   },
   {
     "id": 3,
+    "title": "Big 90's",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/92666.v8.png",
+    "streamUrl": "https://stream.zeno.fm/qmqe8k5e74zuv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 4,
+    "title": "Delta FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png",
+    "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 5,
+    "title": "Dengerin Musik",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/18908.v17.png",
+    "streamUrl": "https://stream.denger.in/musik.mp3",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 6,
+    "title": "FeMale Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png",
+    "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 7,
+    "title": "Gajahmada FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/19016.v10.png",
+    "streamUrl": "https://server.radioimeldafm.co.id:8040/gajahmadafm",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 8,
     "title": "Gen FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png",
     "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8",
     "type": "application/x-mpegURL"
   },
   {
-    "id": 4,
-    "title": "Radio Elshinta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/18812.v17.png",
-    "streamUrl": "https://stream-ssl.arenastreaming.com:8000/jakarta",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 5,
-    "title": "RRI Pro 3",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/18875.v10.png",
-    "streamUrl": "https://stream-node0.rri.co.id/streaming/14/9014/kbrn.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 6,
-    "title": "RRI Pro 1 Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/18844.v17.png",
-    "streamUrl": "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 7,
-    "title": "RRI Pro 2",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/18862.v17.png",
-    "streamUrl": "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 8,
-    "title": "MNC Trijaya FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19001.v14.png",
-    "streamUrl": "http://202.147.199.101:8000/;",
-    "type": "audio/mpeg"
-  },
-  {
     "id": 9,
-    "title": "Global Radio (MNC)",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/18969.v13.png",
-    "streamUrl": "https://proxy.rctiplus.com/?name=http://111.119.207.125:8064/;",
+    "title": "Golden Memories",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png",
+    "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv",
     "type": "audio/mpeg"
   },
   {
     "id": 10,
-    "title": "V Radio FM (MNC)",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/19108.v8.png",
-    "streamUrl": "https://proxy.rctiplus.com/?name=http://111.119.207.125:8068/;",
+    "title": "iSwara FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png",
+    "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv",
     "type": "audio/mpeg"
   },
   {
@@ -78,765 +78,100 @@
   },
   {
     "id": 12,
-    "title": "KIS 95.1 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/18826.v72.png",
-    "streamUrl": "https://wz.mari.co.id:1936/web_kisfm/kisfm/playlist.m3u8",
-    "type": "application/x-mpegURL"
-  },
-  {
-    "id": 13,
-    "title": "Mustang 88 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/18879.v48.png",
-    "streamUrl": "https://wz.mari.co.id:1936/web_mustangfm/mustangfm/playlist.m3u8",
-    "type": "application/x-mpegURL"
-  },
-  {
-    "id": 14,
-    "title": "Delta FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png",
-    "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 15,
-    "title": "Motion Radio Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19331.v12.png",
-    "streamUrl": "https://cast1.my-control-panel.com/proxy/radioso4/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 16,
-    "title": "Radio Dangdut Indonesia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/18943.v8.png",
-    "streamUrl": "https://stream.roov.id:8062/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 17,
-    "title": "Smart FM Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/19749.v7.png",
-    "streamUrl": "https://cast2.my-control-panel.com/proxy/radioso3/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 18,
-    "title": "Mandarin Station 98.3 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/19053.v11.png",
-    "streamUrl": "https://stream01-ssl.arenastreaming.com:8043/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 19,
-    "title": "Brava Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/18831.v24.png",
-    "streamUrl": "https://stream.radiojar.com/5k7t0rq3bnzuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 20,
-    "title": "Most Radio 105.8 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/73707.v106.png",
-    "streamUrl": "https://wz.mari.co.id:1936/web_mostfm/mostfm/playlist.m3u8",
-    "type": "application/x-mpegURL"
-  },
-  {
-    "id": 21,
-    "title": "Sonora FM Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19176.v16.png",
-    "streamUrl": "https://sonora-radio.arenastreaming.com/8130/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 22,
-    "title": "PR FM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/19114.v11.png",
-    "streamUrl": "https://sx.alhastream.com:8280/prfm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 23,
-    "title": "Bahana FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/19708.v25.png",
-    "streamUrl": "https://s1.cloudmu.id/listen/bahana_fm/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 24,
-    "title": "FeMale Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png",
-    "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 25,
-    "title": "Smooth 99.5 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/72602.v24.png",
-    "streamUrl": "https://svara-stream.radioddns.net/jakarta_smoothfm_mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 26,
-    "title": "Z 99.9 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/100007.v8.png",
-    "streamUrl": "https://svara-stream.radioddns.net/jakarta_z999fm_aac",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 27,
-    "title": "Camajaya FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/19008.v12.png",
-    "streamUrl": "https://ssg.streamingmurah.com:8078/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 28,
-    "title": "Trax FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png",
-    "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 29,
-    "title": "RRI Channel 5",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19971.v14.png",
-    "streamUrl": "https://stream-node1.rri.co.id/streaming/41/8941/chlima.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 30,
-    "title": "Radio Dahlia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/20405.v7.png",
-    "streamUrl": "https://svara-stream.radioddns.net/bandung_dahliafm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 31,
-    "title": "Ardan Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png",
-    "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 32,
-    "title": "OZ RADIO BANDUNG",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png",
-    "streamUrl": "https://streaming.ozradio.id:8443/ozbandung",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 33,
-    "title": "Geronimo FM Yogyakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/19317.v16.png",
-    "streamUrl": "https://ig.idstreamer.com:8090//live",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 34,
-    "title": "Swaragama FM Jogja",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/18984.v14.png",
-    "streamUrl": "http://202.65.114.229:9314/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 35,
-    "title": "EBS 105.9 FM Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/89345.v5.png",
-    "streamUrl": "https://azuracast.suzananet.com/listen/ebs_fm/radio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 36,
-    "title": "Menara FM Bali",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/18889.v10.png",
-    "streamUrl": "https://c1.siar.us:10280/menarafmbali",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 37,
-    "title": "Radio MFM Malang 101.3 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/18991.v13.png",
-    "streamUrl": "https://mfm.isowae.com:8443/studio.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 38,
-    "title": "Radio Cakra Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/19032.v10.png",
-    "streamUrl": "https://stream.zeno.fm/yoengdcdzyauv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 39,
-    "title": "K-Lite FM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/102446.v9.png",
-    "streamUrl": "https://svara-stream.radioddns.net/bandung_klitefm_acc",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 40,
-    "title": "Urban Radio Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/18996.v9.png",
-    "streamUrl": "https://live1.indostreamserver.com/8250/stream;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 41,
-    "title": "MGT FM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19506.v12.png",
-    "streamUrl": "https://s1.gntr.net/listen/mgtradio/mgtradio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 42,
-    "title": "Radio B Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19316.v11.png",
-    "streamUrl": "https://stream.rcs.revma.com/9yp8b9pd6k3vv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 43,
-    "title": "Paramuda FM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/20402.v10.png",
-    "streamUrl": "https://i.klikhost.com/8332/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 44,
-    "title": "DJ FM Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/88250.v10.png",
-    "streamUrl": "https://svara-stream.radioddns.net/surabaya_djfm_",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 45,
-    "title": "Merdeka 106.7 FM Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/76523.v6.png",
-    "streamUrl": "https://azuracast.suzananet.com/listen/merdeka_fm/radio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 46,
-    "title": "Most FM Medan",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/20377.v6.png",
-    "streamUrl": "http://u.klikhost.net:7106/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 47,
-    "title": "Telstar FM Makassar",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/20661.v9.png",
-    "streamUrl": "https://stream-eu-nc.arenastreaming.com:5101/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 48,
-    "title": "El John FM Palembang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/78602.v29.png",
-    "streamUrl": "http://103.28.149.117:8032/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 49,
-    "title": "Retjo Buntung FM Jogja",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/19400.v12.png",
-    "streamUrl": "https://ssg.streamingmurah.com:9940/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 50,
-    "title": "Suara Giri Gresik",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19166.v5.png",
-    "streamUrl": "http://streaming.girifm.com:8010/;stream.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 51,
-    "title": "Radio Idola Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/20679.v18.png",
-    "streamUrl": "https://stream.cradio.co.id/idolafm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 52,
-    "title": "Wijaya FM Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/18885.v8.png",
-    "streamUrl": "https://c1.siar.us:9880/stream/1/",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 53,
-    "title": "NAGASWARA RADIOTEMEN Bogor",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png",
-    "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 54,
-    "title": "Gajahmada FM Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/19016.v10.png",
-    "streamUrl": "https://server.radioimeldafm.co.id:8040/gajahmadafm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 55,
-    "title": "Radio Imelda FM Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/19177.v15.png",
-    "streamUrl": "https://server.radioimeldafm.co.id:8030/imeldafm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 56,
-    "title": "Radio Swara Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/91532.v6.png",
-    "streamUrl": "https://server.radioimeldafm.co.id/radio/8010/swarasemarang",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 57,
-    "title": "Elgangga FM Bekasi",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/77170.v11.png",
-    "streamUrl": "https://b.alhastream.com:5140/radio?_ic2=1715794029661",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 58,
-    "title": "C Radio Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/20678.v16.png",
-    "streamUrl": "http://mettaswara.com:8700/cradio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 59,
-    "title": "Kis FM Semarang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19921.v12.png",
-    "streamUrl": "http://123.255.201.126:8020/kisfm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 60,
-    "title": "Radio Galuh Ciamis",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/82758.v77.png",
-    "streamUrl": "https://stream.yaomi.blog/galuhfm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 61,
-    "title": "Rama FM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/19044.v9.png",
-    "streamUrl": "https://i.klikhost.com/8330/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 62,
-    "title": "Radio MQFM Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/18808.v15.png",
-    "streamUrl": "https://mqfmstreaming.kamil.web.id/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 63,
-    "title": "Radio Suara Muslim Surabaya",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/18990.v5.png",
-    "streamUrl": "https://pu.klikhost.com/proxy/suaramuslim/stream?1758728001011",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 64,
-    "title": "MTA FM Surakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/18987.v15.png",
-    "streamUrl": "https://s.urfan.id/mtafm",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 65,
-    "title": "Radio Rasil Jakarta",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/18981.v7.png",
-    "streamUrl": "https://ssg.streamingmurah.com:9300/;",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 66,
-    "title": "Baiturrahman FM Aceh",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/82805.v17.png",
-    "streamUrl": "https://stream.radioalikhwan.com/listen/baiturrahman_fm_aceh/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 67,
-    "title": "Phoenix Radio Bali",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/19468.v8.png",
-    "streamUrl": "https://live.phoenixradiobali.com:8250/phoenixradio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 68,
-    "title": "Radio Gema Merdeka Bali",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/84450.v11.png",
-    "streamUrl": "https://radio.gemamedia.id/gema",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 69,
-    "title": "Radio AR Bali",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/19457.v7.png",
-    "streamUrl": "https://live.radioarbali.com:8450/radioar",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 70,
-    "title": "ONIX RADIO Balikpapan",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/19454.v9.png",
-    "streamUrl": "https://pu.klikhost.com/proxy/onixradio/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 71,
-    "title": "Radio Kotaperak Jogja",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/19105.v9.png",
-    "streamUrl": "http://203.30.236.2:8000/kotaperak",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 72,
-    "title": "Niki FM Malang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/112928.v5.png",
-    "streamUrl": "https://stream.zeno.fm/u1mnu6ardfhvv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 73,
-    "title": "Radio Kosmonita Malang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/20666.v17.png",
-    "streamUrl": "http://202.58.200.26:1055/live",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 74,
-    "title": "Sunda Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/124650.v9.png",
-    "streamUrl": "https://sundaradio.com/live/sundaradio",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 75,
-    "title": "Poliyama Top FM Gorontalo",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/72043.v44.png",
-    "streamUrl": "https://live4.rs3fm.com:8001/poliyama",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 76,
-    "title": "RRI Pro 4",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/18876.v13.png",
-    "streamUrl": "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro4.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 77,
-    "title": "Radio Rodja Bogor",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/19157.v23.png",
-    "streamUrl": "https://live2.radiorodja.com/rodja-low.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 78,
-    "title": "Radio Muslim Jogja",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/20374.v8.png",
-    "streamUrl": "https://streaming.radiomuslim.com/;stream/1",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 79,
-    "title": "Radio Mendhut FM Magelang",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19441.v13.png",
-    "streamUrl": "http://c4.siar.us:8790/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 80,
-    "title": "Piss Radio Ciamis",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/66985.v13.png",
-    "streamUrl": "https://svara-stream.radioddns.net/ciamis_pissfm_stereo",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 81,
-    "title": "KLCBS Bandung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/19003.v17.png",
-    "streamUrl": "https://streaming.klcbsofficial.com/listen/klcbs/klcbs",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 82,
-    "title": "iSwara FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png",
-    "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 83,
-    "title": "Classy NetRadio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/76656.v37.png",
-    "streamUrl": "https://streaming.classynetradio.com/radio/8000/classySD",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 84,
-    "title": "Slow Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png",
-    "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 85,
-    "title": "Dengerin Musik",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/18908.v17.png",
-    "streamUrl": "https://stream.denger.in/musik.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 86,
-    "title": "Golden Memories",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png",
-    "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 87,
     "title": "Mettaswara Dangdut",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/124069.v7.png",
     "streamUrl": "https://mettaswara.com:8700/d4d",
     "type": "audio/mpeg"
   },
   {
-    "id": 88,
-    "title": "Jagakarsa Smooth Jazz",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/77343.v22.png",
-    "streamUrl": "https://stream.zeno.fm/u8fk7pgds8quv",
+    "id": 13,
+    "title": "NAGASWARA RADIOTEMEN Bogor",
+    "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png",
+    "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream",
     "type": "audio/mpeg"
   },
   {
-    "id": 89,
-    "title": "MTV Asia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/113800.v8.png",
-    "streamUrl": "https://stream.zeno.fm/undku6cbpkhvv",
+    "id": 14,
+    "title": "OZ RADIO BANDUNG",
+    "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png",
+    "streamUrl": "https://streaming.ozradio.id:8443/ozbandung",
     "type": "audio/mpeg"
   },
   {
-    "id": 90,
-    "title": "MTV Rocks",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/116429.v7.png",
-    "streamUrl": "https://stream.zeno.fm/mqy5rybacxhvv",
+    "id": 15,
+    "title": "Prambors FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png",
+    "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv",
     "type": "audio/mpeg"
   },
   {
-    "id": 91,
-    "title": "Big 90's",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/92666.v8.png",
-    "streamUrl": "https://stream.zeno.fm/qmqe8k5e74zuv",
+    "id": 16,
+    "title": "Radio Elshinta",
+    "logo": "https://cdn.onlineradiobox.com/img/l/2/18812.v17.png",
+    "streamUrl": "https://stream-ssl.arenastreaming.com:8000/jakarta",
     "type": "audio/mpeg"
   },
   {
-    "id": 92,
-    "title": "Rock Rewind",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/89300.v15.png",
-    "streamUrl": "https://stream.zenolive.com/u18tuaphwzzuv.aac",
-    "type": "audio/aac"
+    "id": 17,
+    "title": "Radio Imelda FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/7/19177.v15.png",
+    "streamUrl": "https://server.radioimeldafm.co.id:8030/imeldafm",
+    "type": "audio/mpeg"
   },
   {
-    "id": 93,
+    "id": 18,
     "title": "Rock Ballads",
     "logo": "https://cdn.onlineradiobox.com/img/l/4/110904.v2.png",
     "streamUrl": "https://stream.zeno.fm/ynepvmy14bhvv",
     "type": "audio/mpeg"
   },
   {
-    "id": 94,
-    "title": "Kis Rock",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/106040.v7.png",
-    "streamUrl": "https://stream.zeno.fm/2nbxgbynb18uv",
+    "id": 19,
+    "title": "Rock Rewind",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/89300.v15.png",
+    "streamUrl": "https://stream.zenolive.com/u18tuaphwzzuv.aac",
     "type": "audio/mpeg"
   },
   {
-    "id": 95,
-    "title": "Jags Rock Music Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/71621.v34.png",
-    "streamUrl": "https://stream.zeno.fm/q3mskdkgg6quv",
+    "id": 20,
+    "title": "RRI Pro 1",
+    "logo": "https://cdn.onlineradiobox.com/img/l/4/18844.v17.png",
+    "streamUrl": "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3",
     "type": "audio/mpeg"
   },
   {
-    "id": 96,
-    "title": "Global Metal",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/120922.v9.png",
-    "streamUrl": "https://stream.zeno.fm/mfuutjhc31quv",
+    "id": 21,
+    "title": "Slow Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png",
+    "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv",
     "type": "audio/mpeg"
   },
   {
-    "id": 97,
-    "title": "Distorsi Jiwa Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/19670.v14.png",
-    "streamUrl": "https://a6.siar.us:8000/stream",
+    "id": 22,
+    "title": "Sonora FM Jakarta",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/19176.v16.png",
+    "streamUrl": "https://sonora-radio.arenastreaming.com/8130/stream",
     "type": "audio/mpeg"
   },
   {
-    "id": 98,
+    "id": 23,
+    "title": "Suara Surabaya",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png",
+    "streamUrl": "https://c5.siar.us/proxy/ssfm/stream",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 24,
     "title": "The Rockin' Life",
     "logo": "https://cdn.onlineradiobox.com/img/l/0/18880.v17.png",
     "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv",
     "type": "audio/mpeg"
   },
   {
-    "id": 99,
-    "title": "Hits Memories",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/132496.v5.png",
-    "streamUrl": "https://stream.zeno.fm/wvq442iwm6ztv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 100,
-    "title": "Global Throwback Hits",
-    "logo": "https://cdn.onlineradiobox.com/img/l/3/96713.v3.png",
-    "streamUrl": "https://stream.zeno.fm/ehn9gybgqd0uv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 101,
-    "title": "80s Radio Hits",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/71605.v58.png",
-    "streamUrl": "https://stream.zeno.fm/wy1pbnedd3quv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 102,
-    "title": "Vice City FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/89360.v13.png",
-    "streamUrl": "https://stream.zeno.fm/5349gzgeyzzuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 103,
-    "title": "Radio Music Indonesia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/112114.v15.png",
-    "streamUrl": "https://stream.zeno.fm/av6xzace6ehvv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 104,
-    "title": "Radio Musik Indonesia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/0/74530.v35.png",
-    "streamUrl": "https://shorturl.at/JNZ28",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 105,
-    "title": "Radio Gentara",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/80096.v28.png",
-    "streamUrl": "https://s1.gntr.net/radio/8080/gentara128",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 106,
-    "title": "NADAPA DIGITAL PRO2",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/132914.v15.png",
-    "streamUrl": "https://ssg.streamingmurah.com:8110/:6000/;?download=false",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 107,
-    "title": "IMI Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/4/19014.v23.png",
-    "streamUrl": "https://a4.asurahosting.com:7070/radio.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 108,
-    "title": "RADIO ANDY",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/47708.v21.png",
-    "streamUrl": "https://stream.zeno.fm/9vasgtdvt4zuv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 109,
-    "title": "Sudarmanto Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/80546.v8.png",
-    "streamUrl": "http://scg.streamingmurah.com:8262/;stream.mp3",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 110,
-    "title": "Spirit Online",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/19021.v26.png",
-    "streamUrl": "https://radio.spirittoc.com:8060/spirit_online",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 111,
-    "title": "Spirit Tritara",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/80249.v24.png",
-    "streamUrl": "https://radio.spirittoc.com:8060/TRITARA",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 112,
-    "title": "Radio Kasih",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/64571.v9.png",
-    "streamUrl": "https://hello.citrus3.com:2020/stream/radiokasih",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 113,
-    "title": "Suara Kasih Makassar",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/121798.v7.png",
-    "streamUrl": "https://stream.zeno.fm/b3ivv2c067jvv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 114,
-    "title": "El-Shaddai FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/20651.v12.png",
-    "streamUrl": "http://shaddai.onlivestreaming.net:9130/live",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 115,
-    "title": "Megah FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/19047.v23.png",
-    "streamUrl": "http://sci.streamingmurah.com:8026/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 116,
-    "title": "Radio CMN",
-    "logo": "https://cdn.onlineradiobox.com/img/l/7/71837.v22.png",
-    "streamUrl": "https://stream.coolkas.com/radio/8160/radiocmn",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 117,
-    "title": "Ninetysix Radio",
-    "logo": "https://cdn.onlineradiobox.com/img/l/8/93978.v60.png",
-    "streamUrl": "https://c4.siar.us:8950/stream",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 118,
-    "title": "Loker Musik Radio Indonesia",
-    "logo": "https://cdn.onlineradiobox.com/img/l/9/75039.v11.png",
-    "streamUrl": "https://stream.lokermusik.com/listen/lokermusik/lokermusik",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 119,
-    "title": "Radio online Tulungagung",
-    "logo": "https://cdn.onlineradiobox.com/img/l/6/20366.v16.png",
-    "streamUrl": "https://stream.zeno.fm/954yxsx00ehvv",
-    "type": "audio/mpeg"
-  },
-  {
-    "id": 120,
-    "title": "Radio Kajian Islam",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/89831.v22.png",
-    "streamUrl": "http://uk5freenew.listen2myradio.com:33501/;",
+    "id": 25,
+    "title": "Trax FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png",
+    "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv",
     "type": "audio/mpeg"
   }
 ]
