@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
-    <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih dan update otomatis stasiun radio terlengkap.">
-    <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player id">
+    <meta name="description" content="Dengarkan live streaming radio Indonesia favorit secara online dengan kualitas audio HD jernih tanpa interupsi buffer.">
+    <meta name="keywords" content="radio online, streaming radio indonesia, prambors live, ardan fm, delta fm">
+    <link rel="canonical" href="https://andityas.github.io/radio-online/">
     
     <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia">
-    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
+    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung radio hits Indonesia di mana saja gratis.">
     <meta property="og:type" content="website">
 
-    <!-- Google Fonts & HLS Stream Support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -30,15 +30,13 @@
         <div class="search-wrapper">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
+                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
             </div>
         </div>
 
-        <!-- Filter Konten Utama (Vibes System) -->
         <div class="filter-container">
             <div class="tabs-scroll" id="category-tabs">
-                <!-- Diisi otomatis oleh JavaScript -->
-            </div>
+                </div>
         </div>
     </header>
 
@@ -48,21 +46,25 @@
         </div>
     </main>
 
-    <!-- UI/UX Player Bar di Sisi Bawah -->
     <footer class="player-container">
         <div class="player-wrapper">
-            <div class="track-info">
-                <div class="now-playing-icon">🎵</div>
+            <div class="player-meta-block">
+                <div class="avatar-mini-wrapper">
+                    <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Mini Logo Deck">
+                </div>
                 <div class="text-stream">
-                    <span class="status-badge">NOW STREAMING</span>
-                    <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk...</div>
+                    <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
                 </div>
             </div>
-            <div class="audio-controls">
-                <audio id="player" controls autoplay aria-label="Audio Player"></audio>
+            
+            <div class="player-controls-block">
+                <audio id="player" controls autoplay aria-label="Audio Playback System"></audio>
             </div>
-            <div class="signature">
-                Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
+            
+            <div class="player-signature-block">
+                <div class="signature">
+                    Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
+                </div>
             </div>
         </div>
     </footer>
