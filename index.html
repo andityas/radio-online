@@ -2,376 +2,505 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
     <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih dan update otomatis stasiun radio terlengkap.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player id">
+    <meta name="theme-color" content="#1db954">
     
-    <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia">
-    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
-    <meta property="og:type" content="website">
-
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        /* ===== DESAIN ASLI (TIDAK DIUBAH) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary: #1db954;
-            --dark: #0f0f0f;
-            --card: #181818;
+            --primary-dark: #14833b;
+            --primary-glow: rgba(29, 185, 84, 0.3);
+            --dark: #0a0c0b;
+            --card-bg: #181818;
+            --card-hover: #1f1f1f;
             --text: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border: #282828;
+            --radius-card: 20px;
+            --radius-btn: 40px;
+            --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background: var(--dark);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: linear-gradient(145deg, var(--dark) 0%, #050706 100%);
             color: var(--text);
             margin: 0;
             padding-bottom: 180px;
+            min-height: 100vh;
         }
 
+        /* Header dengan efek glass + gradasi */
         header {
-            background: var(--primary);
-            padding: 25px 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0e9e44 100%);
+            padding: 28px 20px 22px;
             position: sticky;
             top: 0;
             z-index: 1000;
             text-align: center;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border-bottom-left-radius: 28px;
+            border-bottom-right-radius: 28px;
+            backdrop-filter: blur(2px);
         }
 
-        .tagline { font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
-        h1 { margin: 5px 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; }
-        
+        .tagline {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            margin: 10px 0 6px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #radio-count {
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(0,0,0,0.35);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            margin-top: 6px;
+        }
+
+        .search-container {
+            margin: 16px auto 8px;
+            max-width: 380px;
+            padding: 0 12px;
+        }
+
         #search-input {
-            width: 90%;
-            max-width: 400px;
+            width: 100%;
             padding: 12px 20px;
-            border-radius: 30px;
+            background: rgba(255,255,255,0.95);
             border: none;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #111;
             outline: none;
-            margin-top: 10px;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .tabs { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        #search-input:focus {
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            transform: scale(1.01);
+        }
+
+        /* Tabs modern */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
         .tab-btn {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.15);
             color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
+            padding: 8px 24px;
+            border-radius: 40px;
             cursor: pointer;
-            font-size: 12px;
-            transition: 0.2s;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
         }
-        .tab-btn.active { background: white; color: var(--primary); font-weight: bold; }
 
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Grid radio cards - responsive seperti asli */
         #radio-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 28px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .radio-card {
-            background: var(--card);
-            padding: 12px;
-            border-radius: 18px;
-            text-align: center;
-            position: relative;
-            border: 1px solid #282828;
-            transition: transform 0.3s, border-color 0.3s;
+            background: var(--card-bg);
+            border-radius: var(--radius-card);
+            padding: 14px 12px 12px;
+            transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(2px);
         }
-        .radio-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .radio-card.playing { border: 2px solid var(--primary); background: #222; }
 
-        /* PERBAIKAN LOGO: contain + padding agar tidak terpotong */
-        .radio-card img { 
-            width: 100%; 
-            border-radius: 12px; 
-            aspect-ratio: 1/1; 
+        .radio-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            background: var(--card-hover);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+        }
+
+        .radio-card.playing {
+            border: 2px solid var(--primary);
+            background: linear-gradient(145deg, #1e2a1e, #121c12);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Logo styling - tetap tidak terpotong */
+        .radio-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
             object-fit: contain;
             background: #ffffff;
+            border-radius: 16px;
             padding: 10px;
             box-sizing: border-box;
+            transition: transform 0.2s;
         }
 
-        .radio-card h3 { font-size: 13px; margin: 10px 0 0 0; }
-
-        .player-container {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-top: 2px solid var(--primary);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2000;
+        .radio-card:hover img {
+            transform: scale(0.98);
         }
 
-        #now-playing { color: var(--primary); font-weight: bold; font-size: 12px; margin-bottom: 8px; }
-        audio { width: 90%; max-width: 500px; height: 35px; }
+        .radio-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 12px 0 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: -0.2px;
+        }
 
-        .signature { margin-top: 12px; font-size: 11px; color: #777; }
-        .andit-name { color: var(--primary); font-weight: bold; }
-
-        /* Tombol favorit */
+        /* Tombol favorit lebih elegan */
         .fav-btn {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0,0,0,0.6);
+            top: 10px;
+            right: 12px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(8px);
             border: none;
-            border-radius: 30px;
             font-size: 16px;
             cursor: pointer;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
             transition: 0.2s;
+            color: #ff6b6b;
+            z-index: 12;
         }
-        .fav-btn:hover { transform: scale(1.1); }
 
-        @media (max-width: 480px) {
-            #radio-list { grid-template-columns: repeat(2, 1fr); padding: 15px; }
+        .fav-btn:hover {
+            transform: scale(1.15);
+            background: rgba(0,0,0,0.9);
+        }
+
+        /* Player container - sleek */
+        .player-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 12, 11, 0.96);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(29, 185, 84, 0.3);
+            padding: 14px 16px 18px;
+            z-index: 2000;
+            transition: 0.2s;
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+        }
+
+        #now-playing {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        audio {
+            width: 90%;
+            max-width: 550px;
+            height: 40px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 50px;
+        }
+
+        /* Custom styling untuk audio player (webkit) */
+        audio::-webkit-media-controls-panel {
+            background-color: #1a1f1c;
+        }
+        audio::-webkit-media-controls-play-button {
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .signature {
+            margin-top: 12px;
+            font-size: 10px;
+            text-align: center;
+            color: #777;
+        }
+
+        .andit-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive tambahan */
+        @media (max-width: 550px) {
+            #radio-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                padding: 20px 14px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            .tab-btn {
+                padding: 6px 18px;
+                font-size: 12px;
+            }
+            .radio-card h3 {
+                font-size: 11px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            #radio-list {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+
+        /* loading & empty state */
+        .loading-msg, .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 48px 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 32px;
+            backdrop-filter: blur(8px);
         }
     </style>
 </head>
 <body>
 
 <header>
-    <span class="tagline">Vibing Everyday No Cap 🧢</span>
+    <div class="tagline">🎧 VIBING EVERYDAY NO CAP 🧢</div>
     <h1>🎵 RADIO PLAYER PRO</h1>
-    <p id="radio-count" style="font-size: 11px; margin-top: 5px; font-weight: bold; opacity: 0.9; text-transform: uppercase;">
-        Menghubungkan frekuensi...
-    </p>
+    <p id="radio-count">Menghubungkan frekuensi...</p>
     <div class="search-container">
-        <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
+        <input type="text" id="search-input" placeholder="Cari stasiun favorit..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
     </div>
     <div class="tabs">
-        <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Vibes</button>
-        <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">My Faves ❤️</button>
+        <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">✨ All Vibes</button>
+        <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">❤️ My Faves</button>
     </div>
 </header>
 
 <main>
-    <div style="display:none">
-        <p>Aplikasi streaming radio Indonesia terbaik. Dengarkan musik pop, jazz, berita, dan hiburan dari stasiun populer di Jakarta, Bandung, dan kota lainnya.</p>
-    </div>
     <div id="radio-list">
-        <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
+        <div class="loading-msg">🎵 Memuat daftar radio... tunggu sebentar ya!</div>
     </div>
 </main>
 
 <div class="player-container">
-    <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+    <div id="now-playing" aria-live="polite">🎧 Pilih stasiun radio untuk mulai mendengarkan</div>
     <audio id="player" controls autoplay aria-label="Audio Player"></audio>
     <div class="signature">
-        Manifested with ❤️ by <span class="andit-name">Andit</span>
+        Manifested with ❤️ by <span class="andit-name">Andit</span> • Streaming Radio Indonesia
     </div>
 </div>
 
 <script>
-    // ===================== DATA RADIO TERBARU (25 STASIUN) =====================
+    // ===================== DATA RADIO LENGKAP (25 STASIUN) =====================
     const RADIOS_DATA = [
-        { "id": 1, "title": "Prambors FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png", "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv", "type": "audio/mpeg", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 2, "title": "Delta FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png", "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv", "type": "audio/mpeg", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 3, "title": "Radio Elshinta", "logo": "https://cdn.onlineradiobox.com/img/l/2/18812.v17.png", "streamUrl": "https://stream-ssl.arenastreaming.com:8000/jakarta", "type": "audio/mpeg", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 4, "title": "Gen FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png", "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8", "type": "application/x-mpegURL", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 5, "title": "Sonora FM Jakarta", "logo": "https://cdn.onlineradiobox.com/img/l/6/19176.v16.png", "streamUrl": "https://sonora-radio.arenastreaming.com/8130/stream", "type": "audio/mpeg", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 6, "title": "Suara Surabaya", "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png", "streamUrl": "https://c5.siar.us/proxy/ssfm/stream", "type": "audio/mpeg", "tier": "Tier 1: Nasional & Utama" },
-        { "id": 7, "title": "FeMale Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png", "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv", "type": "audio/mpeg", "tier": "Tier 2: Populer & Urban" },
-        { "id": 8, "title": "Trax FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png", "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv", "type": "audio/mpeg", "tier": "Tier 2: Populer & Urban" },
-        { "id": 9, "title": "Bahana FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/19708.v25.png", "streamUrl": "https://s1.cloudmu.id/listen/bahana_fm/stream", "type": "audio/mpeg", "tier": "Tier 2: Populer & Urban" },
-        { "id": 10, "title": "Jak 101 FM", "logo": "https://cdn.onlineradiobox.com/img/l/5/19705.v45.png", "streamUrl": "https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8", "type": "application/x-mpegURL", "tier": "Tier 2: Populer & Urban" },
-        { "id": 11, "title": "OZ RADIO BANDUNG", "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png", "streamUrl": "https://streaming.ozradio.id:8443/ozbandung", "type": "audio/mpeg", "tier": "Tier 2: Populer & Urban" },
-        { "id": 12, "title": "Ardan Radio", "logo": "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png", "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv", "type": "audio/mpeg", "tier": "Tier 2: Populer & Urban" },
-        { "id": 13, "title": "iSwara FM", "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png", "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 14, "title": "Slow Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png", "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 15, "title": "The Rockin' Life", "logo": "https://cdn.onlineradiobox.com/img/l/0/18880.v17.png", "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 16, "title": "Golden Memories", "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png", "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 17, "title": "Dengerin Musik", "logo": "https://cdn.onlineradiobox.com/img/l/8/18908.v17.png", "streamUrl": "https://stream.denger.in/musik.mp3", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 18, "title": "Rock Rewind", "logo": "https://cdn.onlineradiobox.com/img/l/0/89300.v15.png", "streamUrl": "https://stream.zenolive.com/u18tuaphwzzuv.aac", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 19, "title": "Radio Imelda FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/19177.v15.png", "streamUrl": "https://server.radioimeldafm.co.id:8030/imeldafm", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 20, "title": "Gajahmada FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19016.v10.png", "streamUrl": "https://server.radioimeldafm.co.id:8040/gajahmadafm", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 21, "title": "Big 90's", "logo": "https://cdn.onlineradiobox.com/img/l/6/92666.v8.png", "streamUrl": "https://stream.zeno.fm/qmqe8k5e74zuv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 22, "title": "Mettaswara Dangdut", "logo": "https://cdn.onlineradiobox.com/img/l/9/124069.v7.png", "streamUrl": "https://mettaswara.com:8700/d4d", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 23, "title": "Rock Ballads", "logo": "https://cdn.onlineradiobox.com/img/l/4/110904.v2.png", "streamUrl": "https://stream.zeno.fm/ynepvmy14bhvv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 24, "title": "NAGASWARA RADIOTEMEN Bogor", "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png", "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" },
-        { "id": 25, "title": "Kis Rock", "logo": "https://cdn.onlineradiobox.com/img/l/0/106040.v7.png", "streamUrl": "https://stream.zeno.fm/2nbxgbynb18uv", "type": "audio/mpeg", "tier": "Tier 3: Niche & Komunitas" }
+        { "id": 1, "title": "Prambors FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png", "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv", "type": "audio/mpeg" },
+        { "id": 2, "title": "Delta FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png", "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv", "type": "audio/mpeg" },
+        { "id": 3, "title": "Radio Elshinta", "logo": "https://cdn.onlineradiobox.com/img/l/2/18812.v17.png", "streamUrl": "https://stream-ssl.arenastreaming.com:8000/jakarta", "type": "audio/mpeg" },
+        { "id": 4, "title": "Gen FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19026.v38.png", "streamUrl": "https://wz.mari.co.id:1936/web_genfm/genfm/playlist.m3u8", "type": "application/x-mpegURL" },
+        { "id": 5, "title": "Sonora FM Jakarta", "logo": "https://cdn.onlineradiobox.com/img/l/6/19176.v16.png", "streamUrl": "https://sonora-radio.arenastreaming.com/8130/stream", "type": "audio/mpeg" },
+        { "id": 6, "title": "Suara Surabaya", "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png", "streamUrl": "https://c5.siar.us/proxy/ssfm/stream", "type": "audio/mpeg" },
+        { "id": 7, "title": "FeMale Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png", "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv", "type": "audio/mpeg" },
+        { "id": 8, "title": "Trax FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png", "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv", "type": "audio/mpeg" },
+        { "id": 9, "title": "Bahana FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/19708.v25.png", "streamUrl": "https://s1.cloudmu.id/listen/bahana_fm/stream", "type": "audio/mpeg" },
+        { "id": 10, "title": "Jak 101 FM", "logo": "https://cdn.onlineradiobox.com/img/l/5/19705.v45.png", "streamUrl": "https://wz.mari.co.id:1936/web_jakfm/jakfm/playlist.m3u8", "type": "application/x-mpegURL" },
+        { "id": 11, "title": "OZ RADIO BANDUNG", "logo": "https://cdn.onlineradiobox.com/img/l/5/18985.v26.png", "streamUrl": "https://streaming.ozradio.id:8443/ozbandung", "type": "audio/mpeg" },
+        { "id": 12, "title": "Ardan Radio", "logo": "https://cdn.onlineradiobox.com/img/l/7/18827.v12.png", "streamUrl": "https://stream.rcs.revma.com/ugpyzu9n5k3vv", "type": "audio/mpeg" },
+        { "id": 13, "title": "iSwara FM", "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png", "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv", "type": "audio/mpeg" },
+        { "id": 14, "title": "Slow Radio", "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png", "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv", "type": "audio/mpeg" },
+        { "id": 15, "title": "The Rockin' Life", "logo": "https://cdn.onlineradiobox.com/img/l/0/18880.v17.png", "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv", "type": "audio/mpeg" },
+        { "id": 16, "title": "Golden Memories", "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png", "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv", "type": "audio/mpeg" },
+        { "id": 17, "title": "Dengerin Musik", "logo": "https://cdn.onlineradiobox.com/img/l/8/18908.v17.png", "streamUrl": "https://stream.denger.in/musik.mp3", "type": "audio/mpeg" },
+        { "id": 18, "title": "Rock Rewind", "logo": "https://cdn.onlineradiobox.com/img/l/0/89300.v15.png", "streamUrl": "https://stream.zenolive.com/u18tuaphwzzuv.aac", "type": "audio/mpeg" },
+        { "id": 19, "title": "Radio Imelda FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/19177.v15.png", "streamUrl": "https://server.radioimeldafm.co.id:8030/imeldafm", "type": "audio/mpeg" },
+        { "id": 20, "title": "Gajahmada FM", "logo": "https://cdn.onlineradiobox.com/img/l/6/19016.v10.png", "streamUrl": "https://server.radioimeldafm.co.id:8040/gajahmadafm", "type": "audio/mpeg" },
+        { "id": 21, "title": "Big 90's", "logo": "https://cdn.onlineradiobox.com/img/l/6/92666.v8.png", "streamUrl": "https://stream.zeno.fm/qmqe8k5e74zuv", "type": "audio/mpeg" },
+        { "id": 22, "title": "Mettaswara Dangdut", "logo": "https://cdn.onlineradiobox.com/img/l/9/124069.v7.png", "streamUrl": "https://mettaswara.com:8700/d4d", "type": "audio/mpeg" },
+        { "id": 23, "title": "Rock Ballads", "logo": "https://cdn.onlineradiobox.com/img/l/4/110904.v2.png", "streamUrl": "https://stream.zeno.fm/ynepvmy14bhvv", "type": "audio/mpeg" },
+        { "id": 24, "title": "NAGASWARA RADIOTEMEN Bogor", "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png", "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream", "type": "audio/mpeg" },
+        { "id": 25, "title": "Kis Rock", "logo": "https://cdn.onlineradiobox.com/img/l/0/106040.v7.png", "streamUrl": "https://stream.zeno.fm/2nbxgbynb18uv", "type": "audio/mpeg" }
     ];
 
-    // ===================== GLOBAL VARIABLES =====================
+    // ===================== GLOBAL =====================
     let allRadios = RADIOS_DATA;
     let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
     let currentTab = 'all';
     let currentHls = null;
     let currentPlayingId = null;
 
-    // ===================== FUNGSI PLAY STREAM (DENGAN FIX BUG) =====================
+    // ===================== PLAY STREAM (DENGAN FIX BUG) =====================
     window.playStream = function(url, type, title, id, logoUrl) {
         const audio = document.getElementById('player');
         if (!audio) return;
 
-        // Update UI title & now playing
         document.title = "▶️ " + title + " | Radio Player Pro";
-        const nowPlayingDiv = document.getElementById('now-playing');
-        if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
+        const nowDiv = document.getElementById('now-playing');
+        if (nowDiv) nowDiv.innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
         currentPlayingId = id;
 
-        // Highlight kartu yang sedang diputar
-        document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('playing'));
+        // Highlight aktif
+        document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
         const activeCard = document.getElementById(`card-${id}`);
         if (activeCard) activeCard.classList.add('playing');
 
-        // Hancurkan HLS sebelumnya jika ada
+        // Hentikan HLS lama
         if (currentHls) {
-            try { currentHls.destroy(); } catch(e) { console.warn(e); }
+            try { currentHls.destroy(); } catch(e) {}
             currentHls = null;
         }
 
-        // Reset audio element
         audio.pause();
         audio.src = '';
         audio.load();
 
-        // Cek apakah stream HLS (.m3u8)
         const isHls = (type === 'application/x-mpegURL') || url.includes('.m3u8');
-
         if (isHls && Hls.isSupported()) {
-            currentHls = new Hls({
-                enableWorker: true,
-                fragLoadingTimeOut: 30000,
-                manifestLoadingTimeOut: 20000
-            });
+            currentHls = new Hls({ enableWorker: true, fragLoadingTimeOut: 30000 });
             currentHls.loadSource(url);
             currentHls.attachMedia(audio);
             currentHls.on(Hls.Events.MANIFEST_PARSED, () => {
-                audio.play().catch(err => {
-                    console.log("Autoplay diblokir browser, user harus klik play manual", err);
-                    if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🎵 ${title} siap, klik play jika tidak otomatis`;
-                });
+                audio.play().catch(e => console.log("Autoplay perlu interaksi"));
             });
             currentHls.on(Hls.Events.ERROR, (event, data) => {
                 if (data.fatal) {
-                    console.error("HLS fatal error:", data);
-                    if (nowPlayingDiv) nowPlayingDiv.innerHTML = `⚠️ Gagal memutar ${title}, coba stasiun lain.`;
+                    if (nowDiv) nowDiv.innerHTML = `⚠️ Gagal memutar ${title}, coba stasiun lain.`;
                     if (currentHls) currentHls.destroy();
                     currentHls = null;
                 }
             });
         } else {
-            // Stream biasa (MP3, AAC, dll)
             audio.src = url;
             audio.load();
-            audio.play().catch(err => {
-                console.log("Autoplay tidak diizinkan", err);
-                if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🔊 ${title} - klik play untuk mulai`;
+            audio.play().catch(e => {
+                if (nowDiv) nowDiv.innerHTML = `🎵 ${title} - klik play untuk mulai`;
             });
         }
     };
 
-    // ===================== TOGGLE FAVORIT =====================
+    // Toggle favorit
     window.toggleFav = function(e, id) {
         e.stopPropagation();
-        const targetId = Number(id);
-        if (favorites.includes(targetId)) {
-            favorites = favorites.filter(f => f !== targetId);
+        const tid = Number(id);
+        if (favorites.includes(tid)) {
+            favorites = favorites.filter(f => f !== tid);
         } else {
-            favorites.push(targetId);
+            favorites.push(tid);
         }
         localStorage.setItem('radioFavs', JSON.stringify(favorites));
-        renderRadios(); // Refresh daftar
+        renderRadios();
     };
 
-    // ===================== RENDER RADIO LIST =====================
+    // Render grid
     function renderRadios() {
-        const list = document.getElementById('radio-list');
-        const countElement = document.getElementById('radio-count');
+        const container = document.getElementById('radio-list');
+        const counter = document.getElementById('radio-count');
         const keyword = document.getElementById('search-input').value.toLowerCase().trim();
 
-        // Filter berdasarkan tab dan pencarian
-        let filtered = allRadios.filter(radio => {
-            const isFavMatch = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(radio.id));
-            const isSearchMatch = radio.title.toLowerCase().includes(keyword);
-            return isFavMatch && isSearchMatch;
+        let filtered = allRadios.filter(r => {
+            const matchTab = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(r.id));
+            const matchSearch = r.title.toLowerCase().includes(keyword);
+            return matchTab && matchSearch;
         });
 
-        // Update jumlah stasiun
-        if (countElement) {
-            if (keyword !== "") {
-                countElement.innerText = `Ditemukan ${filtered.length} stasiun untuk "${keyword}"`;
-            } else {
-                countElement.innerText = `Streaming ${filtered.length} Stasiun Radio Indonesia`;
-            }
+        if (counter) {
+            if (keyword) counter.innerText = `🎙️ Ditemukan ${filtered.length} stasiun untuk "${keyword}"`;
+            else counter.innerText = `📻 Streaming ${filtered.length} Stasiun Radio Indonesia`;
         }
 
-        // Tampilkan pesan jika kosong
         if (filtered.length === 0) {
-            list.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
-                <h4>Gak Ketemu Nih... 🚩</h4><p>Coba cari stasiun lain atau cek playlist favoritmu.</p>
-            </div>`;
+            container.innerHTML = `<div class="empty-state"><h4>🎧 Stasiun tidak ditemukan</h4><p>Coba kata kunci lain atau tambahkan favorit dengan ❤️</p></div>`;
             return;
         }
 
-        // Render kartu-kartu radio
-        list.innerHTML = '';
+        container.innerHTML = '';
         filtered.forEach(radio => {
             const isFav = favorites.includes(radio.id);
             const card = document.createElement('div');
             card.className = `radio-card ${currentPlayingId === radio.id ? 'playing' : ''}`;
             card.id = `card-${radio.id}`;
-            // Gunakan template literal dengan escaping yang aman
+            // Escape untuk keamanan
             const escapedUrl = radio.streamUrl.replace(/'/g, "\\'");
             const escapedTitle = radio.title.replace(/'/g, "\\'");
-            const escapedLogo = radio.logo.replace(/'/g, "\\'");
             card.innerHTML = `
-                <button class="fav-btn" onclick="toggleFav(event, ${radio.id})" aria-label="Favorit">${isFav ? '❤️' : '🤍'}</button>
-                <div onclick="playStream('${escapedUrl}', '${radio.type}', '${escapedTitle}', ${radio.id}, '${escapedLogo}')">
-                    <img src="${radio.logo}" alt="Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
+                <button class="fav-btn" onclick="toggleFav(event, ${radio.id})">${isFav ? '❤️' : '🤍'}</button>
+                <div onclick="playStream('${escapedUrl}', '${radio.type}', '${escapedTitle}', ${radio.id}, '${radio.logo}')">
+                    <img src="${radio.logo}" alt="${radio.title}" loading="lazy" onerror="this.src='https://placehold.co/400x400?text=Radio'">
                     <h3>${radio.title}</h3>
                 </div>
             `;
-            list.appendChild(card);
+            container.appendChild(card);
         });
     }
 
-    // ===================== SWITCH TAB =====================
+    // Switch tab
     window.switchTab = function(tab) {
         currentTab = tab;
-        const tabAll = document.getElementById('tab-all');
-        const tabFav = document.getElementById('tab-fav');
-        if (tabAll && tabFav) {
-            tabAll.classList.toggle('active', tab === 'all');
-            tabFav.classList.toggle('active', tab === 'fav');
-        }
+        document.getElementById('tab-all').classList.toggle('active', tab === 'all');
+        document.getElementById('tab-fav').classList.toggle('active', tab === 'fav');
         renderRadios();
     };
 
-    // ===================== FILTER PENCARIAN =====================
-    window.filterRadios = function() {
-        renderRadios();
-    };
+    window.filterRadios = () => renderRadios();
 
-    // ===================== INIT =====================
+    // Inisialisasi
     renderRadios();
 
-    // Bersihkan HLS saat halaman ditutup
+    // Cleanup HLS sebelum unload
     window.addEventListener('beforeunload', () => {
-        if (currentHls) {
-            try { currentHls.destroy(); } catch(e) {}
-        }
+        if (currentHls) currentHls.destroy();
     });
 </script>
 </body>
