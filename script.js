@@ -4,7 +4,7 @@ let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
 let currentCategory = 'ALL';
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadRadiosFromJSON();
+    loadRadios();
 
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
@@ -12,33 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// MEMBACA DATA DARI FILE JSON EKSTERNAL SECARA ASYNC
-async function loadRadiosFromJSON() {
+// MEMBACA BERKAS JSON SECARA ASINKRONUS (FETCH ASYNC)
+async function loadRadios() {
     const list = document.getElementById('radio-list');
     try {
         const res = await fetch('radios-id.json?v=' + Date.now());
-        if (!res.ok) throw new Error("Gagal mengambil data dari server");
+        if (!res.ok) throw new Error();
         allRadios = await res.json();
         
-        // Buat sistem tab kategori dinamis berdasarkan isi JSON yang terbaca
+        // Membaca ketegangan kategori unik secara dinamis dari file JSON
         generateCategoryTabs();
         renderRadios();
     } catch (e) {
         list.innerHTML = `
             <div class="error-box">
                 <h4>JSON Gak Ketemu 💀</h4>
-                <p>Gagal memuat berkas "radios-id.json". Pastikan file berada di direktori yang sama.</p>
+                <p>Gagal mengambil data playlist radio, pastikan file "radios-id.json" Anda aman.</p>
             </div>`;
     }
 }
 
-// MEMBUAT TAB KATEGORI SEARA DINAMIS BERDASARKAN FILTER OBJEKTIF DI JSON
+// MEMILIH & MENYUNTIKKAN DATA TOMBOL KATEGORI SECARA REAL-TIME
 function generateCategoryTabs() {
     const tabsContainer = document.getElementById('category-tabs');
     if (!tabsContainer) return;
     
-    // Kelompokkan kategori unik langsung dari data properti JSON yang masuk
-    const uniqueCategories = [...new Set(allRadios.map(radio => radio.category))];
+    // Cek ketersediaan properti kategori dalam JSON, jika tidak ada fallback ke array kosong
+    const uniqueCategories = [...new Set(allRadios.filter(r => r.category).map(r => r.category))];
     const finalCategories = ['ALL', 'FAVORIT', ...uniqueCategories];
     
     tabsContainer.innerHTML = '';
@@ -58,7 +58,7 @@ function renderRadios() {
 
     if (!list) return;
 
-    // Filter Ganda: Berdasarkan Input Kolom Pencarian DAN Pilihan Tab Kategori Aktif
+    // Filter data bertingkat: Pencarian Teks DAN Kondisi Tab Filter
     const filteredData = allRadios.filter(radio => {
         const matchesSearch = radio.title.toLowerCase().includes(keyword);
         let matchesTab = false;
@@ -74,7 +74,7 @@ function renderRadios() {
         return matchesSearch && matchesTab;
     });
 
-    // Perbarui Teks Status Jumlah Frekuensi Real-Time di Header
+    // Pembaruan teks kuantitas data frekuensi stasiun radio
     if (countElement) {
         if (keyword !== "") {
             countElement.innerText = `Ditemukan ${filteredData.length} stasiun untuk "${keyword}"`;
@@ -89,12 +89,12 @@ function renderRadios() {
         list.innerHTML = `
             <div class="error-box">
                 <h4>Gak Ketemu Nih... 🚩</h4>
-                <p>Coba cari kata kunci lain atau periksa tab filter kamu saat ini.</p>
+                <p>Coba cari kata kunci lain atau periksa tab kategori Anda.</p>
             </div>`;
         return;
     }
 
-    // Pembuatan Kartu Radio Secara Dinamis
+    // Suntik komponen elemen kartu stasiun ke DOM Grid
     filteredData.forEach(radio => {
         const isFav = favorites.includes(Number(radio.id));
         const card = document.createElement('div');
@@ -102,7 +102,7 @@ function renderRadios() {
         card.id = `card-${radio.id}`;
         
         card.innerHTML = `
-            <button class="fav-btn" aria-label="Favoritkan" onclick="toggleFav(event, ${radio.id})">
+            <button class="fav-btn" aria-label="Favorit" onclick="toggleFav(event, ${radio.id})">
                 ${isFav ? '❤️' : '🤍'}
             </button>
             <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id}, '${radio.logo}')">
@@ -113,12 +113,13 @@ function renderRadios() {
     });
 }
 
+// EKSEKUSI PEMUTAR AUDIO & DESENTRALISASI LOGO MINI PLAYER
 window.playStream = (url, type, title, id, logoUrl) => {
     const audio = document.getElementById('player');
     const miniLogo = document.getElementById('player-current-logo');
     
     document.title = "▶️ " + title + " | Radio Player Pro";
-    document.getElementById('now-playing').innerHTML = `<b>${title}</b><span class="sub-vibe">Now Vibing</span>`;
+    document.getElementById('now-playing').innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
     
     if (miniLogo && logoUrl) {
         miniLogo.src = logoUrl;
@@ -135,10 +136,10 @@ window.playStream = (url, type, title, id, logoUrl) => {
         hls = new Hls(); 
         hls.loadSource(url); 
         hls.attachMedia(audio);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay diblokir")));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => audio.play().catch(e => console.log("Autoplay blocked")));
     } else {
         audio.src = url; 
-        audio.play().catch(e => console.log("Autoplay diblokir"));
+        audio.play().catch(e => console.log("Autoplay blocked"));
     }
 };
 
@@ -164,10 +165,14 @@ function switchCategory(cat) {
     currentCategory = cat;
     document.querySelectorAll('.tab-btn').forEach(btn => {
         const text = btn.innerText;
-        const isCurrent = (cat === 'ALL' && text.includes('All')) || 
-                          (cat === 'FAVORIT' && text.includes('Faves')) || 
-                          (text === cat);
-        btn.classList.toggle('active', isCurrent);
+        const isActive = (cat === 'ALL' && text.includes('All')) || 
+                         (cat === 'FAVORIT' && text.includes('Faves')) || 
+                         (text === cat);
+        btn.classList.toggle('active', isActive);
     });
     renderRadios();
+}
+
+function filterRadios() { 
+    renderRadios(); 
 }
