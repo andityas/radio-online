@@ -11,6 +11,7 @@
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
     <meta property="og:type" content="website">
 
+    <!-- Google Fonts & HLS Stream Support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -29,13 +30,15 @@
         <div class="search-wrapper">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio">
+                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
             </div>
         </div>
 
+        <!-- Filter Konten Utama (Vibes System) -->
         <div class="filter-container">
             <div class="tabs-scroll" id="category-tabs">
-                </div>
+                <!-- Diisi otomatis oleh JavaScript -->
+            </div>
         </div>
     </header>
 
@@ -45,25 +48,21 @@
         </div>
     </main>
 
+    <!-- UI/UX Player Bar di Sisi Bawah -->
     <footer class="player-container">
         <div class="player-wrapper">
-            <div class="player-meta">
-                <div class="mini-logo-wrapper">
-                    <img id="player-current-logo" src="https://via.placeholder.com/150?text=Radio" alt="Logo Stasiun Aktif">
-                </div>
+            <div class="track-info">
+                <div class="now-playing-icon">🎵</div>
                 <div class="text-stream">
-                    <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+                    <span class="status-badge">NOW STREAMING</span>
+                    <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk...</div>
                 </div>
             </div>
-            
-            <div class="player-controls">
+            <div class="audio-controls">
                 <audio id="player" controls autoplay aria-label="Audio Player"></audio>
             </div>
-            
-            <div class="player-signature">
-                <div class="signature">
-                    Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
-                </div>
+            <div class="signature">
+                Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
             </div>
         </div>
     </footer>
