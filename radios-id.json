@@ -5,5 +5,12 @@
     "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png",
     "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv",
     "type": "audio/mpeg"
+  },
+  {
+    "id": 2,
+    "title": "iSwara FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png",
+    "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv",
+    "type": "audio/mpeg"
   }
 ]
