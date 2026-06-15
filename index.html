@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
     <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih dan update otomatis stasiun radio terlengkap.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player id">
+    
     <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia">
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
     <meta property="og:type" content="website">
+
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
-        /* ===== DESAIN ASLI (PERTAHANKAN) ===== */
+        /* ===== DESAIN ASLI (TIDAK DIUBAH) ===== */
         :root {
             --primary: #1db954;
             --dark: #0f0f0f;
@@ -41,7 +44,7 @@
 
         .tagline { font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
         h1 { margin: 5px 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; }
-
+        
         #search-input {
             width: 90%;
             max-width: 400px;
@@ -120,11 +123,7 @@
         .signature { margin-top: 12px; font-size: 11px; color: #777; }
         .andit-name { color: var(--primary); font-weight: bold; }
 
-        @media (max-width: 480px) {
-            #radio-list { grid-template-columns: repeat(2, 1fr); padding: 15px; }
-        }
-
-        /* tombol fav */
+        /* Tombol favorit */
         .fav-btn {
             position: absolute;
             top: 8px;
@@ -143,6 +142,10 @@
             transition: 0.2s;
         }
         .fav-btn:hover { transform: scale(1.1); }
+
+        @media (max-width: 480px) {
+            #radio-list { grid-template-columns: repeat(2, 1fr); padding: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -180,7 +183,7 @@
 </div>
 
 <script>
-    // ===================== DATA RADIO (LANGSUNG DIEMBED AGAR TIDAK PERLU FETCH) =====================
+    // ===================== DATA RADIO (EMBEDDED) =====================
     const RADIOS_DATA = [
         { "id": 1, "title": "Prambors FM", "logo": "https://cdn.onlineradiobox.com/img/l/7/18687.v44.png", "streamUrl": "https://stream.rcs.revma.com/h77wwp48kxcwv", "type": "audio/mpeg" },
         { "id": 2, "title": "Delta FM", "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png", "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv", "type": "audio/mpeg" },
@@ -209,25 +212,103 @@
         { "id": 25, "title": "NAGASWARA RADIOTEMEN Bogor", "logo": "https://cdn.onlineradiobox.com/img/l/2/19152.v27.png", "streamUrl": "https://live.nagaswarafm.com/nagaswararadio/stream", "type": "audio/mpeg" }
     ];
 
+    // ===================== GLOBAL VARIABLES =====================
     let allRadios = RADIOS_DATA;
     let favorites = JSON.parse(localStorage.getItem('radioFavs')) || [];
     let currentTab = 'all';
-    let hls = null;
+    let currentHls = null;
     let currentPlayingId = null;
 
-    // Render daftar radio dengan filter & favorit
+    // ===================== FUNGSI PLAY STREAM (DENGAN FIX BUG) =====================
+    window.playStream = function(url, type, title, id, logoUrl) {
+        const audio = document.getElementById('player');
+        if (!audio) return;
+
+        // Update UI title & now playing
+        document.title = "▶️ " + title + " | Radio Player Pro";
+        const nowPlayingDiv = document.getElementById('now-playing');
+        if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
+        currentPlayingId = id;
+
+        // Highlight kartu yang sedang diputar
+        document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('playing'));
+        const activeCard = document.getElementById(`card-${id}`);
+        if (activeCard) activeCard.classList.add('playing');
+
+        // Hancurkan HLS sebelumnya jika ada
+        if (currentHls) {
+            try { currentHls.destroy(); } catch(e) { console.warn(e); }
+            currentHls = null;
+        }
+
+        // Reset audio element
+        audio.pause();
+        audio.src = '';
+        audio.load();
+
+        // Cek apakah stream HLS (.m3u8)
+        const isHls = (type === 'application/x-mpegURL') || url.includes('.m3u8');
+
+        if (isHls && Hls.isSupported()) {
+            currentHls = new Hls({
+                enableWorker: true,
+                fragLoadingTimeOut: 30000,
+                manifestLoadingTimeOut: 20000
+            });
+            currentHls.loadSource(url);
+            currentHls.attachMedia(audio);
+            currentHls.on(Hls.Events.MANIFEST_PARSED, () => {
+                audio.play().catch(err => {
+                    console.log("Autoplay diblokir browser, user harus klik play manual", err);
+                    if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🎵 ${title} siap, klik play jika tidak otomatis`;
+                });
+            });
+            currentHls.on(Hls.Events.ERROR, (event, data) => {
+                if (data.fatal) {
+                    console.error("HLS fatal error:", data);
+                    if (nowPlayingDiv) nowPlayingDiv.innerHTML = `⚠️ Gagal memutar ${title}, coba stasiun lain.`;
+                    if (currentHls) currentHls.destroy();
+                    currentHls = null;
+                }
+            });
+        } else {
+            // Stream biasa (MP3, AAC, dll)
+            audio.src = url;
+            audio.load();
+            audio.play().catch(err => {
+                console.log("Autoplay tidak diizinkan", err);
+                if (nowPlayingDiv) nowPlayingDiv.innerHTML = `🔊 ${title} - klik play untuk mulai`;
+            });
+        }
+    };
+
+    // ===================== TOGGLE FAVORIT =====================
+    window.toggleFav = function(e, id) {
+        e.stopPropagation();
+        const targetId = Number(id);
+        if (favorites.includes(targetId)) {
+            favorites = favorites.filter(f => f !== targetId);
+        } else {
+            favorites.push(targetId);
+        }
+        localStorage.setItem('radioFavs', JSON.stringify(favorites));
+        renderRadios(); // Refresh daftar
+    };
+
+    // ===================== RENDER RADIO LIST =====================
     function renderRadios() {
         const list = document.getElementById('radio-list');
         const countElement = document.getElementById('radio-count');
         const keyword = document.getElementById('search-input').value.toLowerCase().trim();
 
-        let filtered = allRadios.filter(r => {
-            const isFavMatch = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(r.id));
-            const isSearchMatch = r.title.toLowerCase().includes(keyword);
+        // Filter berdasarkan tab dan pencarian
+        let filtered = allRadios.filter(radio => {
+            const isFavMatch = (currentTab === 'all') || (currentTab === 'fav' && favorites.includes(radio.id));
+            const isSearchMatch = radio.title.toLowerCase().includes(keyword);
             return isFavMatch && isSearchMatch;
         });
 
-        // Update jumlah
+        // Update jumlah stasiun
         if (countElement) {
             if (keyword !== "") {
                 countElement.innerText = `Ditemukan ${filtered.length} stasiun untuk "${keyword}"`;
@@ -236,7 +317,7 @@
             }
         }
 
-        list.innerHTML = '';
+        // Tampilkan pesan jika kosong
         if (filtered.length === 0) {
             list.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:50px; opacity:0.6;">
                 <h4>Gak Ketemu Nih... 🚩</h4><p>Coba cari stasiun lain atau cek playlist favoritmu.</p>
@@ -244,6 +325,8 @@
             return;
         }
 
+        // Render kartu-kartu radio
+        list.innerHTML = '';
         filtered.forEach(radio => {
             const isFav = favorites.includes(radio.id);
             const card = document.createElement('div');
@@ -260,75 +343,32 @@
         });
     }
 
-    // Fungsi play stream (mendukung HLS dan audio biasa)
-    window.playStream = (url, type, title, id, logoUrl) => {
-        const audio = document.getElementById('player');
-        
-        // Update judul tab dan now playing
-        document.title = `▶️ ${title} | Radio Player Pro`;
-        document.getElementById('now-playing').innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
-        currentPlayingId = id;
-        
-        // Highlight card yang sedang diputar
-        document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('playing'));
-        const currentCard = document.getElementById(`card-${id}`);
-        if (currentCard) currentCard.classList.add('playing');
-        
-        // Hentikan HLS sebelumnya jika ada
-        if (hls) {
-            hls.destroy();
-            hls = null;
-        }
-        
-        // Putar stream
-        const isHls = (type === 'application/x-mpegURL') || url.includes('.m3u8');
-        if (isHls && Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(audio);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                audio.play().catch(e => console.log("Autoplay perlu interaksi user"));
-            });
-            hls.on(Hls.Events.ERROR, (event, data) => {
-                if (data.fatal) {
-                    console.error("HLS error, coba fallback");
-                    document.getElementById('now-playing').innerHTML = `⚠️ Gagal memutar ${title}, coba stasiun lain.`;
-                }
-            });
-        } else {
-            audio.src = url;
-            audio.play().catch(e => console.log("Autoplay diblokir browser"));
-        }
-    };
-
-    // Toggle favorit
-    window.toggleFav = (e, id) => {
-        e.stopPropagation();
-        const targetId = Number(id);
-        if (favorites.includes(targetId)) {
-            favorites = favorites.filter(f => f !== targetId);
-        } else {
-            favorites.push(targetId);
-        }
-        localStorage.setItem('radioFavs', JSON.stringify(favorites));
-        renderRadios(); // refresh tampilan
-    };
-
-    // Switch tab
-    window.switchTab = (tab) => {
+    // ===================== SWITCH TAB =====================
+    window.switchTab = function(tab) {
         currentTab = tab;
-        document.getElementById('tab-all').classList.toggle('active', tab === 'all');
-        document.getElementById('tab-fav').classList.toggle('active', tab === 'fav');
+        const tabAll = document.getElementById('tab-all');
+        const tabFav = document.getElementById('tab-fav');
+        if (tabAll && tabFav) {
+            tabAll.classList.toggle('active', tab === 'all');
+            tabFav.classList.toggle('active', tab === 'fav');
+        }
         renderRadios();
     };
 
-    // Filter saat search
-    window.filterRadios = () => {
+    // ===================== FILTER PENCARIAN =====================
+    window.filterRadios = function() {
         renderRadios();
     };
 
-    // Inisialisasi pertama
+    // ===================== INIT =====================
     renderRadios();
+
+    // Bersihkan HLS saat halaman ditutup
+    window.addEventListener('beforeunload', () => {
+        if (currentHls) {
+            try { currentHls.destroy(); } catch(e) {}
+        }
+    });
 </script>
 </body>
 </html>
