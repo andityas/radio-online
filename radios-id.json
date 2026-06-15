@@ -12,5 +12,47 @@
     "logo": "https://cdn.onlineradiobox.com/img/l/9/18959.v12.png",
     "streamUrl": "https://stream.radiojar.com/4ywdgup3bnzuv",
     "type": "audio/mpeg"
+  },
+  {
+    "id": 3,
+    "title": "Delta FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/8/58058.v32.png",
+    "streamUrl": "https://stream.rcs.revma.com/k02rmq48kxcwv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 4,
+    "title": "Slow Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/91316.v16.png",
+    "streamUrl": "https://stream.zeno.fm/dpk2zq5np2zuv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 5,
+    "title": "FeMale Radio",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/60996.v19.png",
+    "streamUrl": "https://stream.rcs.revma.com/9thenqqd2ncwv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 6,
+    "title": "The Rockin' Life",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/18880.v17.png",
+    "streamUrl": "https://stream.radiojar.com/7csmg90fuqruv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 7,
+    "title": "Trax FM",
+    "logo": "https://cdn.onlineradiobox.com/img/l/6/18806.v13.png",
+    "streamUrl": "https://stream.radiojar.com/rrqf78p3bnzuv",
+    "type": "audio/mpeg"
+  },
+  {
+    "id": 8,
+    "title": "Golden Memories",
+    "logo": "https://cdn.onlineradiobox.com/img/l/0/110170.v4.png",
+    "streamUrl": "https://stream.zeno.fm/xg7mcgf1bf9uv",
+    "type": "audio/mpeg"
   }
 ]
