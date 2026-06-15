@@ -86,7 +86,7 @@ h1 { margin: 5px 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; }
 
 .radio-card h3 { font-size: 13px; margin: 10px 0 0 0; }
 
-/* Tombol favorit (dipindah dari inline style ke CSS) */
+/* Tombol favorit (dipindah dari inline style ke CSS agar rapi) */
 .fav-btn {
     position: absolute;
     top: 10px;
