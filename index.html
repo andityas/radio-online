@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
     <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih dan update otomatis stasiun radio terlengkap.">
     <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player id">
@@ -11,61 +12,45 @@
     <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
     <meta property="og:type" content="website">
 
-    <!-- Google Fonts & HLS Stream Support -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="app-header">
-        <div class="header-content">
-            <span class="tagline">Vibing Everyday No Cap 🧢</span>
-            <h1>Radio<span>Player</span>Pro</h1>
-            <p id="radio-count">Menghubungkan frekuensi...</p>
-        </div>
+    <header>
+        <span class="tagline">Vibing Everyday No Cap 🧢</span>
+        <h1>🎵 RADIO PLAYER PRO</h1>
+        
+        <p id="radio-count" style="font-size: 11px; margin-top: 5px; font-weight: bold; opacity: 0.9; text-transform: uppercase;">
+            Menghubungkan frekuensi...
+        </p>
 
-        <div class="search-wrapper">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
-            </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
         </div>
-
-        <!-- Filter Konten Utama (Vibes System) -->
-        <div class="filter-container">
-            <div class="tabs-scroll" id="category-tabs">
-                <!-- Diisi otomatis oleh JavaScript -->
-            </div>
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">All Vibes</button>
+            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">My Faves ❤️</button>
         </div>
     </header>
 
-    <main class="main-content">
-        <div id="radio-list" class="radio-grid">
+    <main>
+        <div style="display:none">
+            <p>Aplikasi streaming radio Indonesia terbaik. Dengarkan musik pop, jazz, berita, dan hiburan dari stasiun populer di Jakarta, Bandung, dan kota lainnya.</p>
+        </div>
+
+        <div id="radio-list">
             <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
         </div>
     </main>
 
-    <!-- UI/UX Player Bar di Sisi Bawah -->
-    <footer class="player-container">
-        <div class="player-wrapper">
-            <div class="track-info">
-                <div class="now-playing-icon">🎵</div>
-                <div class="text-stream">
-                    <span class="status-badge">NOW STREAMING</span>
-                    <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk...</div>
-                </div>
-            </div>
-            <div class="audio-controls">
-                <audio id="player" controls autoplay aria-label="Audio Player"></audio>
-            </div>
-            <div class="signature">
-                Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
-            </div>
+    <div class="player-container">
+        <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
+        <audio id="player" controls autoplay aria-label="Audio Player"></audio>
+        <div class="signature">
+            Manifested with ❤️ by <span class="andit-name">Andit</span>
         </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
