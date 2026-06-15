@@ -961,14 +961,6 @@
   },
   {
     "id": 121,
-    "title": "Bens Radio 106.2 FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/2/19062.v9.png",
-    "streamUrl": "https://streaming.bensradio.com:8522/stream",
-    "type": "audio/mpeg",
-    "tier": 2
-  },
-  {
-    "id": 122,
     "title": "Suara Surabaya",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/18988.v10.png",
     "streamUrl": "https://c5.siar.us/proxy/ssfm/stream",
@@ -976,7 +968,7 @@
     "tier": 3
   },
   {
-    "id": 123,
+    "id": 122,
     "title": "Radio Dangdut Indonesia",
     "logo": "https://cdn.onlineradiobox.com/img/l/3/18943.v8.png",
     "streamUrl": "https://stream.roov.id:8062/stream",
@@ -984,7 +976,7 @@
     "tier": 3
   },
   {
-    "id": 124,
+    "id": 123,
     "title": "Swaragama FM Jogja",
     "logo": "https://cdn.onlineradiobox.com/img/l/4/18984.v14.png",
     "streamUrl": "http://202.65.114.229:9314/;",
@@ -992,7 +984,7 @@
     "tier": 3
   },
   {
-    "id": 125,
+    "id": 124,
     "title": "EBS 105.9 FM Surabaya",
     "logo": "https://cdn.onlineradiobox.com/img/l/5/89345.v5.png",
     "streamUrl": "https://azuracast.suzananet.com/listen/ebs_fm/radio",
@@ -1000,7 +992,7 @@
     "tier": 3
   },
   {
-    "id": 126,
+    "id": 125,
     "title": "Menara FM Bali",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/18889.v10.png",
     "streamUrl": "https://c1.siar.us:10280/menarafmbali",
@@ -1008,7 +1000,7 @@
     "tier": 3
   },
   {
-    "id": 127,
+    "id": 126,
     "title": "Radio MFM Malang 101.3 FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/18991.v13.png",
     "streamUrl": "https://mfm.isowae.com:8443/studio.mp3",
@@ -1016,7 +1008,7 @@
     "tier": 3
   },
   {
-    "id": 128,
+    "id": 127,
     "title": "Batam FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/0/19060.v10.png",
     "streamUrl": "https://i.klikhost.com:8174/batamfm",
@@ -1024,7 +1016,7 @@
     "tier": 3
   },
   {
-    "id": 129,
+    "id": 128,
     "title": "Radio Bintang Tenggara",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/19171.v12.png",
     "streamUrl": "https://asv.alhastream.com:4070/rbtfm",
@@ -1032,7 +1024,7 @@
     "tier": 3
   },
   {
-    "id": 130,
+    "id": 129,
     "title": "Venus FM Makassar",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/19859.v11.png",
     "streamUrl": "https://stream.zeno.fm/3wiuocujuobtv",
@@ -1040,15 +1032,7 @@
     "tier": 3
   },
   {
-    "id": 131,
-    "title": "Baiturrahman FM",
-    "logo": "https://cdn.onlineradiobox.com/img/l/5/82805.v17.png",
-    "streamUrl": "https://stream.radioalikhwan.com/listen/baiturrahman_fm_aceh/stream",
-    "type": "audio/mpeg",
-    "tier": 3
-  },
-  {
-    "id": 132,
+    "id": 130,
     "title": "Pinguin Radio Bali",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/19686.v14.png",
     "streamUrl": "https://live.radiopinguinfm.com:8350/;stream.mp3",
@@ -1056,7 +1040,7 @@
     "tier": 3
   },
   {
-    "id": 133,
+    "id": 131,
     "title": "Radio Suara Salatiga",
     "logo": "https://cdn.onlineradiobox.com/img/l/2/83702.v9.png",
     "streamUrl": "https://icecast.salatiga.go.id:8443/stream.ogg",
@@ -1064,7 +1048,7 @@
     "tier": 3
   },
   {
-    "id": 134,
+    "id": 132,
     "title": "Elfara FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/75856.v12.png",
     "streamUrl": "https://c4.siar.us:8123/live",
@@ -1072,7 +1056,7 @@
     "tier": 3
   },
   {
-    "id": 135,
+    "id": 133,
     "title": "UTY FM Medari",
     "logo": "https://cdn.onlineradiobox.com/img/l/3/74783.v6.png",
     "streamUrl": "http://utyfmedari.us.myradio.web.id:8000/utyfmedari",
@@ -1080,7 +1064,7 @@
     "tier": 3
   },
   {
-    "id": 136,
+    "id": 134,
     "title": "VIS FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/19561.v11.png",
     "streamUrl": "http://b.alhastream.com:5115/radio",
@@ -1088,7 +1072,7 @@
     "tier": 3
   },
   {
-    "id": 137,
+    "id": 135,
     "title": "Kiara FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/4/79534.v20.png",
     "streamUrl": "https://mpc1.mediacp.eu/stream/kiara-radio",
@@ -1096,7 +1080,7 @@
     "tier": 3
   },
   {
-    "id": 138,
+    "id": 136,
     "title": "Suzana 91.3 FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/93181.v6.png",
     "streamUrl": "https://streaming.suzanafm.com:8000/;stream.mp3",
@@ -1104,7 +1088,7 @@
     "tier": 3
   },
   {
-    "id": 139,
+    "id": 137,
     "title": "Kalimaya Bhaskara",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/66946.v10.png",
     "streamUrl": "https://cast1.my-control-panel.com/proxy/radioso4/live",
@@ -1112,7 +1096,7 @@
     "tier": 3
   },
   {
-    "id": 140,
+    "id": 138,
     "title": "102.7 MTB FM Surabaya",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/84008.v10.png",
     "streamUrl": "https://103.123.98.58/listen/1027_mtb_fm_surabaya/radio.mp3",
@@ -1120,7 +1104,7 @@
     "tier": 3
   },
   {
-    "id": 141,
+    "id": 139,
     "title": "Radio SJFM Juwana",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/73661.v8.png",
     "streamUrl": "http://i.klikhost.com:9014/;",
@@ -1128,15 +1112,7 @@
     "tier": 3
   },
   {
-    "id": 142,
-    "title": "Radio SJFM Juwana",
-    "logo": "https://cdn.onlineradiobox.com/img/l/1/73661.v8.png",
-    "streamUrl": "http://i.klikhost.com:9014/;",
-    "type": "audio/mpeg",
-    "tier": 3
-  },
-  {
-    "id": 143,
+    "id": 140,
     "title": "Radio Swara Koncotani",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/75278.v6.png",
     "streamUrl": "https://r5.siar.us:8711/stream",
@@ -1144,7 +1120,7 @@
     "tier": 3
   },
   {
-    "id": 144,
+    "id": 141,
     "title": "Medan FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/19318.v8.png",
     "streamUrl": "https://sc.medanfm.id/;",
@@ -1152,7 +1128,7 @@
     "tier": 3
   },
   {
-    "id": 145,
+    "id": 142,
     "title": "KARMILA FM 107.9",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/123878.v48.png",
     "streamUrl": "https://r8.siar.us:8030/karmilafm",
@@ -1160,7 +1136,7 @@
     "tier": 3
   },
   {
-    "id": 146,
+    "id": 143,
     "title": "Radio Pelita Kasih",
     "logo": "https://cdn.onlineradiobox.com/img/l/3/19043.v11.png",
     "streamUrl": "https://streaming.classynetradio.com:8040/rpkfm",
@@ -1168,7 +1144,7 @@
     "tier": 3
   },
   {
-    "id": 147,
+    "id": 144,
     "title": "Andika FM (Kediri)",
     "logo": "https://cdn.onlineradiobox.com/img/l/0/139990.v4.png",
     "streamUrl": "https://r5.siar.us:1057/andikafm",
@@ -1176,7 +1152,7 @@
     "tier": 3
   },
   {
-    "id": 148,
+    "id": 145,
     "title": "UB Radio 107.5 FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/75438.v14.png",
     "streamUrl": "https://r8.siar.us:8120/ubradio",
@@ -1184,7 +1160,7 @@
     "tier": 3
   },
   {
-    "id": 149,
+    "id": 146,
     "title": "Suara Islam!",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/126079.v7.png",
     "streamUrl": "https://c4.siar.us:8065/stream",
@@ -1192,7 +1168,7 @@
     "tier": 3
   },
   {
-    "id": 150,
+    "id": 147,
     "title": "SuaraSoneta Radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/7/19557.v5.png",
     "streamUrl": "https://a2.siar.us/listen/suarasoneta/radio.mp3",
@@ -1200,7 +1176,7 @@
     "tier": 3
   },
   {
-    "id": 151,
+    "id": 148,
     "title": "Kharisma FM - Pare Kediri",
     "logo": "https://cdn.onlineradiobox.com/img/l/6/20376.v11.png",
     "streamUrl": "http://stream.kharismafm.com:9550/kharismafm",
@@ -1208,7 +1184,7 @@
     "tier": 3
   },
   {
-    "id": 152,
+    "id": 149,
     "title": "Radio Kesehatan",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/72468.v16.png",
     "streamUrl": "http://pu.klikhost.com:8202/radiokesehatan",
@@ -1216,7 +1192,7 @@
     "tier": 3
   },
   {
-    "id": 153,
+    "id": 150,
     "title": "Radio Badratun FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/7/79767.v54.png",
     "streamUrl": "https://stream.badratunmedia.id/radio/badratunfm",
@@ -1224,7 +1200,7 @@
     "tier": 3
   },
   {
-    "id": 154,
+    "id": 151,
     "title": "Pop FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/133138.v3.png",
     "streamUrl": "https://i.klikhost.com/8272/stream",
@@ -1232,7 +1208,7 @@
     "tier": 3
   },
   {
-    "id": 155,
+    "id": 152,
     "title": "Radio Magelang FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/2/79562.v6.png",
     "streamUrl": "http://202.65.114.229:9952/;",
@@ -1240,7 +1216,7 @@
     "tier": 3
   },
   {
-    "id": 156,
+    "id": 153,
     "title": "SUARA GRATIA FM",
     "logo": "https://cdn.onlineradiobox.com/img/l/1/19681.v9.png",
     "streamUrl": "https://ssg.streamingmurah.com:8224/;",
@@ -1248,7 +1224,7 @@
     "tier": 3
   },
   {
-    "id": 157,
+    "id": 154,
     "title": "Radio Famili Minang",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/81909.v15.png",
     "streamUrl": "https://a7.alhastream.com:4180/radio",
@@ -1256,7 +1232,7 @@
     "tier": 3
   },
   {
-    "id": 158,
+    "id": 155,
     "title": "DNA FM JEPARA",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/19758.v12.png",
     "streamUrl": "https://sc.dnafm.net/listen/dnafm/live",
@@ -1264,7 +1240,7 @@
     "tier": 3
   },
   {
-    "id": 159,
+    "id": 156,
     "title": "Jedag_Jedug Online",
     "logo": "https://cdn.onlineradiobox.com/img/l/3/112113.v8.png",
     "streamUrl": "https://stream.zeno.fm/rudtpbce6ehvv",
@@ -1272,7 +1248,7 @@
     "tier": 4
   },
   {
-    "id": 160,
+    "id": 157,
     "title": "GTA Radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/107319.v4.png",
     "streamUrl": "https://stream.zeno.fm/qe1hrwvkg48uv",
@@ -1280,7 +1256,7 @@
     "tier": 4
   },
   {
-    "id": 161,
+    "id": 158,
     "title": "Getar Cinta",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/114758.v4.png",
     "streamUrl": "https://stream.zeno.fm/wpbv42dgephvv",
@@ -1288,7 +1264,7 @@
     "tier": 4
   },
   {
-    "id": 162,
+    "id": 159,
     "title": "Alternatif radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/0/118590.v8.png",
     "streamUrl": "https://void.idserverhost.com/8016/stream",
@@ -1296,7 +1272,7 @@
     "tier": 4
   },
   {
-    "id": 163,
+    "id": 160,
     "title": "90s Rock",
     "logo": "https://cdn.onlineradiobox.com/img/l/4/124164.v3.png",
     "streamUrl": "https://stream.zeno.fm/ti7cqx6fxb8vv",
@@ -1304,7 +1280,7 @@
     "tier": 4
   },
   {
-    "id": 164,
+    "id": 161,
     "title": "Y2K Radio Abe",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/72168.v25.png",
     "streamUrl": "https://stream.zeno.fm/k0sxdns57bruv",
@@ -1312,7 +1288,7 @@
     "tier": 4
   },
   {
-    "id": 165,
+    "id": 162,
     "title": "MTV Rewind",
     "logo": "https://cdn.onlineradiobox.com/img/l/4/124124.v3.png",
     "streamUrl": "https://stream.zeno.fm/l8brto4lw3atv",
@@ -1320,7 +1296,7 @@
     "tier": 4
   },
   {
-    "id": 166,
+    "id": 163,
     "title": "Jakarta Rock Radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/110038.v4.png",
     "streamUrl": "https://stream.zeno.fm/cy0zetda9e9uv",
@@ -1328,7 +1304,7 @@
     "tier": 4
   },
   {
-    "id": 167,
+    "id": 164,
     "title": "Jakarta The Classics radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/8/75028.v25.png",
     "streamUrl": "https://stream.zeno.fm/gx0pazemknzuv",
@@ -1336,7 +1312,7 @@
     "tier": 4
   },
   {
-    "id": 168,
+    "id": 165,
     "title": "Retrosquad Radio",
     "logo": "https://cdn.onlineradiobox.com/img/l/9/118949.v13.png",
     "streamUrl": "https://radio.retrosquad.id/listen/retrosquad/mid",
@@ -1344,7 +1320,7 @@
     "tier": 4
   },
   {
-    "id": 169,
+    "id": 166,
     "title": "Spirit Excellent",
     "logo": "https://cdn.onlineradiobox.com/img/l/7/84967.v17.png",
     "streamUrl": "https://radio.spirittoc.com:8060/EXCELLENT",
@@ -1352,7 +1328,7 @@
     "tier": 4
   },
   {
-    "id": 170,
+    "id": 167,
     "title": "MTV 00s",
     "logo": "https://cdn.onlineradiobox.com/img/l/0/124560.v3.png",
     "streamUrl": "https://stream.zeno.fm/c26kplsdxgttv",
