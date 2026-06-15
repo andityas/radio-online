@@ -3,130 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags Utama -->
     <title>Radio Player Pro | Streaming Radio Indonesia Online Terlengkap</title>
-    <meta name="description" content="Dengarkan live streaming radio Indonesia favorit secara online. Kualitas audio HD jernih dari Prambors, Delta FM, Ardan Radio, RRI, dan ratusan stasiun radio FM/AM terlengkap gratis.">
-    <meta name="keywords" content="radio online, streaming radio indonesia, prambors live, ardan fm bandung, delta fm jakarta, radio player id, dengar radio gratis, rri streaming">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://andityas.github.io/radio-online/">
+    <meta name="description" content="Dengarkan streaming radio Indonesia favorit secara online dengan kualitas audio jernih dan update otomatis stasiun radio terlengkap.">
+    <meta name="keywords" content="radio online, streaming radio indonesia, prambors, ardan fm, delta fm, radio player id">
     
-    <!-- Open Graph / Facebook SEO -->
-    <meta property="og:title" content="Radio Player Pro | Streaming Radio Indonesia Online Terlengkap">
-    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin langsung stasiun radio hits Indonesia di mana saja gratis tanpa buffering.">
+    <meta property="og:title" content="Radio Player Pro - Streaming Radio Indonesia">
+    <meta property="og:description" content="Vibing Everyday No Cap! Dengerin radio hits Indonesia di mana aja.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://andityas.github.io/radio-online/">
-    <meta property="og:image" content="https://cdn.onlineradiobox.com/img/l/7/18687.v44.png">
 
-    <!-- Twitter SEO Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Radio Player Pro - Streaming Radio Indonesia">
-    <meta name="twitter:description" content="Dengar ratusan stasiun radio Indonesia live tanpa gangguan buffer gratis.">
-    <meta name="twitter:image" content="https://cdn.onlineradiobox.com/img/l/7/18687.v44.png">
-
-    <!-- Google Fonts Inter Preconnect Speed Improvement -->
+    <!-- Google Fonts & HLS Stream Support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-
-    <!-- Memuat HLS.js secara Defer -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Google JSON-LD Schema Markup Modern (Krusial untuk Google Rich Snippets) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Radio Player Pro",
-      "url": "https://andityas.github.io/radio-online/",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires HTML5 Audio and JavaScript support.",
-      "description": "Aplikasi streaming radio online Indonesia gratis untuk mendengarkan puluhan stasiun FM dan AM favorit dengan kualitas HD.",
-      "keywords": "radio online, live streaming radio, radio indonesia, streaming musik gratis, prambors online, ardan fm",
-      "author": {
-        "@type": "Person",
-        "name": "Andit"
-      }
-    }
-    </script>
 </head>
 <body>
 
-    <!-- Header Dashboard Semantis -->
     <header class="app-header">
-        <div class="header-badge">
+        <div class="header-content">
             <span class="tagline">Vibing Everyday No Cap 🧢</span>
+            <h1>Radio<span>Player</span>Pro</h1>
+            <p id="radio-count">Menghubungkan frekuensi...</p>
         </div>
-        <h1 class="main-title">RADIO PLAYER PRO</h1>
-        <p id="radio-count" aria-live="polite">Menghubungkan frekuensi...</p>
 
-        <!-- Area Navigasi Pencarian -->
-        <nav class="search-container" aria-label="Pencarian Konten">
-            <div class="search-box-wrapper">
-                <span class="search-icon" aria-hidden="true">🔍</span>
-                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." aria-label="Cari stasiun radio indonesia">
+        <div class="search-wrapper">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Cari stasiun yang lagi hype..." onkeyup="filterRadios()" aria-label="Cari stasiun radio">
             </div>
-        </nav>
-        
-        <!-- Filter Tabs Kategori -->
-        <div class="tabs" role="tablist">
-            <button class="tab-btn active" id="tab-all" role="tab" aria-selected="true">All Vibes</button>
-            <button class="tab-btn" id="tab-fav" role="tab" aria-selected="false">My Faves ❤️</button>
+        </div>
+
+        <!-- Filter Konten Utama (Vibes System) -->
+        <div class="filter-container">
+            <div class="tabs-scroll" id="category-tabs">
+                <!-- Diisi otomatis oleh JavaScript -->
+            </div>
         </div>
     </header>
 
-    <!-- Konten Utama Aplikasi -->
     <main class="main-content">
-        <!-- Teks Intro Berbobot SEO Tinggi -->
-        <section class="seo-intro-content">
-            <h2>Aplikasi Streaming Radio Indonesia Terbaik</h2>
-            <p>Nikmati alunan musik pop, jazz, lagu dangdut terpopuler, berita terkini, hingga bincang hiburan dari stasiun radio terfavorit secara live 24 jam tanpa interupsi buffer.</p>
-        </section>
-
-        <!-- Grid Daftar Radio -->
-        <section id="radio-list-container" aria-label="Daftar Stasiun Radio Terpopuler">
-            <div id="radio-list">
-                <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
-            </div>
-        </section>
+        <div id="radio-list" class="radio-grid">
+            <div class="loading-msg">Sabar ya kak, lagi jemput data... ⏳</div>
+        </div>
     </main>
 
-    <!-- Master Floating App Player Deck (Sticky Area) -->
-    <footer class="app-player-footer">
-        <div class="player-container">
-            <!-- Sisi Kiri: Detail Musik Aktif -->
-            <div class="player-meta-block">
-                <div class="avatar-mini-wrapper" id="player-avatar-zone">
-                    <!-- Default saat sepi: Ikon SVG Wave Premium -->
-                    <svg class="default-player-icon" id="player-default-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"></path>
-                        <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"></path>
-                        <circle cx="12" cy="12" r="2"></circle>
-                        <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"></path>
-                        <path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"></path>
-                    </svg>
-                    <img id="player-current-logo" src="" alt="Mini Logo Pemutar Aktif" style="display: none;">
+    <!-- UI/UX Player Bar di Sisi Bawah -->
+    <footer class="player-container">
+        <div class="player-wrapper">
+            <div class="track-info">
+                <div class="now-playing-icon">🎵</div>
+                <div class="text-stream">
+                    <span class="status-badge">NOW STREAMING</span>
+                    <div id="now-playing">Lagi sepi nih, dengerin sesuatu yuk...</div>
                 </div>
-                <div id="now-playing" aria-live="polite">Lagi sepi nih, dengerin sesuatu yuk... 🎧</div>
             </div>
-            
-            <!-- Sisi Tengah: Kontrol Pemutar -->
-            <div class="player-controls-block">
-                <audio id="player" controls aria-label="Audio Stream Player Container"></audio>
+            <div class="audio-controls">
+                <audio id="player" controls autoplay aria-label="Audio Player"></audio>
             </div>
-            
-            <!-- Sisi Kanan: Signature Developer -->
-            <div class="player-signature-block">
-                <div class="signature">
-                    Manifested with ❤️ by <span class="andit-name">Andit</span>
-                </div>
+            <div class="signature">
+                Manifested with <span>❤️</span> by <span class="andit-name">Andit</span>
             </div>
         </div>
     </footer>
 
-    <!-- Script Utama Teroptimasi -->
     <script src="script.js"></script>
 </body>
 </html>
