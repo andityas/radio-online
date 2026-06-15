@@ -55,11 +55,16 @@ function renderRadios() {
         card.id = `card-${radio.id}`;
         if (currentPlayingId === radio.id) card.classList.add('playing');
         
+        // Escape string untuk menghindari error jika ada kutip
+        const escapedUrl = radio.streamUrl.replace(/'/g, "\\'");
+        const escapedTitle = radio.title.replace(/'/g, "\\'");
+        const escapedLogo = radio.logo.replace(/'/g, "\\'");
+        
         card.innerHTML = `
             <button class="fav-btn" aria-label="Favorit" onclick="toggleFav(event, ${radio.id})">
                 ${isFav ? '❤️' : '🤍'}
             </button>
-            <div onclick="playStream('${radio.streamUrl}', '${radio.type}', '${radio.title}', ${radio.id})">
+            <div onclick="playStream('${escapedUrl}', '${radio.type}', '${escapedTitle}', ${radio.id})">
                 <img src="${radio.logo}" alt="Streaming ${radio.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Radio'">
                 <h3>${radio.title}</h3>
             </div>`;
@@ -67,13 +72,14 @@ function renderRadios() {
     });
 }
 
-// Fungsi utama play stream (dengan perbaikan bug HLS & reset)
+// Fungsi utama play stream (dengan perbaikan untuk semua radio)
 window.playStream = (url, type, title, id) => {
     const audio = document.getElementById('player');
+    const nowPlayingDiv = document.getElementById('now-playing');
     
     // Update UI
     document.title = "▶️ " + title + " | Radio Player Pro";
-    document.getElementById('now-playing').innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
+    nowPlayingDiv.innerHTML = `🔥 Now Vibe-ing: <b>${title}</b>`;
     currentPlayingId = id;
 
     // Highlight card
@@ -83,11 +89,13 @@ window.playStream = (url, type, title, id) => {
 
     // Hancurkan HLS sebelumnya jika ada
     if (hls) {
-        try { hls.destroy(); } catch(e) {}
+        try { hls.destroy(); } catch(e) { console.warn(e); }
         hls = null;
     }
 
-    // Reset audio element
+    // Hapus event error lama untuk menghindari multiple handler
+    audio.onerror = null;
+    // Reset audio element secara menyeluruh
     audio.pause();
     audio.src = '';
     audio.load();
@@ -99,13 +107,18 @@ window.playStream = (url, type, title, id) => {
         hls = new Hls({ enableWorker: true, fragLoadingTimeOut: 30000 });
         hls.loadSource(url);
         hls.attachMedia(audio);
+        
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            audio.play().catch(e => console.log("Autoplay blocked, user can click play manually"));
+            audio.play().catch(e => {
+                console.log("Autoplay diblokir, user perlu klik play manual:", e);
+                nowPlayingDiv.innerHTML = `🎵 ${title} siap, klik play untuk mulai mendengarkan`;
+            });
         });
+        
         hls.on(Hls.Events.ERROR, (event, data) => {
             if (data.fatal) {
-                console.error("HLS error, trying to recover...");
-                document.getElementById('now-playing').innerHTML = `⚠️ Gagal memutar ${title}, coba stasiun lain.`;
+                console.error("HLS fatal error:", data);
+                nowPlayingDiv.innerHTML = `⚠️ Gagal memutar ${title}, stream mungkin offline. Coba stasiun lain.`;
                 if (hls) hls.destroy();
                 hls = null;
             }
@@ -114,9 +127,16 @@ window.playStream = (url, type, title, id) => {
         // Stream biasa (MP3, AAC, dll)
         audio.src = url;
         audio.load();
+        
+        // Tangani error jika stream gagal dimuat
+        audio.onerror = () => {
+            console.error(`Gagal memuat stream: ${url}`);
+            nowPlayingDiv.innerHTML = `❌ Stream ${title} tidak dapat diakses. Mungkin sedang offline.`;
+        };
+        
         audio.play().catch(e => {
-            console.log("Autoplay blocked, user can click play manually");
-            document.getElementById('now-playing').innerHTML = `🎵 ${title} - klik play untuk mulai`;
+            console.log("Autoplay diblokir, user perlu klik play manual:", e);
+            nowPlayingDiv.innerHTML = `🔊 ${title} - klik play jika tidak otomatis`;
         });
     }
 };
@@ -148,7 +168,7 @@ window.filterRadios = () => renderRadios();
 // Jalankan load data
 loadRadios();
 
-// Bersihkan HLS saat halaman ditutup (opsional)
+// Bersihkan HLS saat halaman ditutup
 window.addEventListener('beforeunload', () => {
     if (hls) {
         try { hls.destroy(); } catch(e) {}
