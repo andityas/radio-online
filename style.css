@@ -74,16 +74,16 @@ h1 { margin: 5px 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; }
 .radio-card.playing { border: 2px solid var(--primary); background: #222; }
 
 /* ========================================================
-   👉 BAGIAN PERBAIKAN LOGO RADIO (ANTI TERPOTONG / CROP)
+   👉 PERBAIKAN UTAMA: ATURAN LOGO AGAR UTUH & TIDAK TERPOTONG 
    ======================================================== */
 .radio-card img { 
     width: 100%; 
     border-radius: 12px; 
     aspect-ratio: 1/1; 
     object-fit: contain;     /* Mengubah 'cover' menjadi 'contain' agar gambar utuh */
-    background: #ffffff;     /* Mengamankan logo bawaan radio yang mayoritas ber-base putih */
-    padding: 8px;            /* Memberi jarak aman agar tulisan logo tidak menyentuh garis tepi */
-    box-sizing: border-box;  /* Menjaga ukuran box tetap presisi setelah ditambah padding */
+    background: #ffffff;     /* Latar putih mengamankan pinggiran logo radio agar rapi */
+    padding: 10px;           /* Memberikan jarak aman agar teks logo tidak mepet lengkungan */
+    box-sizing: border-box;  /* Menjaga rasio kotak gambar agar tetap presisi 1:1 */
 }
 
 .radio-card h3 { font-size: 13px; margin: 10px 0 0 0; }
